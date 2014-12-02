@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6116dfa8-d290-491c-a58c-72dd8e8a90b0" name="Default" comment="" />
+    <ignored path="emptymind.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="emptymind" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="user_ctrl.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/user_ctrl.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="39" selection-start="1235" selection-end="1266" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="4522">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userModel.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/userModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="27" selection-start="633" selection-end="633" vertical-scroll-proportion="-10.461538" vertical-offset="17" max-vertical-offset="2958">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diary_ctrl.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/controllers/diary_ctrl.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="44" selection-start="356" selection-end="356" vertical-scroll-proportion="0.36125" vertical-offset="0" max-vertical-offset="800">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addFoodView2.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/diaryCtrl/addFoodView2.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="19" selection-start="119" selection-end="119" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="1496">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loginView.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/authCtrl/loginView.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="646">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newPassView.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/authCtrl/newPassView.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="697">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="passResetView.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/authCtrl/passResetView.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="459">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChangeUserDataView.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/userCtrl/ChangeUserDataView.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="748">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewPassView.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/userCtrl/NewPassView.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="816">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userDataView.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/userCtrl/userDataView.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="0" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="663">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/application/views/registration_view.php" />
+        <option value="$PROJECT_DIR$/application/views/auth_view_header.php" />
+        <option value="$PROJECT_DIR$/application/views/login_view.php" />
+        <option value="$PROJECT_DIR$/application/views/passReset.php" />
+        <option value="$PROJECT_DIR$/application/views/siteInfo.php" />
+        <option value="$PROJECT_DIR$/application/config/autoload.php" />
+        <option value="$PROJECT_DIR$/application/views/homeView.php" />
+        <option value="$PROJECT_DIR$/application/views/loginView.php" />
+        <option value="$PROJECT_DIR$/application/views/authViewHeader.php" />
+        <option value="$PROJECT_DIR$/application/views/passResetView.php" />
+        <option value="$PROJECT_DIR$/application/views/registrationView.php" />
+        <option value="$PROJECT_DIR$/application/views/homeViewHeader.php" />
+        <option value="$PROJECT_DIR$/application/views/registrationViewold.php" />
+        <option value="$PROJECT_DIR$/application/views/loginViewold.php" />
+        <option value="$PROJECT_DIR$/application/controllers/userCtrl.php" />
+        <option value="$PROJECT_DIR$/application/views/logout/authViewHeader.php" />
+        <option value="$PROJECT_DIR$/application/views/logout/user/registrationView.php" />
+        <option value="$PROJECT_DIR$/application/views/logout/siteInfoView.php" />
+        <option value="$PROJECT_DIR$/application/helpers/registration_helper.php" />
+        <option value="$PROJECT_DIR$/application/views/logged/user/NewPassView.php" />
+        <option value="$PROJECT_DIR$/application/views/logged/user/ChangeUserDataView.php" />
+        <option value="$PROJECT_DIR$/application/views/logged/homeViewHeader.php" />
+        <option value="$PROJECT_DIR$/application/views/logged/task/allTasksView.php" />
+        <option value="$PROJECT_DIR$/application/views/logout/user/passResetView.php" />
+        <option value="$PROJECT_DIR$/application/views/logged/user/userDataView.php" />
+        <option value="$PROJECT_DIR$/application/views/logout/user/loginView.php" />
+        <option value="$PROJECT_DIR$/application/views/userCtrl/homeViewHeader.php" />
+        <option value="$PROJECT_DIR$/application/controllers/home_ctrl.php" />
+        <option value="$PROJECT_DIR$/application/controllers/user_ctrl.php" />
+        <option value="$PROJECT_DIR$/application/views/authCtrl/authViewHeader.php" />
+        <option value="$PROJECT_DIR$/application/models/userModel.php" />
+        <option value="$PROJECT_DIR$/application/models/taskModel.php" />
+        <option value="$PROJECT_DIR$/application/controllers/task_ctrl.php" />
+        <option value="$PROJECT_DIR$/application/config/database.php" />
+        <option value="$PROJECT_DIR$/application/views/siteInfoView.php" />
+        <option value="$PROJECT_DIR$/application/controllers/auth_ctrl.php" />
+        <option value="$PROJECT_DIR$/application/models/diaryModel.php" />
+        <option value="$PROJECT_DIR$/application/views/diaryCtrl/addFoodView" />
+        <option value="$PROJECT_DIR$/application/views/homeCtrl/homeViewHeader.php" />
+        <option value="$PROJECT_DIR$/application/views/diaryCtrl/addFoodView.pp" />
+        <option value="$PROJECT_DIR$/application/views/diaryCtrl/addFoodView.php" />
+        <option value="$PROJECT_DIR$/application/views/diaryCtrl/addFood_View.php" />
+        <option value="$PROJECT_DIR$/application/views/authCtrl/loginView.php" />
+        <option value="$PROJECT_DIR$/application/views/authCtrl/newPassView.php" />
+        <option value="$PROJECT_DIR$/application/views/authCtrl/passResetView.php" />
+        <option value="$PROJECT_DIR$/application/views/authCtrl/registrationView.php" />
+        <option value="$PROJECT_DIR$/application/views/userCtrl/ChangeUserDataView.php" />
+        <option value="$PROJECT_DIR$/application/views/userCtrl/NewPassView.php" />
+        <option value="$PROJECT_DIR$/application/views/userCtrl/userDataView.php" />
+        <option value="$PROJECT_DIR$/application/controllers/diary_ctrl.php" />
+        <option value="$PROJECT_DIR$/application/views/diaryCtrl/addFoodView2.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userCtrl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="homeCtrl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="diaryCtrl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="authCtrl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fooddiary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="SearchEverywhereHistory" value="" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\emptymind\application\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\emptymind\application\views\homeCtrl" />
+      <recent name="C:\xampp\htdocs\emptymind\application\views" />
+      <recent name="C:\xampp\htdocs\emptymind\application\views\taskCtrl" />
+      <recent name="C:\xampp\htdocs\emptymind\application\views\userCtrl" />
+      <recent name="C:\xampp\htdocs\emptymind\application\views\authCtrl" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PHPUnit.fooddiary">
+    <configuration default="false" name="fooddiary" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner directory="$PROJECT_DIR$" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="PHPUnit.fooddiary" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="PHPUnit.fooddiary" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6116dfa8-d290-491c-a58c-72dd8e8a90b0" name="Default" comment="" />
+      <created>1414253630484</created>
+      <updated>1414253630484</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3295063" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="1428" y="260" width="1238" height="287" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23101777" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977304" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="10" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/views/homeCtrl/homeViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="77" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/diary_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="578">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/diaryModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="272" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/homeCtrl/homeViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="77" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/homeCtrl/homeViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="9" selection-start="2021" selection-end="2021" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/registrationView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="14" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1105" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/auth_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="9" selection-start="1723" selection-end="1723" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="2958" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/userModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="25" selection-start="1679" selection-end="1679" vertical-scroll-proportion="0.0" vertical-offset="358" max-vertical-offset="1394">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/home_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="367" selection-end="367" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="646" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/user_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="1190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/loginView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="14" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="629" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/passResetView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="14" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="595" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/homeCtrl/homeViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="31" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/authViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="18" selection-start="359" selection-end="359" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="697" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/siteInfoView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="7" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="425" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/userCtrl/userDataView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/userCtrl/ChangeUserDataView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="3" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/passResetView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/auth_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="12" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" vertical-offset="184" max-vertical-offset="1853" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="47" selection-start="1933" selection-end="1933" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2057" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/userModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="32" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="629">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/home_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="9" selection-start="226" selection-end="462" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="612" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/passResetView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="52" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="340" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/auth_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="12" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/authViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="43" selection-start="123" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="459" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/auth_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="12" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/authViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="43" selection-start="123" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="459" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/auth_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="38" selection-start="1246" selection-end="1246" vertical-scroll-proportion="-19.807692" vertical-offset="46" max-vertical-offset="867" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="226" column="37" selection-start="7548" selection-end="7548" vertical-scroll-proportion="-13.076923" vertical-offset="3502" max-vertical-offset="6256" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="47" selection-start="1933" selection-end="1933" vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2057" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/helpers/registration_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="576" selection-end="576" vertical-scroll-proportion="0.5604396" vertical-offset="0" max-vertical-offset="819" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="41" selection-start="2630" selection-end="2630" vertical-scroll-proportion="0.7588757" vertical-offset="337" max-vertical-offset="1258" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/siteInfoView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="6" selection-start="221" selection-end="221" vertical-scroll-proportion="0.31707317" vertical-offset="0" max-vertical-offset="697" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/authViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="73" selection-start="760" selection-end="760" vertical-scroll-proportion="0.73170733" vertical-offset="0" max-vertical-offset="697" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/core/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="0" selection-start="983" selection-end="983" vertical-scroll-proportion="0.42159763" vertical-offset="378" max-vertical-offset="1173">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/diaryModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="272" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/homeCtrl/homeViewHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="25" selection-start="574" selection-end="574" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1241" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/home_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="2" selection-start="120" selection-end="237" vertical-scroll-proportion="0.17073171" vertical-offset="0" max-vertical-offset="697" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/auth_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="8" selection-start="282" selection-end="327" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="4675" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/user_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="39" selection-start="1235" selection-end="1266" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="4522">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/registrationView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="1139" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/passResetView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/userCtrl/ChangeUserDataView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/userCtrl/NewPassView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/userCtrl/userDataView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/diaryCtrl/addFoodView2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="19" selection-start="119" selection-end="119" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="1496">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/userModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="27" selection-start="633" selection-end="633" vertical-scroll-proportion="-10.461538" vertical-offset="17" max-vertical-offset="2958">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/loginView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="646">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/authCtrl/newPassView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/diary_ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="44" selection-start="356" selection-end="356" vertical-scroll-proportion="0.36125" vertical-offset="0" max-vertical-offset="800">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
