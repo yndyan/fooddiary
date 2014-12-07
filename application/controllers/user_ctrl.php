@@ -6,7 +6,7 @@ class user_ctrl extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('userModel','',TRUE);
+        $this->load->model('users','',TRUE);
         $this->load->helper('registration');
 
     }
@@ -15,11 +15,11 @@ class user_ctrl extends CI_Controller
 
     function display_user_data()
     {
-        if($this->userModel->check_Login_Status())
+        if($this->users->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
             $this->load->view('homeCtrl/homeViewHeader',$session_data);
-            $data = $this->userModel->getUserData('username',$session_data['username'],'username,email,fullName');
+            $data = $this->users->getUserData('username',$session_data['username'],'username,email,fullName');
             $this->load->view('userCtrl/userDataView',$data);
         }
         else
@@ -31,12 +31,12 @@ class user_ctrl extends CI_Controller
 
     function change_User_Data()
     {
-    if($this->userModel->check_Login_Status())
+    if($this->users->check_Login_Status())
         {
         $session_data = $this->session->userdata('logged_in');
         $this->load->view('homeCtrl/homeViewHeader',$session_data);
 
-        $data = $this->userModel->getUserData('username',$session_data['username'],'username,email,fullName');
+        $data = $this->users->getUserData('username',$session_data['username'],'username,email,fullName');
         if($this->input->post('email'))
             {
             $this->load->view('homeCtrl/homeViewHeader',$session_data);
@@ -48,7 +48,7 @@ class user_ctrl extends CI_Controller
                 {
                 $this->form_validation->set_rules('email','email',"trim|xss_clean|required|valid_email|is_unique[users.email]");
                 $new_user_data['email'] = $email;
-                $new_user_data['userStatus'] = userModel::USER_STATUS_NOT_VERIFIED;
+                $new_user_data['userStatus'] = users::USER_STATUS_NOT_VERIFIED;
                 }
             if($fullname!== $data['fullName'])
                 {
@@ -62,8 +62,8 @@ class user_ctrl extends CI_Controller
                 }
             else
                 {
-                    $this->userModel->updateUserData('username',$session_data['username'],$new_user_data);
-                    $data = $this->userModel->getUserData('username',$session_data['username'],'username,email,fullName');
+                    $this->users->updateUserData('username',$session_data['username'],$new_user_data);
+                    $data = $this->users->getUserData('username',$session_data['username'],'username,email,fullName');
                     $this->load->view('/userCtrl/userDataView',$data);
                 }
             }
@@ -82,7 +82,7 @@ class user_ctrl extends CI_Controller
 
     function change_user_password()
     {
-        if($this->userModel->check_Login_Status())
+        if($this->users->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
             $this->load->view('homeCtrl/homeViewHeader',$session_data);
@@ -100,8 +100,8 @@ class user_ctrl extends CI_Controller
                 }
                 else
                 {
-                    $this->userModel->updateUserData('username',$session_data['username'],array('password'=> $new_password));
-                    $data = $this->userModel->getUserData('username',$session_data['username'],'username,email,fullName');
+                    $this->users->updateUserData('username',$session_data['username'],array('password'=> $new_password));
+                    $data = $this->users->getUserData('username',$session_data['username'],'username,email,fullName');
                     $this->load->view('userCtrl/userDataView',$data);
                 }
             }
@@ -122,7 +122,7 @@ class user_ctrl extends CI_Controller
 
     function check_Old_Password($password,$username)//
     {
-        if($this->userModel->verifyUserData($username,$password))
+        if($this->users->verifyUserData($username,$password))
         {
             return true;
         }
@@ -135,21 +135,21 @@ class user_ctrl extends CI_Controller
 
     function Send_new_verify_code()
     {
-        if($this->userModel->check_Login_Status())
+        if($this->users->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
             do
             {
-                $new_verify_code = Generate_random_string(userModel::VERIFY_CODE_LENGTH);
-            }while($this->userModel->chechValueExistsInDb('verifyCode',$new_verify_code));
+                $new_verify_code = Generate_random_string(users::VERIFY_CODE_LENGTH);
+            }while($this->users->chechValueExistsInDb('verifyCode',$new_verify_code));
 
-            $this->userModel->updateUserData('username',$session_data['username'], array('verifyCode' => $new_verify_code,'verifyExpTime'=> time() + userModel::TIMESTAMP_HOUR));
-            $email = $this->userModel->getUserData('username',$session_data['username'],'email');
+            $this->users->updateUserData('username',$session_data['username'], array('verifyCode' => $new_verify_code,'verifyExpTime'=> time() + users::TIMESTAMP_HOUR));
+            $email = $this->users->getUserData('username',$session_data['username'],'email');
 
             if($email)
             {
                 $email_message = array('subject' => 'Verification email', 'message' => 'smekeru klikni na: '.base_url().'index.php/user_ctrl/verify_email/'.$new_verify_code.'');
-                $this->userModel->sendVerificationEmail($email,$email_message);
+                $this->users->sendVerificationEmail($email,$email_message);
                 $this->session->set_flashdata('verify_warning','New validation code sent!');
                 redirect('home_ctrl','refresh');
             }
@@ -169,13 +169,13 @@ class user_ctrl extends CI_Controller
 
     function verify_email($email_verify_code = NULL)
     {
-        if(strlen($email_verify_code)===userModel::VERIFY_CODE_LENGTH)
+        if(strlen($email_verify_code)===users::VERIFY_CODE_LENGTH)
         {
-            $result = $this->userModel->verifyEmailUsingCode($email_verify_code);
+            $result = $this->users->verifyEmailUsingCode($email_verify_code);
 
             $session_data = $this->session->userdata('logged_in');
 
-            if($result === userModel::VERIFY_CODE_NOT_EXIST)
+            if($result === users::VERIFY_CODE_NOT_EXIST)
             {
                 $this->session->set_flashdata('verify_warning','Verify code not exist');
                 if($session_data)
@@ -187,7 +187,7 @@ class user_ctrl extends CI_Controller
                     redirect('auth_ctrl/login','refresh');
                 }
             }
-            elseif($result['userStatus'] === userModel::USER_STATUS_NOT_VERIFIED)
+            elseif($result['userStatus'] === users::USER_STATUS_NOT_VERIFIED)
             {
                 $this->session->set_flashdata('verify_warning','Verify code expired');
                 if($session_data)
@@ -199,7 +199,7 @@ class user_ctrl extends CI_Controller
                     redirect('auth_ctrl/login','refresh');
                 }
             }
-            else if($result['userStatus'] === userModel::USER_STATUS_VERIFIED)
+            else if($result['userStatus'] === users::USER_STATUS_VERIFIED)
             {
                 $this->session->set_flashdata('verify_warning','Email successfully verified');
 

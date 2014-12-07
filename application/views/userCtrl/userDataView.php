@@ -20,7 +20,7 @@
     <h3>User data page </h3>
     <h4>
         Username: <?php echo $username; ?> </br>
-        Email address: <?php echo $email,$userStatus === userModel:: USER_STATUS_VERIFIED ? ' (verified)':' (not verified)';?> </br>
+        Email address: <?php echo $email,$userStatus === users:: USER_STATUS_VERIFIED ? ' (verified)':' (not verified)';?> </br>
         Full name: <?php echo $fullName; ?>
         <fieldset>
         <legend>Personalia:</legend>

@@ -7,7 +7,7 @@ class Auth_ctrl extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('registration');
-        $this->load->model('userModel','',TRUE);
+        $this->load->model('users','',TRUE);
         $this->load->view('authCtrl/authViewHeader');
     }
 
@@ -31,7 +31,7 @@ class Auth_ctrl extends CI_Controller
             }
             else
             {
-                if($this->session->userdata('logged_in')['userStatus'] === userModel::USER_STATUS_NOT_VERIFIED)
+                if($this->session->userdata('logged_in')['userStatus'] === users::USER_STATUS_NOT_VERIFIED)
                 {
                     $this->session->set_flashdata('verify_warning',"Please verify email address ");
                 }
@@ -47,7 +47,7 @@ class Auth_ctrl extends CI_Controller
 
     function checkDatabase($password,$username_or_email)
     {
-        $result = $this->userModel->verifyUserData( $username_or_email,$password);
+        $result = $this->users->verifyUserData( $username_or_email,$password);
         if($result)
         {
             $this->session->set_userdata('logged_in',$result);
@@ -86,8 +86,8 @@ class Auth_ctrl extends CI_Controller
             {
                 do
                 {
-                    $verify_code = Generate_random_string(userModel::VERIFY_CODE_LENGTH);
-                }while($this->userModel->chechValueExistsInDb('verifyCode',$verify_code));
+                    $verify_code = Generate_random_string(users::VERIFY_CODE_LENGTH);
+                }while($this->users->chechValueExistsInDb('verifyCode',$verify_code));
 
                 $new_user_data = [
                     'username'=>$this->input->post('username'),
@@ -95,15 +95,15 @@ class Auth_ctrl extends CI_Controller
                     'verifycode' => $verify_code,
                     'email'=>$this->input->post('email'),
                     'fullname'=>$this->input->post('fullname'),
-                    'userStatus'=> userModel::USER_STATUS_NOT_VERIFIED,
-                    'verifyExpTime'=> time()+ userModel::TIMESTAMP_HOUR
+                    'userStatus'=> users::USER_STATUS_NOT_VERIFIED,
+                    'verifyExpTime'=> time()+ users::TIMESTAMP_HOUR
                 ];
 
-                $this->userModel->addUserToDb($new_user_data);
+                $this->users->addUserToDb($new_user_data);
                 $this->session->set_flashdata('verify_warning',"Email is sent to you, please verify ");
-                $this->session->set_userdata('logged_in',array('username' => $this->input->post('username'),'userStatus'=>userModel::USER_STATUS_NOT_VERIFIED));
+                $this->session->set_userdata('logged_in',array('username' => $this->input->post('username'),'userStatus'=>users::USER_STATUS_NOT_VERIFIED));
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_ctrl/verify_email/'.$verify_code.'');
-                $this->userModel->sendVerificationEmail($new_user_data['email'],$email_message);
+                $this->users->sendVerificationEmail($new_user_data['email'],$email_message);
                 redirect('home_ctrl','refresh');
             }
         }
@@ -122,18 +122,18 @@ class Auth_ctrl extends CI_Controller
             $username_or_email = trim($this->input->post('username_or_email',TRUE));
             if($username_or_email)
             {
-                $email = $this->userModel->checkUserExist($username_or_email );
+                $email = $this->users->checkUserExist($username_or_email );
 
                 if($email)
                 {
                     do
                     {
-                        $password_reset_code = Generate_random_string(userModel::PASS_RESET_CODE_LENGTH);
-                    }while ($this->userModel->chechValueExistsInDb('passResetCode',$password_reset_code));
+                        $password_reset_code = Generate_random_string(users::PASS_RESET_CODE_LENGTH);
+                    }while ($this->users->chechValueExistsInDb('passResetCode',$password_reset_code));
 
-                    $this->userModel->updateUserData('email',$email,array('passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + userModel::TIMESTAMP_MINUTE )));
+                    $this->users->updateUserData('email',$email,array('passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + users::TIMESTAMP_MINUTE )));
                     $email_message = array('subject' => 'Password reset email', 'message' => 'Go to '.base_url().'index.php/auth_ctrl/reset_password/'.$password_reset_code.'');
-                    $this->userModel->sendVerificationEmail($email,$email_message);
+                    $this->users->sendVerificationEmail($email,$email_message);
                     $this->session->set_flashdata('verify_warning','Email with link sent');
                     redirect('auth_ctrl/login','refresh');
                 }
@@ -159,12 +159,12 @@ class Auth_ctrl extends CI_Controller
 
     function reset_password($reset_pass_verify_code = NULL)
     {
-        if(strlen($reset_pass_verify_code)=== userModel::PASS_RESET_CODE_LENGTH)
+        if(strlen($reset_pass_verify_code)=== users::PASS_RESET_CODE_LENGTH)
         {
-            $pass_reset_code_status = $this->userModel->checkPassResetCodeStatus($reset_pass_verify_code);
+            $pass_reset_code_status = $this->users->checkPassResetCodeStatus($reset_pass_verify_code);
             switch($pass_reset_code_status)
             {
-                case userModel::PASS_RESET_CODE_OK:
+                case users::PASS_RESET_CODE_OK:
                 {
                     $new_password = trim($this->input->post('new_password',TRUE));//xss clean + trim
                     if($new_password)
@@ -180,7 +180,7 @@ class Auth_ctrl extends CI_Controller
                         }
                         else
                         {
-                            $this->userModel->updateUserData('passResetCode',$reset_pass_verify_code,array('password' => $new_password,
+                            $this->users->updateUserData('passResetCode',$reset_pass_verify_code,array('password' => $new_password,
                                                                                                            'passResetCode'   => NULL,
                                                                                                            'passResetExpTime'=> NULL));
                             //$data = array('auth_message' =>  'Password successfully changed, please login');
@@ -197,7 +197,7 @@ class Auth_ctrl extends CI_Controller
                 }
                     break;
 
-                case userModel::PASS_RESET_CODE_EXPIRED:
+                case users::PASS_RESET_CODE_EXPIRED:
                 {
                     //$data = array('auth_message' =>  'Password reset code expired, enter mail or username and press "forget" button');
                     //$this->load->view('auth_view',$data);
@@ -206,7 +206,7 @@ class Auth_ctrl extends CI_Controller
                 }
                     break;
 
-                case userModel::PASS_RESET_CODE_NOT_EXIST:
+                case users::PASS_RESET_CODE_NOT_EXIST:
                 {
                     //$data = array('auth_message' =>  'Password reset code not exist!');
                     //$this->load->view('auth_view',$data);

@@ -7,7 +7,7 @@ class diary_ctrl extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('userModel','',TRUE);
+        $this->load->model('users','',TRUE);
         $this->load->model('diaryModel','',TRUE);
 
     }
@@ -15,7 +15,7 @@ class diary_ctrl extends CI_Controller
 
 function add_food()
 {
-    if($this->userModel->check_Login_Status())
+    if($this->users->check_Login_Status())
     {
         if($this->input->post('foodname'))
         {

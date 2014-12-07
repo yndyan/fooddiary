@@ -51,7 +51,7 @@
     <h3><a href = "<?php echo base_url();?>index.php/auth_ctrl/logout"> Logout </a> </h3>
 
 
-    <h4><?php if($userStatus===userModel::USER_STATUS_NOT_VERIFIED)
+    <h4><?php if($userStatus===users::USER_STATUS_NOT_VERIFIED)
         {
 
             echo "<a href = ".base_url()."index.php/user_ctrl/Send_new_verify_code> Send new verify code </a>";
