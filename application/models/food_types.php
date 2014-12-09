@@ -10,9 +10,9 @@ class Food_types extends BaseModel
 {
     CONST table_name = 'food_types';
 
-    function Tabela()
+    function getTableName()
     {
-        parent:: temp();
+        return self::table_name;
     }
 
 

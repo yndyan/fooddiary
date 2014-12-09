@@ -19,7 +19,7 @@ class user_ctrl extends CI_Controller
         {
             $session_data = $this->session->userdata('logged_in');
             $this->load->view('homeCtrl/homeViewHeader',$session_data);
-            $data = $this->users->getUserData('username',$session_data['username'],'username,email,fullName');
+            $data = $this->users->getSingleData('username',$session_data['username'],'username,email,fullName');
             $this->load->view('userCtrl/userDataView',$data);
         }
         else
@@ -36,7 +36,7 @@ class user_ctrl extends CI_Controller
         $session_data = $this->session->userdata('logged_in');
         $this->load->view('homeCtrl/homeViewHeader',$session_data);
 
-        $data = $this->users->getUserData('username',$session_data['username'],'username,email,fullName');
+        $data = $this->users->getSingleData('username',$session_data['username'],'username,email,fullName');
         if($this->input->post('email'))
             {
             $this->load->view('homeCtrl/homeViewHeader',$session_data);
@@ -63,7 +63,7 @@ class user_ctrl extends CI_Controller
             else
                 {
                     $this->users->updateUserData('username',$session_data['username'],$new_user_data);
-                    $data = $this->users->getUserData('username',$session_data['username'],'username,email,fullName');
+                    $data = $this->users->getSingleData('username',$session_data['username'],'username,email,fullName');
                     $this->load->view('/userCtrl/userDataView',$data);
                 }
             }
@@ -101,7 +101,7 @@ class user_ctrl extends CI_Controller
                 else
                 {
                     $this->users->updateUserData('username',$session_data['username'],array('password'=> $new_password));
-                    $data = $this->users->getUserData('username',$session_data['username'],'username,email,fullName');
+                    $data = $this->users->getSingleData('username',$session_data['username'],'username,email,fullName');
                     $this->load->view('userCtrl/userDataView',$data);
                 }
             }
@@ -144,7 +144,7 @@ class user_ctrl extends CI_Controller
             }while($this->users->chechValueExistsInDb('verifyCode',$new_verify_code));
 
             $this->users->updateUserData('username',$session_data['username'], array('verifyCode' => $new_verify_code,'verifyExpTime'=> time() + users::TIMESTAMP_HOUR));
-            $email = $this->users->getUserData('username',$session_data['username'],'email');
+            $email = $this->users->getSingleData('username',$session_data['username'],'email');
 
             if($email)
             {
