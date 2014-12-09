@@ -110,7 +110,7 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array();
-require_once APPPATH.'models/BaseModel.php';
+
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */
