@@ -5,8 +5,8 @@ class Meals_diary extends BaseModel
 {
     CONST table_name = 'meals_diary';
 
-    function Tabela()
+    function getTableName()
     {
-        parent:: temp();
+        return self::table_name;
     }
 } 
