@@ -29,7 +29,7 @@ class user_ctrl extends CI_Controller
         }
     }
 
-    function change_User_Data()
+    function change_user_data()
     {
     if($this->users->check_Login_Status())
         {
@@ -120,7 +120,7 @@ class user_ctrl extends CI_Controller
 
     }
 
-    function check_Old_Password($password,$username)//
+    function check_old_password($password,$username)//
     {
         if($this->users->verifyUserData($username,$password))
         {
@@ -133,7 +133,7 @@ class user_ctrl extends CI_Controller
         }
     }
 
-    function Send_new_verify_code()
+    function send_new_verify_code()
     {
         if($this->users->check_Login_Status())
         {
@@ -217,7 +217,7 @@ class user_ctrl extends CI_Controller
         }
     }
 
-    function contain_Upper_Letter($input)//TODO ove funkcije su duple, ne znam kako da izbacim iz kontrolera
+    function contain_upper_letter($input)//TODO ove funkcije su duple, ne znam kako da izbacim iz kontrolera
     {
         if(preg_match('#[A-Z]#',$input))
         {

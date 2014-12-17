@@ -8,7 +8,7 @@ class diary_ctrl extends CI_Controller
     {
         parent::__construct();
         $this->load->model('users','',TRUE);
-        $this->load->model('diaryModel','',TRUE);
+        $this->load->model('meals_diary','',TRUE);
 
     }
 
@@ -17,12 +17,14 @@ function add_food()
 {
     if($this->users->check_Login_Status())
     {
-        if($this->input->post('foodname'))
+        if($this->input->post('date'))
         {
             echo ($this->input->post('date'));
             echo '</br>';
             echo ($this->input->post('time'));
-
+            echo '</br>';
+            $in = ($this->input->post('food_input'));\
+            var_dump($in);
         }
         else
         {

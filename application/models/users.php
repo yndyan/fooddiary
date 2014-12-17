@@ -1,6 +1,6 @@
 <?php
-require_once APPPATH.'models/BaseModel.php';
-Class Users extends BaseModel
+require_once APPPATH.'models/MY_Model.php';
+Class Users extends MY_Model
 {
     const USER_STATUS_NOT_VERIFIED = '1';
     const USER_STATUS_VERIFIED = '2';
@@ -37,35 +37,13 @@ Class Users extends BaseModel
     }
     
     
-//    function getUserData($key,$value,$data_content)
-//    {
-//        $this->db-> select($data_content);
-//        $this->db-> from('users');
-//        $this->db-> where($key,$value);
-//        $this->db-> limit(1);
-//        $query = $this->db->get();
-//        if($query->num_rows() == 1)
-//            {
-//                return get_object_vars($query->result()[0]);
-//            }
-//        else
-//            {
-//            return false;
-//            }
-//    }
+
 
     function addUserToDb($new_user_data)
     {
         $this->db->insert('users',$new_user_data);
     }
 
-//    function chechValueExistsInDb($what,$value)
-//    {
-//        $this->db->where($what,$value);// probaj i probaj obrnuto!!
-//        $this->db->from('users');
-//        return ($this->db->count_all_results() > 0);
-//
-//    }
 
     function updateUserData($key,$value,$new_user_data)
     {

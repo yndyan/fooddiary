@@ -1,7 +1,7 @@
 <?php
 
-require_once APPPATH.'models/BaseModel.php';
-class Meals_diary extends BaseModel
+require_once APPPATH.'models/MY_Model.php';
+class Meals_diary extends MY_Model
 {
     CONST table_name = 'meals_diary';
 

@@ -1,12 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: _Yndyan
- * Date: 12/5/14
- * Time: 11:29 PM
- */
 
-class Food_types extends BaseModel
+require_once APPPATH.'models/MY_Model.php';
+
+class Food_types extends MY_Model
 {
     CONST table_name = 'food_types';
 

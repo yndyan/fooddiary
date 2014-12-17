@@ -1,3 +1,4 @@
+<head>
 <style>
     #content
     {
@@ -16,23 +17,41 @@
     }
 
 </style>
+<script >
+    function add() {
+        food_list.push(document.getElementById("food_in").value);
+        element.value = food_list;
+    }
+    function del() {
+        food_list.pop();
+       element.value = food_list;
+    }
+</script>
+</head>
+
 <body>
 <div id="content">
+    
     <h2> Add food</h2>
+    <div style="float: left;margin-left: 40px;">
+        <input  id = "food_in" > 
+        <button onclick="add()">add</button>
+        <button onclick="del()">delete</button> 
+       
     <form action = "<?php echo base_url(); ?>index.php/diary_ctrl/add_food" method = "post">
-            <div style="float: left;margin-left: 40px;">
+            
             <p> What:* </p>
-            <textarea name = "description"  required = "true" rows="7" cols="30">
-- soup
-- peas
-- salad</textarea>
+             
+            <textarea name = "food_input" id ="food_in2" required = "true" rows="7" cols="30" readonly> </textarea>
+            <script >
+            var food_list = [];
+            var element = document.getElementById("food_in2");
+            </script> 
             <p>Description:</p>
                 <textarea name = "description"   rows="2" cols="30">Please enter food description.</textarea>
-
             </div>
-
             <div style="float: right; margin-right: 40px;">
-
+        
         <p>When?</p>
         <select name="date">
             <option value="<?php echo date("Y-m-d",strtotime("-4 day"));?>"><?php echo date("Y-m-d  D",strtotime("-4 day"));?></option>
@@ -73,9 +92,9 @@
         </h4>
         <h4>* - this fields are required </h4>
         </div>
-
-
     </form>
+        
+    
 
 
 

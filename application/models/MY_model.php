@@ -1,5 +1,5 @@
 <?php
-abstract class BaseModel extends CI_Model
+abstract class MY_Model extends CI_Model
 {
     abstract protected function getTableName();
     
@@ -13,7 +13,7 @@ abstract class BaseModel extends CI_Model
             $query = $this->db->get();
             if($query->num_rows() == 1)
                 {
-                    return get_object_vars($query->result()[0]);
+                return get_object_vars($query->result()[0]);
                 }
             else
                 {

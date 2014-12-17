@@ -1,7 +1,7 @@
 <?php
 
 
-class Admins //extends BaseModel
+class Admins //extends MY_Model
 {
 
 } 

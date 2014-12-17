@@ -1,6 +1,6 @@
 <?php
 
-    function Generate_random_string($result_length)
+    function generate_random_string($result_length)
     {
         if($result_length > 0)
         {
