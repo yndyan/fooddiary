@@ -12,21 +12,15 @@
         padding-left :10px;
 
     }
-    textarea {
-        resize: none;
-    }
-
 </style>
-<script >
-    function add() {
-        food_list.push(document.getElementById("food_in").value);
-        element.value = food_list;
-    }
-    function del() {
-        food_list.pop();
-       element.value = food_list;
-    }
-</script>
+ 
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+ <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+ 
+
+<script src= "http://localhost/fooddiary/public/js/input.js"> </script>
+
 </head>
 
 <body>
@@ -34,32 +28,16 @@
     
     <h2> Add food</h2>
     <div style="float: left;margin-left: 40px;">
+       <p> What:* </p>  
         <input  id = "food_in" > 
-        <button onclick="add()">add</button>
-        <button onclick="del()">delete</button> 
-       
-    <form action = "<?php echo base_url(); ?>index.php/diary_ctrl/add_food" method = "post">
-            
-            <p> What:* </p>
-             
-            <textarea name = "food_input" id ="food_in2" required = "true" rows="7" cols="30" readonly> </textarea>
-            <script >
-            var food_list = [];
-            var element = document.getElementById("food_in2");
-            </script> 
-            <p>Description:</p>
-                <textarea name = "description"   rows="2" cols="30">Please enter food description.</textarea>
-            </div>
-            <div style="float: right; margin-right: 40px;">
-        
-        <p>When?</p>
-        <select name="date">
-            <option value="<?php echo date("Y-m-d",strtotime("-4 day"));?>"><?php echo date("Y-m-d  D",strtotime("-4 day"));?></option>
-            <option value="<?php echo date("Y-m-d",strtotime("-3 day"));?>"><?php echo date("Y-m-d  D",strtotime("-3 day"));?></option>
-            <option value="<?php echo date("Y-m-d",strtotime("-2 day"));?>"><?php echo date("Y-m-d  D",strtotime("-2 day"));?></option>
-            <option value="<?php echo date("Y-m-d",strtotime("-1 day"));?>">Yesterday</option>
-            <option selected = "selected" value="<?php echo date("Y-m-d");?>">Today</option>
-        </select>
+        <button id = "add">add</button>
+        <form action = "<?php echo base_url(); ?>index.php/diary_ctrl/add_food" method = "post">
+            <ul id = "food_list" type = "1"> </ul>
+    </div>       
+    <div style="float: right ;margin-right: 40px;">
+            <p>When?</p>
+            <p>Date: <input type="text"  id="datepicker"></p>
+
         <select name="time">
             <?php   $hours =  (int)date('H');
             for($cnt = 0; $cnt <($hours-1); $cnt++){
@@ -73,7 +51,7 @@
             <p>Why?</p>
             <input list="reasons" name="reason">
             <datalist id="reasons">
-                <option value="Hungry">
+                <option value="Hungry"> 
                 <option value="Bored">
                 <option value="Free or cheap food">
                 <option value="Will be hungry">
@@ -91,7 +69,7 @@
             <input type = "submit"  value = "Accept"    />
         </h4>
         <h4>* - this fields are required </h4>
-        </div>
+    </div>
     </form>
         
     

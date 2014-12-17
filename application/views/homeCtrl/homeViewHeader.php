@@ -4,7 +4,7 @@
 
 <head>
     <style>
-        ul li {
+        ul.header li {
             display:inline;
             margin: 10px;
         }
@@ -33,7 +33,7 @@
 </head>
 <body>
 <div id="menu">
-<ul>
+<ul class = "header">
     <li><a href = "<?php echo base_url();?>index.php/diary_ctrl/add_food">Add data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/">Edit data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/">History</a></li>
