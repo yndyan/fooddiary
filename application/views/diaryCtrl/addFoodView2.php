@@ -13,14 +13,12 @@
 
     }
 </style>
- 
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
- <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
- 
-
-<script src= "http://localhost/fooddiary/public/js/input.js"> </script>
-
+<link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.css">
+<script src="<?php echo base_url(); ?>public/js/jquery-2.1.1.min.js"></script>
+<script src="<?php echo base_url(); ?>public/js/jquery-ui.js"></script>
+<script src="<?php echo base_url(); ?>public/js/input.js"></script>
+ <link rel="stylesheet" href="<?php echo base_url();?>public/css/style.css">
 </head>
 
 <body>
@@ -36,17 +34,9 @@
     </div>       
     <div style="float: right ;margin-right: 40px;">
             <p>When?</p>
-            <p>Date: <input type="text"  id="datepicker"></p>
+            <p>Date: <input type="text" id="datepicker"></p>
 
-        <select name="time">
-            <?php   $hours =  (int)date('H');
-            for($cnt = 0; $cnt <($hours-1); $cnt++){
-            ?>
-            <option value="<?php echo $cnt;?>"><?php echo $cnt,' h';?></option>
-            <?php }?>
-            <option value="<?php echo date("H",strtotime("-1 hour"));?>">Last hour</option>
-            <option selected = "selected" value="<?php echo date("H");?>">Now</option>
-        </select>
+            
         </br>
             <p>Why?</p>
             <input list="reasons" name="reason">
