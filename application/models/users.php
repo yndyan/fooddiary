@@ -31,25 +31,10 @@ Class Users extends MY_Model
 
     CONST table_name = 'users';
 
-    function getTableName()
-    {
+    function getTableName(){
         return self::table_name;
-    }
+    }//getTableName
     
-    
-
-
-    function addUserToDb($new_user_data)
-    {
-        $this->db->insert('users',$new_user_data);
-    }
-
-
-    function updateUserData($key,$value,$new_user_data)
-    {
-        $this->db->where($key,$value);
-        $this->db->update('users',$new_user_data);
-    }
 
     function verifyUserData($username_or_email, $password)
     {
@@ -103,47 +88,36 @@ Class Users extends MY_Model
         $this->email->send();
         //show_error($this->email->print_debugger());
     }
-    function verifyEmailUsingCode($email_verify_code)
-    {
-        $result = $this->getSingleData('verifyCode',$email_verify_code,'username,verifyExpTime,userStatus');
+    function verifyEmailUsingCode($email_verify_code){
+        $result = $this->getBySingleValue('verifyCode',$email_verify_code,'username,verifyExpTime,userStatus');
         if($result)
         {
-            if($result['verifyExpTime']>time())
-            {
-                $this->updateUserData('verifyCode',$email_verify_code,array('userStatus' => self::USER_STATUS_VERIFIED,
-                                                                            'verifyCode' => NULL,
-                                                                            'verifyExpTime' => NULL));
+            if($result['verifyExpTime']>time()){
+                $this->updateData('verifyCode',$email_verify_code,array('userStatus' => self::USER_STATUS_VERIFIED,
+                                                                        'verifyCode' => NULL,
+                                                                        'verifyExpTime' => NULL));
                 $result['userStatus'] = self::USER_STATUS_VERIFIED;
                 return $result;
-            }
-            else
-            {
+            }//if
+            else{
                 return $result;
-            }
-        }
-        else
-        {
+            }//else 
+        }//if
+        else{
             return self::VERIFY_CODE_NOT_EXIST;
-        }
-    }
+        }//else
+    }//function
 
 
-    function checkPassResetCodeStatus($password_reset_code)
-    {
-        $result = $this->getSingleData('passResetCode',$password_reset_code,'passResetExpTime');
+    function checkPassResetCodeStatus($password_reset_code){
+        $result = $this->getBySingleValue('passResetCode',$password_reset_code,'passResetExpTime');
 
-        if($result)
-        {
-            //if($query->result()[0]->passResetExpTime > time())
+        if($result){
             return ($result > time())? self::PASS_RESET_CODE_OK : self::PASS_RESET_CODE_EXPIRED;
-        }
-        else
-        {
+        }//if
+        else{
             return self::PASS_RESET_CODE_NOT_EXIST;
-        }
-    }
-    function check_Login_Status()
-    {
-        return ($this->session->userdata('logged_in'))? TRUE : FALSE;
-    }
-}
+        }//else
+    }//function
+
+}//class

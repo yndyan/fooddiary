@@ -47,12 +47,14 @@ DROP TABLE IF EXISTS `intake_reasons`;
 
 CREATE TABLE `intake_reasons` (
   `id` int(11) NOT NULL,
-  `reason` text,
+  `reason` varchar(100) DEFAULT NULL,
   `user_ide` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `intake_reasons` */
+
+insert  into `intake_reasons`(`id`,`reason`,`user_ide`) values (1,'Hungry',7),(2,'Bored',7),(3,'Free food',7),(4,'Cheap food',7),(5,'Tired',7),(6,'Stressed',7),(7,'Movie',7),(8,'Reward',7),(9,'Anxious',7),(10,'Insomnia',7),(11,'Others eat',7),(12,'Will be hungry',7),(13,'Feeling empty',7),(14,'Special occasion',7);
 
 /*Table structure for table `meals_diary` */
 
@@ -104,11 +106,11 @@ CREATE TABLE `users` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `verifyCode` (`verifyCode`),
   UNIQUE KEY `passResetCode` (`passResetCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`email`,`userStatus`,`fullName`,`verifyCode`,`verifyExpTime`,`passResetCode`,`passResetExpTime`) values (7,'yndyan','Zile33','yndyan@gmail.com',2,'Dusan Zivkovic',NULL,NULL,NULL,NULL);
+insert  into `users`(`id`,`username`,`password`,`email`,`userStatus`,`fullName`,`verifyCode`,`verifyExpTime`,`passResetCode`,`passResetExpTime`) values (7,'yndyan','Zile33','yndyan@gmail.com',2,'Dusan Zivkovic',NULL,NULL,NULL,NULL),(8,'dusan','Zile33','zivkovicdushan@gmail.com',2,'moja malenkost',NULL,NULL,NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

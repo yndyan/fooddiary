@@ -20,17 +20,8 @@
 </style>
 
 <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.css">
-  
-
 <script src="<?php echo base_url(); ?>public/js/jquery-2.1.1.min.js"></script>
 <script src="<?php echo base_url(); ?>public/js/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://localhost/fooddiary/public/css/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-
-
-
-
 <script src="<?php echo base_url(); ?>public/js/input.js"></script>
 
 </head>

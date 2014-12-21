@@ -99,7 +99,7 @@ class Auth_ctrl extends CI_Controller
                     'verifyExpTime'=> time()+ users::TIMESTAMP_HOUR
                 ];
 
-                $this->users->addUserToDb($new_user_data);
+                $this->users->addDataToDb($new_user_data);
                 $this->session->set_flashdata('verify_warning',"Email is sent to you, please verify ");
                 $this->session->set_userdata('logged_in',array('username' => $this->input->post('username'),'userStatus'=>users::USER_STATUS_NOT_VERIFIED));
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_ctrl/verify_email/'.$verify_code.'');
@@ -131,7 +131,7 @@ class Auth_ctrl extends CI_Controller
                         $password_reset_code = Generate_random_string(users::PASS_RESET_CODE_LENGTH);
                     }while ($this->users->chechValueExistsInDb('passResetCode',$password_reset_code));
 
-                    $this->users->updateUserData('email',$email,array('passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + users::TIMESTAMP_MINUTE )));
+                    $this->users->updateData('email',$email,array('passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + users::TIMESTAMP_MINUTE )));
                     $email_message = array('subject' => 'Password reset email', 'message' => 'Go to '.base_url().'index.php/auth_ctrl/reset_password/'.$password_reset_code.'');
                     $this->users->sendVerificationEmail($email,$email_message);
                     $this->session->set_flashdata('verify_warning','Email with link sent');
