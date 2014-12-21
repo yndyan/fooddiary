@@ -19,9 +19,11 @@
         }
 </style>
 
-<link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.css">
+<link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.min.css">
 <script src="<?php echo base_url(); ?>public/js/jquery-2.1.1.min.js"></script>
-<script src="<?php echo base_url(); ?>public/js/jquery-ui.js"></script>
+<script src="<?php echo base_url(); ?>public/js/jquery-ui.min.js"></script>
+
+
 <script src="<?php echo base_url(); ?>public/js/input.js"></script>
 
 </head>
