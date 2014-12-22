@@ -1,3 +1,8 @@
+
+
+
+
+
 $(document).ready(function() {
     var list = $('#food_list');
     var button_delete = $('#button_delete');
@@ -25,9 +30,11 @@ $(document).ready(function() {
                 alert('String prazan');
         } // else if
     });
-    
+
     $(function() {
     $( "#datepicker" ).datepicker();
   });
-    
+
+   
 });
+    

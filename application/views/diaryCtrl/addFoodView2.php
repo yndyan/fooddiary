@@ -1,4 +1,21 @@
 <head>
+
+<script src="<?php echo base_url();?>public/js/jquery-2.1.1.min.js"></script>
+
+<link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.min.css">
+<script src="<?php echo base_url();?>public/js/jquery-ui.min.js"></script>
+
+<script src="<?php echo base_url();?>public/js/jquery-ui-timepicker-addon.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui-timepicker-addon.min.css">
+
+<script src="<?php echo base_url(); ?>public/js/input.js"></script>
+<script>
+$(function() {
+    $( "#timepicker" ).timepicker();
+});
+</script>
+
+
 <style>
     #content
     {
@@ -13,19 +30,10 @@
 
     }
     
-    #datepicker {
-	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
-	font-size: 62.5%;
-        }
+    div.ui-datepicker {
+    font-size: 80%;
+    }
 </style>
-
-<link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.min.css">
-<script src="<?php echo base_url(); ?>public/js/jquery-2.1.1.min.js"></script>
-<script src="<?php echo base_url(); ?>public/js/jquery-ui.min.js"></script>
-
-
-<script src="<?php echo base_url(); ?>public/js/input.js"></script>
-
 </head>
 
 <body>
@@ -41,12 +49,12 @@
     </div>       
     <div style="float: right ;margin-right: 40px;">
             <p>When?</p>
-            <p>Date: <input type="text" id="datepicker" ></p>
-
-            
+            <p>Date: <input type="text" id="datepicker" size="12px"></p>
+            <p>Time: <input type="text" id="timepicker" size="12px"></p>
+           
         </br>
             <p>Why?</p>
-            <input list="reasons" name="reason">
+            <input list="reasons" name="reason" size="12px">
             <datalist id="reasons">
                 <option value="Hungry"> 
                 <option value="Bored">
