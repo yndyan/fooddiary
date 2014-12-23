@@ -31,7 +31,6 @@ class diary_ctrl extends CI_Controller
                 $this->load->view('homeCtrl/homeViewHeader',$session_data);
                 $this->load->view('diaryCtrl/addFoodView');
             }
-
         }
         else
         {
