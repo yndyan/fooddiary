@@ -9,11 +9,7 @@
 <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui-timepicker-addon.min.css">
 
 <script src="<?php echo base_url(); ?>public/js/input.js"></script>
-<script>
-$(function() {
-    $( "#timepicker" ).timepicker();
-});
-</script>
+
 
 
 <style>
@@ -45,7 +41,7 @@ $(function() {
         <input  id = "food_in" > 
         <button id = "add">add</button>
         <form action = "<?php echo base_url(); ?>index.php/diary_ctrl/add_food" method = "post">
-            <ul id = "food_list" type = "1"> </ul>
+            <table style="width:100%" id = "food_list" > </table>
     </div>       
     <div style="float: right ;margin-right: 40px;">
             <p>When?</p>
@@ -53,26 +49,11 @@ $(function() {
             <p>Time: <input type="text" id="timepicker" size="12px"></p>
            
         </br>
-            <p>Why?</p>
-            <input list="reasons" name="reason" size="12px">
-            <datalist id="reasons">
-                <option value="Hungry"> 
-                <option value="Bored">
-                <option value="Free or cheap food">
-                <option value="Will be hungry">
-                <option value="Tired">
-                <option value="Stressed">
-                <option value="Watching movie">
-                <option value="Reward yourself">
-                <option value="Anxious">
-                <option value="Feeling empty">
-                <option value="Others eat">
-                <option value="Special occasion">
-                <option value="Put to sleep">
-                </datalist>
-        <h4>
-            <input type = "submit"  value = "Accept"    />
-        </h4>
+            <div class="ui-widget">
+            <label for="why">Why? </label>
+            <input id="why">
+            </div>
+
         <h4>* - this fields are required </h4>
     </div>
     </form>

@@ -7,12 +7,14 @@ class debug_ctrl extends CI_Controller
         $this->load->model('users','',TRUE);
         $this->load->model('food_types','',TRUE);
         $this->load->model('meals_diary','',TRUE);
+        $this->load->model('intake_reasons','',TRUE);
         
     }
     function index()
     {
-          echo "ola";  
-         //$this->load->view('debugCtrl/debug_view');   
+         
+        
+         $this->load->view('debugCtrl/debug_view');
 
        
 

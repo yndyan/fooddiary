@@ -1,19 +1,20 @@
-<style>
-    #content
-    {
-        width: 600px;
-        height: 400px;
-        position: absolute;
-        top: 200px;
-        left: 100px;
-        border-style: solid;
-        border-color: black;
-    }
+<head>
+    <script src="<?php echo base_url();?>public/js/jquery-2.1.1.min.js"></script>
 
-</style>
+    <script src="<?php echo base_url();?>public/js/debug.js"></script>
+
+</head>
 <body>
-<div id="content">
 
-<P> DEBUG VIEW</p>
-</div>
+
+
+
+<button id ="testdugme"> Klikni me ;) </button>
+
+<p id="demo">url</p>
+
+<p id="demo2">base url</p>
+
+
 </body>
+

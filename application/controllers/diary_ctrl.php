@@ -9,35 +9,44 @@ class diary_ctrl extends CI_Controller
         parent::__construct();
         $this->load->model('users','',TRUE);
         $this->load->model('meals_diary','',TRUE);
-
+        $this->load->model('intake_reasons','',TRUE);
     }
 
 
-function add_food()
-{
-    if($this->users->check_Login_Status())
-    {
-        if($this->input->post('date'))
+    function add_food(){
+        if($this->users->check_Login_Status())
         {
-            echo ($this->input->post('date'));
-            echo '</br>';
-            echo ($this->input->post('time'));
-            echo '</br>';
-            $in = ($this->input->post('food_input'));\
-            var_dump($in);
+            if($this->input->post('date'))
+            {
+                echo ($this->input->post('date'));
+                echo '</br>';
+                echo ($this->input->post('time'));
+                echo '</br>';
+                $in = ($this->input->post('food_input'));\
+                var_dump($in);
+            }
+            else
+            {
+                $session_data = $this->session->userdata('logged_in');
+                $this->load->view('homeCtrl/homeViewHeader',$session_data);
+                $this->load->view('diaryCtrl/addFoodView');
+            }
+
         }
         else
         {
-            $session_data = $this->session->userdata('logged_in');
-            $this->load->view('homeCtrl/homeViewHeader',$session_data);
-            $this->load->view('diaryCtrl/addFoodView2');
+            $this->session->set_flashdata('verify_warning','Please login to proceed!');
+            redirect('auth_ctrl/login','refresh');
         }
-
     }
-    else
-    {
-        $this->session->set_flashdata('verify_warning','Please login to proceed!');
-        redirect('auth_ctrl/login','refresh');
-    }
-}
+    
+    function getAutocompleteReasons(){
+        $like_value = strtolower($this->input->get('term'));
+        $key = 'reason';  
+        $data_content = 'reason';
+        $result = $this->intake_reasons->getLikeBySingleValue($key, $like_value, $data_content);
+        echo (str_replace('reason','value',json_encode($result))); 
+        die();
+        }
+    
 }

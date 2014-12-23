@@ -89,7 +89,7 @@ Class Users extends MY_Model
         //show_error($this->email->print_debugger());
     }
     function verifyEmailUsingCode($email_verify_code){
-        $result = $this->getBySingleValue('verifyCode',$email_verify_code,'username,verifyExpTime,userStatus');
+        $result = $this->getOneBySingleValue('verifyCode',$email_verify_code,'username,verifyExpTime,userStatus');
         if($result)
         {
             if($result['verifyExpTime']>time()){
@@ -110,7 +110,7 @@ Class Users extends MY_Model
 
 
     function checkPassResetCodeStatus($password_reset_code){
-        $result = $this->getBySingleValue('passResetCode',$password_reset_code,'passResetExpTime');
+        $result = $this->getOneBySingleValue('passResetCode',$password_reset_code,'passResetExpTime');
 
         if($result){
             return ($result > time())? self::PASS_RESET_CODE_OK : self::PASS_RESET_CODE_EXPIRED;
