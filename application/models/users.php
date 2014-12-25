@@ -38,7 +38,7 @@ Class Users extends MY_Model
 
     function verifyUserData($username_or_email, $password)
     {
-        $this -> db -> select('username,userStatus');
+        $this -> db -> select($this->TablePkName.',username,userStatus');
         $this -> db -> from('users');
         $this -> db -> where('username = '."'".$username_or_email."'");
         $this -> db -> where('password = '."'".$password."'");

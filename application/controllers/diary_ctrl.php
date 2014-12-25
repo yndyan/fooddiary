@@ -41,10 +41,14 @@ class diary_ctrl extends CI_Controller
     
     function getAutocompleteReasons(){
         $like_value = strtolower($this->input->get('term'));
-        $key = 'reason';  
-        $data_content = 'reason';
-        $result = $this->intake_reasons->getLikeBySingleValue($key, $like_value, $data_content);
-        echo (str_replace('reason','value',json_encode($result))); 
+        
+        $result = $this->intake_reasons->getUserreasons($like_value);
+        
+        
+        
+        echo json_encode($result); 
+        
+        
         die();
         }
     
