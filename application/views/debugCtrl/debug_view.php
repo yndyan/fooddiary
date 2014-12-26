@@ -33,7 +33,7 @@
   <input  id="field1" class ="field"> 
   <ul id="myList" class = "moj_stil" > </ul>
   
-  </br>
+  </br>x
   </br>
   
   <input  id="field2" class ="field"> 

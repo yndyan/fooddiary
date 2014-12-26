@@ -21,10 +21,15 @@ class debug_ctrl extends CI_Controller
 
     }
     function vrati(){
-    $like_value = $this->input->post("like_value");
-    $result = $this->intake_reasons->getUserreasons($like_value);
-    echo json_encode($result);
-    //echo 'cao';
+    //$like_value = $this->input->post("like_value");
+    //$result = $this->intake_reasons->getUserreasons($like_value);
+    //echo json_encode($result);
+ 
+                
+        echo ' [{"value":"item1"},{"value":"item2"},{"value":"item3"},{"value":"item4"}]';//TODO brisi
+
+        
+
     }
 
 

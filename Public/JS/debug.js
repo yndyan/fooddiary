@@ -13,22 +13,23 @@ window.onload = function(){
     xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState==4 && xmlhttp.status==200){
             var rezultat = JSON.parse(xmlhttp.responseText);
+            
             while (my_list.firstChild){
                 my_list.removeChild(my_list.firstChild);
             }
-            rezultat.forEach(function(element){
+            for(i=0;i<rezultat.length;i++){
                 var x = document.createElement("LI");
-                var t = document.createTextNode(element.value);
+                var t = document.createTextNode(rezultat[i].value);
                 x.appendChild(t);
                 var achild = my_list.appendChild(x);
-
+                console.log( JSON.stringify(achild) );    
                 achild.onclick = function(){
                     input_field.value = t.wholeText; 
-                    while (my_list.firstChild) {
-                        my_list.removeChild(my_list.firstChild);
-                    }
+                    //while (my_list.firstChild){
+                    //   my_list.removeChild(my_list.firstChild);
+                    //}//while
                 };//function
-            }); //foreach
+            }; //for
           
         };//if
     };//function
