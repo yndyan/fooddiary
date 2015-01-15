@@ -104,6 +104,7 @@ class Auth_ctrl extends CI_Controller
                 $this->session->set_userdata('logged_in',array('username' => $this->input->post('username'),'userStatus'=>users::USER_STATUS_NOT_VERIFIED));
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_ctrl/verify_email/'.$verify_code.'');
                 $this->users->sendVerificationEmail($new_user_data['email'],$email_message);
+                //TODO functon that add food reasons to new 
                 redirect('home_ctrl','refresh');
             }
         }

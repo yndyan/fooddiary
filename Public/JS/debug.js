@@ -10,6 +10,9 @@ window.onload = function(){
     var my_list =  document.getElementById("myList");
     var input_field = document.getElementById("field1");   
     
+    
+    
+    
     xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState==4 && xmlhttp.status==200){
             var rezultat = JSON.parse(xmlhttp.responseText);
@@ -18,17 +21,20 @@ window.onload = function(){
                 my_list.removeChild(my_list.firstChild);
             }
             for(i=0;i<rezultat.length;i++){
-                var x = document.createElement("LI");
-                var t = document.createTextNode(rezultat[i].value);
+                function add_remove_list_item(j){
+                        var x = document.createElement("LI");
+                var t = document.createTextNode(rezultat[j].value);
                 x.appendChild(t);
                 var achild = my_list.appendChild(x);
                 console.log( JSON.stringify(achild) );    
                 achild.onclick = function(){
                     input_field.value = t.wholeText; 
-                    //while (my_list.firstChild){
-                    //   my_list.removeChild(my_list.firstChild);
-                    //}//while
+                    while (my_list.firstChild){
+                       my_list.removeChild(my_list.firstChild);
+                    }//while
                 };//function
+    }
+                add_remove_list_item(i);
             }; //for
           
         };//if

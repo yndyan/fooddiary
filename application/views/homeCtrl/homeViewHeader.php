@@ -37,6 +37,7 @@
     <li><a href = "<?php echo base_url();?>index.php/diary_ctrl/add_food">Add data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/">Edit data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/">History</a></li>
+    <li><a href = "<?php echo base_url();?>index.php/reasons_ctrl/show_reasons">Reasons</a></li>
 
     <li><a href = "<?php echo base_url();?>index.php/user_ctrl/display_user_data">User data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/user_ctrl/change_user_password">Change password</a></li>

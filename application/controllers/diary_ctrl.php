@@ -10,6 +10,8 @@ class diary_ctrl extends CI_Controller
         $this->load->model('users','',TRUE);
         $this->load->model('meals_diary','',TRUE);
         $this->load->model('intake_reasons','',TRUE);
+        $session_data = $this->session->userdata('logged_in');
+        $this->load->view('homeCtrl/homeViewHeader',$session_data);
     }
 
 
@@ -27,8 +29,7 @@ class diary_ctrl extends CI_Controller
             }
             else
             {
-                $session_data = $this->session->userdata('logged_in');
-                $this->load->view('homeCtrl/homeViewHeader',$session_data);
+                
                 $this->load->view('diaryCtrl/addFoodView');
             }
         }
@@ -41,7 +42,7 @@ class diary_ctrl extends CI_Controller
     
     function getAutocompleteReasons(){
         $like_value = strtolower($this->input->get('term'));
-        $result = $this->intake_reasons->getUserreasons($like_value);
+        $result = $this->intake_reasons->searchUserReasons($like_value);
         echo json_encode($result);//TODO vrati
         die();
         }

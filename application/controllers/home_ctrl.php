@@ -9,17 +9,14 @@ class Home_ctrl extends CI_Controller
     {
         parent::__construct();
         $this->load->model('users','',TRUE);
-
     }
 
     function index()
     {
-
         $session_data = $this->session->userdata('logged_in');
 
         if($session_data)
         {
-
             $this->load->view('homeCtrl/homeViewHeader',$session_data);
         }
         else

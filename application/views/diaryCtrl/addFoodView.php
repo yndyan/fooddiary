@@ -7,24 +7,13 @@
 
 <script src="<?php echo base_url();?>public/js/jquery-ui-timepicker-addon.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui-timepicker-addon.min.css">
-
+<link rel = "stylesheet" href = "<?php echo base_url();?>public/css/fooddiary.css">
 <script src="<?php echo base_url(); ?>public/js/input.js"></script>
 
 
 
 <style>
-    #content
-    {
-        width: 600px;
-        height: 400px;
-        position: absolute;
-        top: 300px;
-        left: 100px;
-        border-style: solid;
-        border-color: black;
-        padding-left :10px;
 
-    }
     
     div.ui-datepicker {
     font-size: 80%;
@@ -33,7 +22,7 @@
 </head>
 
 <body>
-<div id="content">
+<div class="content">
     
     <h2> Add food</h2>
     <div style="float: left;margin-left: 40px;">
