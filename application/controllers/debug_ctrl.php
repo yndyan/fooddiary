@@ -7,7 +7,7 @@ class debug_ctrl extends CI_Controller
         $this->load->model('users','',TRUE);
         $this->load->model('food_types','',TRUE);
         $this->load->model('meals_diary','',TRUE);
-        $this->load->model('intake_reasons','',TRUE);
+        $this->load->model('default_reasons','',TRUE);
         
     }
     function index()
@@ -15,14 +15,16 @@ class debug_ctrl extends CI_Controller
          
         
         //var_dump( $this->users->verifyUserData('dusan','Zile33'));
-        //var_dump ($this->intake_reasons->GetUserReasons('fo'));
-        $this->load->view('debugCtrl/debug_view');
+        //var_dump ($this->users_reasons->GetUserReasons('fo'));
+        //$this->load->view('debugCtrl/debug_view');
+        $res = $this->default_reasons->getDefaultReasons();
+        var_dump($res);
        
 
     }
     function vrati(){
     //$like_value = $this->input->post("like_value");
-    //$result = $this->intake_reasons->getUserreasons($like_value);
+    //$result = $this->users_reasons->getUserreasons($like_value);
     //echo json_encode($result);
  
                 

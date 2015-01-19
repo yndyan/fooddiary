@@ -9,6 +9,7 @@ class Auth_ctrl extends CI_Controller
         $this->load->helper('registration');
         $this->load->model('users','',TRUE);
         $this->load->view('authCtrl/authViewHeader');
+        $this->load->model('users_reasons','',TRUE);
     }
 
 
@@ -48,6 +49,7 @@ class Auth_ctrl extends CI_Controller
     function checkDatabase($password,$username_or_email)
     {
         $result = $this->users->verifyUserData( $username_or_email,$password);
+        
         if($result)
         {
             $this->session->set_userdata('logged_in',$result);
@@ -88,9 +90,9 @@ class Auth_ctrl extends CI_Controller
                 {
                     $verify_code = Generate_random_string(users::VERIFY_CODE_LENGTH);
                 }while($this->users->chechValueExistsInDb('verifyCode',$verify_code));
-
+                $username = $this->input->post('username');
                 $new_user_data = [
-                    'username'=>$this->input->post('username'),
+                    'username'=> $username,
                     'password'=>$password,
                     'verifycode' => $verify_code,
                     'email'=>$this->input->post('email'),
@@ -101,10 +103,11 @@ class Auth_ctrl extends CI_Controller
 
                 $this->users->addDataToDb($new_user_data);
                 $this->session->set_flashdata('verify_warning',"Email is sent to you, please verify ");
-                $this->session->set_userdata('logged_in',array('username' => $this->input->post('username'),'userStatus'=>users::USER_STATUS_NOT_VERIFIED));
+                $user_id = $this->users->getUserId($username);
+                $this->session->set_userdata('logged_in',array('id'=>$user_id,'username' => $username,'userStatus'=>users::USER_STATUS_NOT_VERIFIED));
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_ctrl/verify_email/'.$verify_code.'');
                 $this->users->sendVerificationEmail($new_user_data['email'],$email_message);
-                //TODO functon that add food reasons to new 
+                $this->users_reasons->copyDefaultReasonsTonewuser($user_id);
                 redirect('home_ctrl','refresh');
             }
         }
@@ -227,18 +230,15 @@ class Auth_ctrl extends CI_Controller
     }
 
 
-    function contain_Upper_Letter($input)
-    {
-        if(preg_match('#[A-Z]#',$input))
-        {
+    function contain_Upper_Letter($input){
+        if(preg_match('#[A-Z]#',$input)){
             return true;
-        }
-        else
-        {
+        }//if
+        else{
             $this->form_validation->set_message('contain_Upper_Letter','Must contain at least one upper letter');
             return false;
-        }
-    }
+        }//else
+    }//contain_Upper_Letter
 
     function compare_pass($confpass,$password)
     {

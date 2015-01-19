@@ -9,7 +9,7 @@ class diary_ctrl extends CI_Controller
         parent::__construct();
         $this->load->model('users','',TRUE);
         $this->load->model('meals_diary','',TRUE);
-        $this->load->model('intake_reasons','',TRUE);
+        $this->load->model('users_reasons','',TRUE);
         $session_data = $this->session->userdata('logged_in');
         $this->load->view('homeCtrl/homeViewHeader',$session_data);
     }
@@ -42,7 +42,7 @@ class diary_ctrl extends CI_Controller
     
     function getAutocompleteReasons(){
         $like_value = strtolower($this->input->get('term'));
-        $result = $this->intake_reasons->searchUserReasons($like_value);
+        $result = $this->users_reasons->searchUserReasons($like_value);
         echo json_encode($result);//TODO vrati
         die();
         }

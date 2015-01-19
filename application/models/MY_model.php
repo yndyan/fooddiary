@@ -2,6 +2,7 @@
 abstract class MY_Model extends CI_Model
 {
     protected $TablePkName = "id";
+    
     abstract protected function getTableName();
 
     protected function getByPk($pk_value){

@@ -119,5 +119,9 @@ Class Users extends MY_Model
             return self::PASS_RESET_CODE_NOT_EXIST;
         }//else
     }//function
+    
+    function getUserId($username){
+        return $this->getOneBySingleValue('username',$username,$this->TablePkName);
+    }//getUserId
 
 }//class
