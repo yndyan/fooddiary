@@ -6,7 +6,7 @@ class user_ctrl extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('users','',TRUE);
+        $this->load->model('users');
         $this->load->helper('registration');
 
     }

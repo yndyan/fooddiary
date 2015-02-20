@@ -4,10 +4,10 @@ class debug_ctrl extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('users','',TRUE);
-        $this->load->model('food_types','',TRUE);
-        $this->load->model('meals_diary','',TRUE);
-        $this->load->model('default_reasons','',TRUE);
+        $this->load->model('users');
+        $this->load->model('food_types');
+        $this->load->model('meals_diary');
+        $this->load->model('default_reasons');
         
     }
     function index()

@@ -7,9 +7,9 @@ class Auth_ctrl extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('registration');
-        $this->load->model('users','',TRUE);
+        $this->load->model('users');
         $this->load->view('authCtrl/authViewHeader');
-        $this->load->model('users_reasons','',TRUE);
+        $this->load->model('users_reasons');
     }
 
 
@@ -107,7 +107,7 @@ class Auth_ctrl extends CI_Controller
                 $this->session->set_userdata('logged_in',array('id'=>$user_id,'username' => $username,'userStatus'=>users::USER_STATUS_NOT_VERIFIED));
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_ctrl/verify_email/'.$verify_code.'');
                 $this->users->sendVerificationEmail($new_user_data['email'],$email_message);
-                $this->users_reasons->copyDefaultReasonsTonewuser($user_id);
+                $this->users_reasons->copyDefaultReasonsToNewUser($user_id);
                 redirect('home_ctrl','refresh');
             }
         }

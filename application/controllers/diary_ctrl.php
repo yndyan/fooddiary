@@ -7,9 +7,9 @@ class diary_ctrl extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('users','',TRUE);
-        $this->load->model('meals_diary','',TRUE);
-        $this->load->model('users_reasons','',TRUE);
+        $this->load->model('users');
+        $this->load->model('meals_diary');
+        $this->load->model('users_reasons');
         $session_data = $this->session->userdata('logged_in');
         $this->load->view('homeCtrl/homeViewHeader',$session_data);
     }

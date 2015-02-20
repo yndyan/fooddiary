@@ -5,8 +5,8 @@ class Reasons_ctrl extends CI_Controller
 {
     function __construct(){
         parent::__construct();
-        $this->load->model('users','',TRUE);
-        $this->load->model('users_reasons','',TRUE);
+        $this->load->model('users');
+        $this->load->model('users_reasons');
         $this->load->library('pagination');
         $session_data = $this->session->userdata('logged_in');
         $this->load->view('homeCtrl/homeViewHeader',$session_data);
