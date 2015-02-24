@@ -30,6 +30,8 @@ Class Users extends MY_Model
     }
 
     CONST table_name = 'users';
+    protected $TablePkName = "user_id";
+
 
     function getTableName(){
         return self::table_name;

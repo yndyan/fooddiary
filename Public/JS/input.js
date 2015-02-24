@@ -9,7 +9,7 @@ $(document).ready(function() {
                 var list_row = $('<tr><td width="90%" >'+$('#food_in').val()+ '</td>');
                 list_row.append('<input type="hidden" value="'+$('#food_in').val()+'" name="niz[]" /> ');
 
-                var delete_row = $('<td  width="10%"> <img src="http://localhost/fooddiary/public/img/delete-300x300.jpg"  style="width:20px;height:20px"></td></tr>');
+                var delete_row = $('<td  width="10%"> <img src="http://localhost/fooddiary/public/img/trash.png"  style="width:20px;height:20px"></td></tr>');
 
                 delete_row.click(function(e) {
                         e.preventDefault();

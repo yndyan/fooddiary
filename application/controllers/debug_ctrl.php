@@ -10,29 +10,24 @@ class debug_ctrl extends CI_Controller
         $this->load->model('default_reasons');
         
     }
-    function index()
+    function index()//mydo delete this later
     {
-         
-        
-        //var_dump( $this->users->verifyUserData('dusan','Zile33'));
-        //var_dump ($this->users_reasons->GetUserReasons('fo'));
-        //$this->load->view('debugCtrl/debug_view');
-        $res = $this->default_reasons->getDefaultReasons();
-        var_dump($res);
+    $this->load->library('migration');
+		if (! $this->migration->latest()) {
+			show_error($this->migration->error_string());
+		}
+		else {
+			echo 'Migration worked!';
+		}
        
 
     }
-    function vrati(){
-    //$like_value = $this->input->post("like_value");
-    //$result = $this->users_reasons->getUserreasons($like_value);
-    //echo json_encode($result);
- 
-                
-        echo ' [{"value":"item1"},{"value":"item2"},{"value":"item3"},{"value":"item4"}]';//TODO brisi
-
-        
-
+    function del(){
     }
+    
+    function help(){
+
+    }//help
 
 
 }
