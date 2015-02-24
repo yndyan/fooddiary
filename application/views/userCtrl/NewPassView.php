@@ -17,7 +17,7 @@
 <div id ="content">
     <h2>Change user password</h2>
     <h3>Please insert passwords </h3>
-    <form action="<?php echo base_url(); ?>index.php/user_ctrl/change_User_Password" method = "post">
+    <form action="<?php echo base_url(); ?>index.php/user_c/change_User_Password" method = "post">
         <h4>
             Old password:
             <input type = "text" name = "old_password"  required = "true" />

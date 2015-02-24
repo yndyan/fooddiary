@@ -21,7 +21,7 @@
     <h3>Please insert your data </h3>
 
 
-    <form action = "<?php echo base_url(); ?>index.php/auth_ctrl/register_new_user" method = "post">
+    <form action = "<?php echo base_url(); ?>index.php/Auth_c/register_new_user" method = "post">
         <h4>
             Username:*
             <input type = "text"        name = "username"   required = "true"  value="<?php echo set_value('username'); ?>" />

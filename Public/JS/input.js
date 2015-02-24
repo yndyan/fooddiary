@@ -29,7 +29,7 @@ $(document).ready(function() {
     $( "#datepicker" ).datepicker();
     $( "#timepicker" ).timepicker();
     $( "#why" ).autocomplete({
-      source: "http://localhost/fooddiary/index.php/diary_ctrl/getAutocompleteReasons",
+      source: "http://localhost/fooddiary/index.php/diary_c/getAutocompleteReasons",
       minLength: 2,
       select: function( event, ui ) {
         

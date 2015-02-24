@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Reasons_ctrl extends CI_Controller
+class Reasons_c extends CI_Controller
 {
     function __construct(){
         parent::__construct();
@@ -29,7 +29,7 @@ class Reasons_ctrl extends CI_Controller
         }//if
         else{
             
-            redirect('auth_ctrl/login','refresh');
+            redirect('Auth_c/login','refresh');
         }//else
         
             

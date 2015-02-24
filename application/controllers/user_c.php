@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class user_ctrl extends CI_Controller
+class User_c extends CI_Controller
 {
     function __construct()
     {
@@ -25,7 +25,7 @@ class user_ctrl extends CI_Controller
         else
         {
             $this->session->set_flashdata('verify_warning','Please login to proceed!');
-            redirect('auth_ctrl/login','refresh');
+            redirect('Auth_c/login','refresh');
         }
     }//function display_user_data()
 
@@ -76,7 +76,7 @@ class user_ctrl extends CI_Controller
     else
         {
             $this->session->set_flashdata('verify_warning','Please login to proceed!');
-            redirect('auth_ctrl/login','refresh');
+            redirect('Auth_c/login','refresh');
         }
     }
 
@@ -113,7 +113,7 @@ class user_ctrl extends CI_Controller
         else
         {
             $this->session->set_flashdata('verify_warning','Please login to proceed!');
-            redirect('auth_ctrl/login','refresh');
+            redirect('Auth_c/login','refresh');
         }
 
 
@@ -148,21 +148,21 @@ class user_ctrl extends CI_Controller
 
             if($email)
             {
-                $email_message = array('subject' => 'Verification email', 'message' => 'smekeru klikni na: '.base_url().'index.php/user_ctrl/verify_email/'.$new_verify_code.'');
+                $email_message = array('subject' => 'Verification email', 'message' => 'smekeru klikni na: '.base_url().'index.php/user_c/verify_email/'.$new_verify_code.'');
                 $this->users->sendVerificationEmail($email,$email_message);
                 $this->session->set_flashdata('verify_warning','New validation code sent!');
-                redirect('home_ctrl','refresh');
+                redirect('Home_c','refresh');
             }
             else
             {
                 $this->session->set_flashdata('verify_warning','Unknown error!');
-                redirect('auth_ctrl/login','refresh');
+                redirect('Auth_c/login','refresh');
             }
         }
         else
         {
             $this->session->set_flashdata('verify_warning','Please login to proceed!');
-            redirect('auth_ctrl/login','refresh');
+            redirect('Auth_c/login','refresh');
         }
 
     }
@@ -180,11 +180,11 @@ class user_ctrl extends CI_Controller
                 $this->session->set_flashdata('verify_warning','Verify code not exist');
                 if($session_data)
                 {
-                    redirect('home_ctrl','refresh');
+                    redirect('Home_c','refresh');
                 }
                 else
                 {
-                    redirect('auth_ctrl/login','refresh');
+                    redirect('Auth_c/login','refresh');
                 }
             }
             elseif($result['userStatus'] === users::USER_STATUS_NOT_VERIFIED)
@@ -192,11 +192,11 @@ class user_ctrl extends CI_Controller
                 $this->session->set_flashdata('verify_warning','Verify code expired');
                 if($session_data)
                 {
-                    redirect('home_ctrl','refresh');
+                    redirect('Home_c','refresh');
                 }
                 else
                 {
-                    redirect('auth_ctrl/login','refresh');
+                    redirect('Auth_c/login','refresh');
                 }
             }
             else if($result['userStatus'] === users::USER_STATUS_VERIFIED)
@@ -207,13 +207,13 @@ class user_ctrl extends CI_Controller
                 {
                     $this->session->set_userdata('logged_in',$result);
                 }
-                redirect('home_ctrl','refresh');
+                redirect('Home_c','refresh');
             }
         }
         else
         {
             $this->session->set_flashdata('verify_warning','Validation code length error');
-            redirect('auth_ctrl/login','refresh');
+            redirect('Auth_c/login','refresh');
         }
     }
 

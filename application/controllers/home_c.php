@@ -2,7 +2,7 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home_ctrl extends CI_Controller
+class Home_c extends CI_Controller
 {
 
     function __construct()
@@ -21,7 +21,7 @@ class Home_ctrl extends CI_Controller
         }
         else
         {
-            redirect('auth_ctrl/login','refresh');
+            redirect('Auth_c/login','refresh');
         }
 
     }

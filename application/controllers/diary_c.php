@@ -1,14 +1,14 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class diary_ctrl extends CI_Controller
+class Diary_c extends CI_Controller
 {
 
     function __construct()
     {
         parent::__construct();
         $this->load->model('users');
-        $this->load->model('meals_diary');
+        //this->load->model('meals_diary');
         $this->load->model('users_reasons');
         $session_data = $this->session->userdata('logged_in');
         $this->load->view('homeCtrl/homeViewHeader',$session_data);
@@ -36,7 +36,7 @@ class diary_ctrl extends CI_Controller
         else
         {
             $this->session->set_flashdata('verify_warning','Please login to proceed!');
-            redirect('auth_ctrl/login','refresh');
+            redirect('Auth_c/login','refresh');
         }
     }
     

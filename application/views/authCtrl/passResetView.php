@@ -17,7 +17,7 @@
 
 <body>
 <div id="content">
-    <form action="<?php echo base_url();?>index.php/auth_ctrl/send_password_verify_code" method = "post" >
+    <form action="<?php echo base_url();?>index.php/Auth_c/send_password_verify_code" method = "post" >
         <h2> Password reset page</h2>
         <h3>Please insert username or email address </h3>
         <h4>

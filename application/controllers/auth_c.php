@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Auth_ctrl extends CI_Controller
+class Auth_c extends CI_Controller
 {
     function __construct()
     {
@@ -36,7 +36,7 @@ class Auth_ctrl extends CI_Controller
                 {
                     $this->session->set_flashdata('verify_warning',"Please verify email address ");
                 }
-                redirect('home_ctrl','refresh');
+                redirect('Home_c','refresh');
             }
         }
         else
@@ -65,7 +65,7 @@ class Auth_ctrl extends CI_Controller
     function logout()
     {
         $this->session->unset_userdata('logged_in');
-        redirect('home_ctrl','refresh');
+        redirect('Home_c','refresh');
     }
 
     function register_new_user()
@@ -105,10 +105,10 @@ class Auth_ctrl extends CI_Controller
                 $this->session->set_flashdata('verify_warning',"Email is sent to you, please verify ");
                 $user_id = $this->users->getUserId($username);
                 $this->session->set_userdata('logged_in',array('id'=>$user_id,'username' => $username,'userStatus'=>users::USER_STATUS_NOT_VERIFIED));
-                $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_ctrl/verify_email/'.$verify_code.'');
+                $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_c/verify_email/'.$verify_code.'');
                 $this->users->sendVerificationEmail($new_user_data['email'],$email_message);
                 $this->users_reasons->copyDefaultReasonsToNewUser($user_id);
-                redirect('home_ctrl','refresh');
+                redirect('Home_c','refresh');
             }
         }
         else
@@ -136,21 +136,21 @@ class Auth_ctrl extends CI_Controller
                     }while ($this->users->chechValueExistsInDb('passResetCode',$password_reset_code));
 
                     $this->users->updateData('email',$email,array('passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + users::TIMESTAMP_MINUTE )));
-                    $email_message = array('subject' => 'Password reset email', 'message' => 'Go to '.base_url().'index.php/auth_ctrl/reset_password/'.$password_reset_code.'');
+                    $email_message = array('subject' => 'Password reset email', 'message' => 'Go to '.base_url().'index.php/Auth_c/reset_password/'.$password_reset_code.'');
                     $this->users->sendVerificationEmail($email,$email_message);
                     $this->session->set_flashdata('verify_warning','Email with link sent');
-                    redirect('auth_ctrl/login','refresh');
+                    redirect('Auth_c/login','refresh');
                 }
                 else
                 {
                     $this->session->set_flashdata('verify_warning','There is no such user');
-                    redirect('auth_ctrl/send_password_verify_code','refresh');
+                    redirect('Auth_c/send_password_verify_code','refresh');
                 }
             }
             else
             {
                 $this->session->set_flashdata('verify_warning','Username/Email field is required');
-                redirect('auth_ctrl/send_password_verify_code','refresh');
+                redirect('Auth_c/send_password_verify_code','refresh');
 
             }
         }
@@ -190,7 +190,7 @@ class Auth_ctrl extends CI_Controller
                             //$data = array('auth_message' =>  'Password successfully changed, please login');
                             //$this->load->view('auth_view/login',$data);
                             $this->session->set_flashdata('verify_warning','Password successfully changed, please login');
-                            redirect('auth_ctrl/login','refresh');
+                            redirect('Auth_c/login','refresh');
                         }
                     }
                     else
@@ -206,7 +206,7 @@ class Auth_ctrl extends CI_Controller
                     //$data = array('auth_message' =>  'Password reset code expired, enter mail or username and press "forget" button');
                     //$this->load->view('auth_view',$data);
                     $this->session->set_flashdata('verify_warning','Password reset code expired!');
-                    redirect('auth_ctrl/send_password_verify_code','refresh');
+                    redirect('Auth_c/send_password_verify_code','refresh');
                 }
                     break;
 
@@ -215,7 +215,7 @@ class Auth_ctrl extends CI_Controller
                     //$data = array('auth_message' =>  'Password reset code not exist!');
                     //$this->load->view('auth_view',$data);
                     $this->session->set_flashdata('verify_warning','Password reset code not exist!');
-                    redirect('auth_ctrl/send_password_verify_code','refresh');
+                    redirect('Auth_c/send_password_verify_code','refresh');
                 }
                     break;
             }
@@ -225,7 +225,7 @@ class Auth_ctrl extends CI_Controller
             //$data = array('auth_message' =>  'Password reset code is not correct length');
             //$this->load->view('auth_view',$data);
             $this->session->set_flashdata('verify_warning','Password reset code is not correct length');
-            redirect('auth_ctrl/send_password_verify_code','refresh');
+            redirect('Auth_c/send_password_verify_code','refresh');
         }
     }
 

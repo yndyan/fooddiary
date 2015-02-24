@@ -1,9 +1,11 @@
 <?php
-require_once APPPATH.'models/MY_Model.php';
+//require_once APPPATH.'models/MY_Model.php';
 
 class users_reasons extends MY_Model
 {
     CONST table_name = 'users_reasons';
+    protected $TablePkName = "reason_id";
+    
 
     function getTableName()
     {

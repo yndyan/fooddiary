@@ -26,10 +26,10 @@
 </head>
 <body>
     <ul id="menu">
-        <li><a href=" <?php echo base_url(); ?>index.php/auth_ctrl/login">Login</a></li>
-        <li><a href = "<?php echo base_url();?>index.php/auth_ctrl/register_new_user">Register</a></li>
-        <li><a href = "<?php echo base_url();?>index.php/auth_ctrl/send_password_verify_code">Forgot password</a></li>
-        <li><a href = "<?php echo base_url();?>index.php/auth_ctrl/site_info">Site informations </a></li>
+        <li><a href=" <?php echo base_url(); ?>index.php/Auth_c/login">Login</a></li>
+        <li><a href = "<?php echo base_url();?>index.php/Auth_c/register_new_user">Register</a></li>
+        <li><a href = "<?php echo base_url();?>index.php/Auth_c/send_password_verify_code">Forgot password</a></li>
+        <li><a href = "<?php echo base_url();?>index.php/Auth_c/site_info">Site informations </a></li>
 
     </ul>
 </body>

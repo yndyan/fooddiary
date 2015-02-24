@@ -16,7 +16,7 @@
 <body>
 <div id ="content">
     <h3>Please insert and confirm new password </h3>
-    <form action="<?php echo base_url(); ?>index.php/auth_ctrl/reset_password/<?php  echo $pass_code; ?>" method = "post">
+    <form action="<?php echo base_url(); ?>index.php/Auth_c/reset_password/<?php  echo $pass_code; ?>" method = "post">
         <h4>
             New password:
             <input type = "password" name = "new_password"  required = "true" />

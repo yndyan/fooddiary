@@ -25,7 +25,7 @@
         Email: <input type="text" size="35" value = "<?php echo $email,$userStatus === users:: USER_STATUS_VERIFIED ? ' (verified)':' (not verified)';?>"  readonly><br>
         Full name: <input type="text"  size="35" value = "<?php echo $fullName; ?>" readonly> 
         </fieldset>
-        <?php echo "<a href = ".base_url()."index.php/user_ctrl/Send_new_verify_code> Send new verify code </a>"; ?>
+        <?php echo "<a href = ".base_url()."index.php/user_c/Send_new_verify_code> Send new verify code </a>"; ?>
     </h4>
 </div>
 </body>

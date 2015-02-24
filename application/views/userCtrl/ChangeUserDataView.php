@@ -18,7 +18,7 @@
 <div id="content">
     <h2>Change user data</h2>
     <h3>Please insert new data </h3>
-    <form action = "<?php echo base_url(); ?>index.php/user_ctrl/change_User_Data"  method = "post">
+    <form action = "<?php echo base_url(); ?>index.php/user_c/change_User_Data"  method = "post">
         <h4>
             Email adress:
             <input type = "text"        name = "email"    value="<?php echo (set_value('email')?set_value('email'):$email);?>"/>

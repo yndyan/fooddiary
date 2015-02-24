@@ -34,15 +34,15 @@
 <body>
 <div id="menu">
 <ul class = "header">
-    <li><a href = "<?php echo base_url();?>index.php/diary_ctrl/add_food">Add data</a></li>
+    <li><a href = "<?php echo base_url();?>index.php/diary_c/add_food">Add data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/">Edit data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/">History</a></li>
-    <li><a href = "<?php echo base_url();?>index.php/reasons_ctrl/show_reasons_old">Reasons old</a></li>
-    <li><a href = "<?php echo base_url();?>index.php/reasons_ctrl/show_reasons">Reasons</a></li>
+    <li><a href = "<?php echo base_url();?>index.php/Reasons_c/show_reasons_old">Reasons old</a></li>
+    <li><a href = "<?php echo base_url();?>index.php/Reasons_c/show_reasons">Reasons</a></li>
 
-    <li><a href = "<?php echo base_url();?>index.php/user_ctrl/display_user_data">User data</a></li>
-    <li><a href = "<?php echo base_url();?>index.php/user_ctrl/change_user_password">Change password</a></li>
-    <li><a href = "<?php echo base_url();?>index.php/user_ctrl/change_user_data">Change user data</a></li>
+    <li><a href = "<?php echo base_url();?>index.php/user_c/display_user_data">User data</a></li>
+    <li><a href = "<?php echo base_url();?>index.php/user_c/change_user_password">Change password</a></li>
+    <li><a href = "<?php echo base_url();?>index.php/user_c/change_user_data">Change user data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/ /choose_content/">User settings</a></li>
 </ul>
 
@@ -50,13 +50,13 @@
 <div id = 'user'>
     <h3><?php echo $username; ?></h3>
 
-    <h3><a href = "<?php echo base_url();?>index.php/auth_ctrl/logout"> Logout </a> </h3>
+    <h3><a href = "<?php echo base_url();?>index.php/Auth_c/logout"> Logout </a> </h3>
 
 
     <h4><?php if($userStatus===users::USER_STATUS_NOT_VERIFIED)
         {
 
-            echo "<a href = ".base_url()."index.php/user_ctrl/Send_new_verify_code> Send new verify code </a>";
+            echo "<a href = ".base_url()."index.php/user_c/Send_new_verify_code> Send new verify code </a>";
         }
         ?>
     </h4>

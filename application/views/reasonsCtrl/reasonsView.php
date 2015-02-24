@@ -15,7 +15,7 @@
         <?php if ($i+1 == $current_page) { ?>
             <?php echo $i+1 ?>
         <?php } else { ?>
-        <a href="<?php echo base_url()?>index.php/reasons_ctrl/show_reasons?page=<?php echo $i+1?>"><?php echo $i+1?></a>
+        <a href="<?php echo base_url()?>index.php/Reasons_c/show_reasons?page=<?php echo $i+1?>"><?php echo $i+1?></a>
         <?php } ?>
     <?php }//for ?>   
         

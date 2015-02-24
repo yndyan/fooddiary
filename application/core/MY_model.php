@@ -1,9 +1,9 @@
 <?php
-abstract class MY_Model extends CI_Model
+class MY_Model extends CI_Model
 {
     protected $TablePkName = "id";
     
-    abstract protected function getTableName();
+    protected function getTableName(){}
 
     protected function getByPk($pk_value){
         $this->db->select("*");
@@ -89,22 +89,5 @@ abstract class MY_Model extends CI_Model
         $this->db->update($this->getTableName(),$update_data);
     }
     
-//    protected function setData($SELECT_CMD,$data)
-//    {
-//
-//    }
-//    protected function getData($SELECT_CMD)
-//    {
-//
-//    }
-//
-//    protected function updateData($SELECT_CMD,$data)
-//    {
-//
-//    }
-//
-//    protected function deleteData($SELECT_CMD)
-//    {
-//
-//    }
+
 }
