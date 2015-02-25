@@ -59,16 +59,10 @@ class Migration_Create_meals extends CI_Migration
                                 'null'  => false
                                 ),
                     'quantity' => array(
-                                'type' => 'int',
-				'constraint' => 20,
-				'unsigned' => TRUE
-                                ),
-                    'quantity_id' => array(
-                                'type' => 'tinyint',
-				'constraint' => 11,
-				'unsigned' => TRUE,
-                                'null'  => false
-                                ),
+                                'type' => 'varchar',
+				'constraint' => 50,
+                                )
+
             ));
         $this->dbforge->add_key('meals_groceries_id',TRUE);
         $this->dbforge->create_table('meals_groceries');    
