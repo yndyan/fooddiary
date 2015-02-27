@@ -8,7 +8,7 @@ class Home_c extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('users');
+        $this->load->model('users_m');
     }
 
     function index()
@@ -17,7 +17,7 @@ class Home_c extends CI_Controller
 
         if($session_data)
         {
-            $this->load->view('homeCtrl/homeViewHeader',$session_data);
+            $this->load->view('home_c/header_v',$session_data);
         }
         else
         {

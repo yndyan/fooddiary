@@ -6,7 +6,7 @@ class User_c extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('users');
+        $this->load->model('users_m');
         $this->load->helper('registration');
 
     }
@@ -15,12 +15,12 @@ class User_c extends CI_Controller
 
     function display_user_data()
     {
-        if($this->users->check_Login_Status())
+        if($this->users_m->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
-            $this->load->view('homeCtrl/homeViewHeader',$session_data);
-            $data = $this->users->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
-            $this->load->view('userCtrl/userDataView',$data);
+            $this->load->view('home_c/header_v',$session_data);
+            $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
+            $this->load->view('user_c/userdata_v',$data);
         }
         else
         {
@@ -31,15 +31,15 @@ class User_c extends CI_Controller
 
     function change_user_data()
     {
-    if($this->users->check_Login_Status())
+    if($this->users_m->check_Login_Status())
         {
         $session_data = $this->session->userdata('logged_in');
-        $this->load->view('homeCtrl/homeViewHeader',$session_data);
+        $this->load->view('home_c/header_v',$session_data);
 
-        $data = $this->users->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
+        $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
         if($this->input->post('email'))
             {
-            $this->load->view('homeCtrl/homeViewHeader',$session_data);
+            $this->load->view('home_c/header_v',$session_data);
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
             $email = trim($this->input->post('email',TRUE));//ovo mora xss clean i trim!!
             $fullname = trim($this->input->post('fullname',TRUE));//ovo mora xss clean i trim!!
@@ -48,7 +48,7 @@ class User_c extends CI_Controller
                 {
                 $this->form_validation->set_rules('email','email',"trim|xss_clean|required|valid_email|is_unique[users.email]");
                 $new_user_data['email'] = $email;
-                $new_user_data['userStatus'] = users::USER_STATUS_NOT_VERIFIED;
+                $new_user_data['userStatus'] = users_m::USER_STATUS_NOT_VERIFIED;
                 }
             if($fullname!== $data['fullName'])
                 {
@@ -58,18 +58,18 @@ class User_c extends CI_Controller
 
             if($this->form_validation->run() == FALSE)
                 {
-                    $this->load->view('/userCtrl/ChangeUserDataView',$data);
+                    $this->load->view('/user_c/changeuserdata_v',$data);
                 }
             else
                 {
-                    $this->users->updateData('username',$session_data['username'],$new_user_data);
-                    $data = $this->users->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
-                    $this->load->view('/userCtrl/userDataView',$data);
+                    $this->users_m->updateData('username',$session_data['username'],$new_user_data);
+                    $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
+                    $this->load->view('/user_c/userdata_v',$data);
                 }
             }
             else
             {
-                $this->load->view('/userCtrl/ChangeUserDataView',$data);
+                $this->load->view('/user_c/changeuserdata_v',$data);
 
             }
         }
@@ -82,10 +82,10 @@ class User_c extends CI_Controller
 
     function change_user_password()
     {
-        if($this->users->check_Login_Status())
+        if($this->users_m->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
-            $this->load->view('homeCtrl/homeViewHeader',$session_data);
+            $this->load->view('home_c/header_v',$session_data);
             if($this->input->post('old_password'))
             {
                 $this->form_validation->set_error_delimiters('<font color="red">','</font>');
@@ -96,18 +96,18 @@ class User_c extends CI_Controller
 
                 if($this->form_validation->run() === FALSE)
                 {
-                    $this->load->view('userCtrl/NewPassView');
+                    $this->load->view('user_c/newpass_v');
                 }
                 else
                 {
-                    $this->users->updateData('username',$session_data['username'],array('password'=> $new_password));
-                    $data = $this->users->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
-                    $this->load->view('userCtrl/userDataView',$data);
+                    $this->users_m->updateData('username',$session_data['username'],array('password'=> $new_password));
+                    $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
+                    $this->load->view('user_c/userdata_v',$data);
                 }
             }
             else
             {
-                $this->load->view('userCtrl/NewPassView');
+                $this->load->view('user_c/newpass_v');
             }
         }
         else
@@ -122,7 +122,7 @@ class User_c extends CI_Controller
 
     function check_old_password($password,$username)//
     {
-        if($this->users->verifyUserData($username,$password))
+        if($this->users_m->verifyUserData($username,$password))
         {
             return true;
         }
@@ -135,21 +135,21 @@ class User_c extends CI_Controller
 
     function send_new_verify_code()
     {
-        if($this->users->check_Login_Status())
+        if($this->users_m->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
             do
             {
-                $new_verify_code = Generate_random_string(users::VERIFY_CODE_LENGTH);
-            }while($this->users->chechValueExistsInDb('verifyCode',$new_verify_code));
+                $new_verify_code = Generate_random_string(users_m::VERIFY_CODE_LENGTH);
+            }while($this->users_m->chechValueExistsInDb('verifyCode',$new_verify_code));
 
-            $this->users->updateData('username',$session_data['username'], array('verifyCode' => $new_verify_code,'verifyExpTime'=> time() + users::TIMESTAMP_HOUR));
-            $email = $this->users->getOneBySingleValue('username',$session_data['username'],'email');
+            $this->users_m->updateData('username',$session_data['username'], array('verifyCode' => $new_verify_code,'verifyExpTime'=> time() + users_m::TIMESTAMP_HOUR));
+            $email = $this->users_m->getOneBySingleValue('username',$session_data['username'],'email');
 
             if($email)
             {
                 $email_message = array('subject' => 'Verification email', 'message' => 'smekeru klikni na: '.base_url().'index.php/user_c/verify_email/'.$new_verify_code.'');
-                $this->users->sendVerificationEmail($email,$email_message);
+                $this->users_m->sendVerificationEmail($email,$email_message);
                 $this->session->set_flashdata('verify_warning','New validation code sent!');
                 redirect('Home_c','refresh');
             }
@@ -169,13 +169,13 @@ class User_c extends CI_Controller
 
     function verify_email($email_verify_code = NULL)
     {
-        if(strlen($email_verify_code)===users::VERIFY_CODE_LENGTH)
+        if(strlen($email_verify_code)===users_m::VERIFY_CODE_LENGTH)
         {
-            $result = $this->users->verifyEmailUsingCode($email_verify_code);
+            $result = $this->users_m->verifyEmailUsingCode($email_verify_code);
 
             $session_data = $this->session->userdata('logged_in');
 
-            if($result === users::VERIFY_CODE_NOT_EXIST)
+            if($result === users_m::VERIFY_CODE_NOT_EXIST)
             {
                 $this->session->set_flashdata('verify_warning','Verify code not exist');
                 if($session_data)
@@ -187,7 +187,7 @@ class User_c extends CI_Controller
                     redirect('Auth_c/login','refresh');
                 }
             }
-            elseif($result['userStatus'] === users::USER_STATUS_NOT_VERIFIED)
+            elseif($result['userStatus'] === users_m::USER_STATUS_NOT_VERIFIED)
             {
                 $this->session->set_flashdata('verify_warning','Verify code expired');
                 if($session_data)
@@ -199,7 +199,7 @@ class User_c extends CI_Controller
                     redirect('Auth_c/login','refresh');
                 }
             }
-            else if($result['userStatus'] === users::USER_STATUS_VERIFIED)
+            else if($result['userStatus'] === users_m::USER_STATUS_VERIFIED)
             {
                 $this->session->set_flashdata('verify_warning','Email successfully verified');
 

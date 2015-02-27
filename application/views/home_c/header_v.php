@@ -29,7 +29,7 @@ $nav_bar = array(
     <li><a href = "<?php echo base_url();?>index.php/">Edit data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/">food diary</a></li>
     <li><a href = "<?php echo base_url();?>index.php/Reasons_c/show_reasons_old">Reasons old</a></li>
-    <li><a href = "<?php echo base_url();?>index.php/Reasons_c/show_reasons">Reasons</a></li>
+    <li><a href = "<?php echo base_url();?>index.php/Reasons_c/show_reasons?page=5">Reasons</a></li>
 
     <li><a href = "<?php echo base_url();?>index.php/user_c/display_user_data">User data</a></li>
     <li><a href = "<?php echo base_url();?>index.php/user_c/change_user_password">Change password</a></li>
@@ -43,7 +43,7 @@ $nav_bar = array(
     <h3><a href = "<?php echo base_url();?>index.php/Auth_c/logout"> Logout </a> </h3>
 
 
-    <h4><?php if($userStatus===users::USER_STATUS_NOT_VERIFIED)
+    <h4><?php if($userStatus===  Users_m::USER_STATUS_NOT_VERIFIED)
         {
 
             echo "<a href = ".base_url()."index.php/user_c/Send_new_verify_code> Send new verify code </a>";

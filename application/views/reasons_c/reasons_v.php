@@ -5,10 +5,10 @@
 <body>
     <div class ="content">
     <?php    
-        //foreach($user_reasons as $reason) {
-        //    echo ($reason);
-        //    echo '</br>';
-        //}//foreach
+        foreach($user_reasons as $reason) {
+            echo ($reason);
+            echo '</br>';
+        }//foreach
         echo 'user_reasons';
     ?>
     <?php  for($i=0;$i<$number_of_pages;$i++){ ?>

@@ -1,11 +1,10 @@
 <?php
 
-class Food_diary extends MY_Model
+class Meals_groseries_m extends MY_Model 
 {
     function __construct() {
         parent::__construct();
     }
-    
-    
+   
 }
 

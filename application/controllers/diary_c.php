@@ -7,16 +7,16 @@ class Diary_c extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('users');
+        $this->load->model('users_m');
         //this->load->model('meals_diary');
-        $this->load->model('users_reasons');
+        $this->load->model('users_reasons_m');
         $session_data = $this->session->userdata('logged_in');
-        $this->load->view('homeCtrl/homeViewHeader',$session_data);
+        $this->load->view('home_c/header_v',$session_data);
     }
 
 
     function add_food(){
-        if($this->users->check_Login_Status())
+        if($this->users_m->check_Login_Status())
         {
             if($this->input->post('date'))
             {
@@ -30,7 +30,7 @@ class Diary_c extends CI_Controller
             else
             {
                 
-                $this->load->view('diaryCtrl/addFoodView');
+                $this->load->view('diary_c/addfood_v');
             }
         }
         else
@@ -42,7 +42,7 @@ class Diary_c extends CI_Controller
     
     function getAutocompleteReasons(){
         $like_value = strtolower($this->input->get('term'));
-        $result = $this->users_reasons->searchUserReasons($like_value);
+        $result = $this->users_reasons_m->searchUserReasons($like_value);
         echo json_encode($result);//TODO vrati
         die();
         }

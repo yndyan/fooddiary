@@ -2,18 +2,12 @@
 
 class Migration_Create_users extends CI_Migration {
 
+    private $default_user = array(//mydo delete
+        'username'=>'yndyan',
+        'password'=>'Zile33',
+        'email'=>'yndyan@gmail.com',
+        'fullname'=>'Dusan Zivkovic');
 
-//        `userStatus` tinyint(2) DEFAULT NULL,
-//        `fullName` varchar(30) DEFAULT NULL,
-//        `verifyCode` varchar(34) DEFAULT NULL,
-//        `verifyExpTime` int(11) DEFAULT NULL,
-//        `passResetCode` varchar(34) DEFAULT NULL,
-//        `passResetExpTime` int(11) DEFAULT NULL,
-//        PRIMARY KEY (`id`),
-//        UNIQUE KEY `username` (`username`),
-//        UNIQUE KEY `verifyCode` (`verifyCode`),
-//        UNIQUE KEY `passResetCode` (`passResetCode`)
-//      ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
     
 	public function up()
 	{
@@ -80,7 +74,7 @@ class Migration_Create_users extends CI_Migration {
                 $this->db->query("ALTER TABLE users ADD UNIQUE INDEX (`username`)");
                 $this->db->query("ALTER TABLE users ADD UNIQUE INDEX (`email`)");
                 $this->db->query("ALTER TABLE users ADD UNIQUE INDEX (`passresetcode`)");
-                
+                $this->db->insert('users',  $this->default_user);//mydo delete
 	}
 
 	public function down()

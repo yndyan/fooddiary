@@ -22,7 +22,7 @@
         <fieldset >
         <legend>Personal data:</legend>
         Username: <input type="text" value = "<?php echo $username; ?>"  size="35" readonly><br>
-        Email: <input type="text" size="35" value = "<?php echo $email,$userStatus === users:: USER_STATUS_VERIFIED ? ' (verified)':' (not verified)';?>"  readonly><br>
+        Email: <input type="text" size="35" value = "<?php echo $email,$userStatus === users_m:: USER_STATUS_VERIFIED ? ' (verified)':' (not verified)';?>"  readonly><br>
         Full name: <input type="text"  size="35" value = "<?php echo $fullName; ?>" readonly> 
         </fieldset>
         <?php echo "<a href = ".base_url()."index.php/user_c/Send_new_verify_code> Send new verify code </a>"; ?>

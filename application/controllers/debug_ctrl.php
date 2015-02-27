@@ -4,7 +4,8 @@ class debug_ctrl extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        
+        $this->load->model('user_reasons');
+        $this->load->model('default_reasons_m');
         
     }
     function index()//mydo delete this later
@@ -19,8 +20,7 @@ class debug_ctrl extends CI_Controller
        
 
     }
-    function del(){
-    }
+   
     
     function help(){
 

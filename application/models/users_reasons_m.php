@@ -1,7 +1,7 @@
 <?php
 //require_once APPPATH.'models/MY_Model.php';
 
-class users_reasons extends MY_Model
+class users_reasons_m extends MY_Model
 {
     CONST table_name = 'users_reasons';
     protected $TablePkName = "reason_id";
@@ -57,7 +57,7 @@ class users_reasons extends MY_Model
     }//getallUserReasons
     
     function copyDefaultReasonsToNewUser($user_id){
-    $this->load->model('default_reasons'); 
+    $this->load->model('default_reasons_m'); 
     $this->default_reasons->getTableName();    
     }//copyDefaultreasonsToNewUser
 } 

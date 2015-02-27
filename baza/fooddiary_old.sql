@@ -132,20 +132,20 @@ CREATE TABLE `users` (
 
 insert  into `users`(`id`,`username`,`password`,`email`,`userStatus`,`fullName`,`verifyCode`,`verifyExpTime`,`passResetCode`,`passResetExpTime`) values (7,'yndyan','Zile33','yndyan@gmail.com',2,'Dusan Zivkovic',NULL,NULL,NULL,NULL);
 
-/*Table structure for table `users_reasons` */
+/*Table structure for table `users_reasons_m` */
 
-DROP TABLE IF EXISTS `users_reasons`;
+DROP TABLE IF EXISTS `users_reasons_m`;
 
-CREATE TABLE `users_reasons` (
+CREATE TABLE `users_reasons_m` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `reason` varchar(100) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
-/*Data for the table `users_reasons` */
+/*Data for the table `users_reasons_m` */
 
-insert  into `users_reasons`(`id`,`reason`,`user_id`) values (1,'Hungry',7),(2,'Bored',7),(3,'Free food',7),(4,'Cheap food',7),(5,'Tired',7),(6,'Stressed',7),(7,'Movie',7),(8,'Reward',7),(9,'Anxious',7),(10,'Insomnia',7),(11,'Others eat',7),(12,'Will be hungry',8),(13,'Feeling empty',8),(14,'Special occasion',8),(15,'Bored',8),(16,'Free food',8);
+insert  into `users_reasons_m`(`id`,`reason`,`user_id`) values (1,'Hungry',7),(2,'Bored',7),(3,'Free food',7),(4,'Cheap food',7),(5,'Tired',7),(6,'Stressed',7),(7,'Movie',7),(8,'Reward',7),(9,'Anxious',7),(10,'Insomnia',7),(11,'Others eat',7),(12,'Will be hungry',8),(13,'Feeling empty',8),(14,'Special occasion',8),(15,'Bored',8),(16,'Free food',8);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

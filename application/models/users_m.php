@@ -1,6 +1,6 @@
 <?php
 //require_once APPPATH.'models/MY_Model.php';
-Class Users extends MY_Model
+Class Users_m extends MY_Model
 {
     const USER_STATUS_NOT_VERIFIED = '1';
     const USER_STATUS_VERIFIED = '2';
