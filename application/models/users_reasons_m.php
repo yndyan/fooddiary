@@ -57,7 +57,7 @@ class users_reasons_m extends MY_Model
     }//getallUserReasons
     
     function copyDefaultReasonsToNewUser($user_id){
-    $this->load->model('default_reasons_m'); 
-    $this->default_reasons->getTableName();    
+    //$this->load->model('default_reasons_m'); 
+    //$this->default_reasons->getTableName();    
     }//copyDefaultreasonsToNewUser
 } 

@@ -8,6 +8,7 @@ class User_c extends CI_Controller
         parent::__construct();
         $this->load->model('users_m');
         $this->load->helper('registration');
+        
 
     }
 
@@ -34,7 +35,7 @@ class User_c extends CI_Controller
     if($this->users_m->check_Login_Status())
         {
         $session_data = $this->session->userdata('logged_in');
-        $this->load->view('home_c/header_v',$session_data);
+        
 
         $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
         if($this->input->post('email'))

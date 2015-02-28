@@ -3,33 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <style>
-
-    ul li {
-        display:inline;
-        margin: 10px;
-
-    }
-    #menu
-    {
-        width: 400px;
-        height: 50px;
-        position: absolute;
-        top: 50px;
-        left: 100px;
-        border-style: solid;
-        border-color: black;
-    }
-
-    </style>
-
+    <link rel = "stylesheet" href = "<?php echo base_url();?>public/css/bootstrap.min.css">
 </head>
+    
 <body>
-    <ul id="menu">
-        <li><a href=" <?php echo base_url(); ?>index.php/Auth_c/login">Login</a></li>
-        <li><a href = "<?php echo base_url();?>index.php/Auth_c/register_new_user">Register</a></li>
-        <li><a href = "<?php echo base_url();?>index.php/Auth_c/send_password_verify_code">Forgot password</a></li>
-        <li><a href = "<?php echo base_url();?>index.php/Auth_c/site_info">Site informations </a></li>
-
-    </ul>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/Auth_c/login">Food Diary</a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li><a href = "<?php echo base_url();?>index.php/Auth_c/login">Sign in</a></li>
+            <li><a href = "<?php echo base_url();?>index.php/Auth_c/register_new_user"></span>Sign up</a></li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right"> 
+            <li><a href = "<?php echo base_url();?>index.php/Auth_c/site_info">About</a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
 </body>

@@ -14,7 +14,6 @@ class Home_c extends CI_Controller
     function index()
     {
         $session_data = $this->session->userdata('logged_in');
-
         if($session_data)
         {
             $this->load->view('home_c/header_v',$session_data);

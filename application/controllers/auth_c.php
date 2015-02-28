@@ -8,14 +8,14 @@ class Auth_c extends CI_Controller
         parent::__construct();
         $this->load->helper('registration');
         $this->load->model('users_m');
-        $this->load->view('auth_c/header_v');
         $this->load->model('users_reasons_m');
+        $this->load->view('auth_c/header_v');
     }
 
 
     function site_info()
     {
-        $this->load->view('siteInfo_v');
+        $this->load->view('siteinfo_v');
     }
 
     function login()
@@ -174,17 +174,17 @@ class Auth_c extends CI_Controller
                     if($new_password)
                     {
                         $this->form_validation->set_error_delimiters('<font color = "#ff4500">','</font>');
-                        $this->form_validation->set_rules('new_password','nova sifra','trim|required|min_length[6]|callback_contain_number|callback_contain_Upper_Letter');// dodaj da sadrzi Veliko slovo i Broj!!
-                        $this->form_validation->set_rules('new_confpass','potvrdica',"trim|xss_clean|required|callback_compare_pass[$new_password]");
+                        $this->form_validation->set_rules('new_password','new password','trim|required|min_length[6]|callback_contain_number|callback_contain_Upper_Letter');// dodaj da sadrzi Veliko slovo i Broj!!
+                        $this->form_validation->set_rules('new_confpass','confirm password',"trim|xss_clean|required|callback_compare_pass[$new_password]");
 
                         if($this->form_validation->run() == FALSE)
                         {
                             $data = array('pass_code' =>  $reset_pass_verify_code);
-                            $this->load->view('auth_c/passreset_v',$data);
+                            $this->load->view('auth_c/newpass_v',$data);
                         }
                         else
                         {
-                            $this->users_m->updateUserData('passResetCode',$reset_pass_verify_code,array('password' => $new_password,
+                            $this->users_m->updateData('passResetCode',$reset_pass_verify_code,array('password' => $new_password,
                                                                                                            'passResetCode'   => NULL,
                                                                                                            'passResetExpTime'=> NULL));
                             //$data = array('auth_message' =>  'Password successfully changed, please login');
