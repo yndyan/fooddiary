@@ -80,6 +80,7 @@ class MY_Model extends CI_Model
     function addDataToDb($new_data)
     {
         $this->db->insert($this->getTableName(),$new_data);
+        return $this->db->insert_id();
     }
 
 

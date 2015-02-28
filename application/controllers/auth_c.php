@@ -101,12 +101,12 @@ class Auth_c extends CI_Controller
                     'verifyExpTime'=> time()+ users_m::TIMESTAMP_HOUR
                 ];
 
-                $this->users_m->addDataToDb($new_user_data);
+                $user_id = $this->users_m->addDataToDb($new_user_data);
                 $this->session->set_flashdata('verify_warning',"Email is sent to you, please verify ");
-                $user_id = $this->users_m->getUserId($username);
-                $this->session->set_userdata('logged_in',array('id'=>$user_id,'username' => $username,'userStatus'=>users_m::USER_STATUS_NOT_VERIFIED));
+                $this->session->set_userdata('logged_in',array('user_id'=>$user_id,'username' => $username,'userStatus'=>users_m::USER_STATUS_NOT_VERIFIED));
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_c/verify_email/'.$verify_code.'');
                 $this->users_m->sendVerificationEmail($new_user_data['email'],$email_message);
+                //var_dump($user_id); die();//mydo delete
                 $this->users_reasons_m->copyDefaultReasonsToNewUser($user_id);
                 redirect('Home_c','refresh');
             }

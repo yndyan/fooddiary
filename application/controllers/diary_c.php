@@ -8,7 +8,7 @@ class Diary_c extends CI_Controller
     {
         parent::__construct();
         $this->load->model('users_m');
-        //this->load->model('meals_diary');
+        
         $this->load->model('users_reasons_m');
         $session_data = $this->session->userdata('logged_in');
         $this->load->view('home_c/header_v',$session_data);

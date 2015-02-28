@@ -122,8 +122,6 @@ Class Users_m extends MY_Model
         }//else
     }//function
     
-    function getUserId($username){
-        return $this->getOneBySingleValue('username',$username,$this->TablePkName);
-    }//getUserId
+
 
 }//class

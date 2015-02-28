@@ -4,11 +4,21 @@ class debug_ctrl extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('user_reasons');
-        $this->load->model('default_reasons_m');
+        $this->load->model('users_reasons_m');
+       
         
     }
-    function index()//mydo delete this later
+    
+    
+   
+    
+    function help(){
+        $this->users_reasons_m->copyDefaultReasonsToNewUser('5');
+          
+    }//help
+
+    
+    function migration()//mydo delete this later
     {
     $this->load->library('migration');
 		if (! $this->migration->latest()) {
@@ -20,11 +30,5 @@ class debug_ctrl extends CI_Controller
        
 
     }
-   
-    
-    function help(){
-
-    }//help
-
 
 }
