@@ -18,14 +18,12 @@ class Users_reasons_m extends MY_Model
     
     function searchUserReasons($like_value){
         
-        $data_content = 'reason as value';
-        
-        //$user_id = $this->session->userdata('logged_in')['user_id'];
+        $data_content = 'reasonname as value';
         $this->db->select($data_content);
         
         $this->db->from(SELF::table_name);
         $this->db->where('user_id',  $this->user_id);
-        $this->db->like('reason',$like_value);
+        $this->db->like('reasonname',$like_value);
         $this->db-> limit(10);
 
         $query = $this->db->get();
@@ -42,10 +40,7 @@ class Users_reasons_m extends MY_Model
     }//
     
     function getAllUserReasons($items_per_page=2,$page_number = 1){
-              
         $offset = $items_per_page * ($page_number-1);
-        
-        //$user_id = $this->session->userdata('logged_in')['user_id'];
         $data_content = 'reason';    
         $this->db->select($data_content);
         $this->db->from(SELF::table_name);

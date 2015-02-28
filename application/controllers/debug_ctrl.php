@@ -13,7 +13,7 @@ class debug_ctrl extends CI_Controller
    
     
     function help(){
-        $this->users_reasons_m->copyDefaultReasonsToNewUser('5');
+        
           
     }//help
 
