@@ -46,14 +46,14 @@ class Migration_Create_diary extends CI_Migration
         
                 
             $this->dbforge->add_field(array(
-                    'food_diary_meals_id' => array(
+                    'food_diary_course_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE,
                                 'null'  => false
                                 ),
-                    'meal_id' => array(
+                    'course_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
@@ -66,13 +66,13 @@ class Migration_Create_diary extends CI_Migration
                                 'null'  => false
                                 ),
             ));
-        $this->dbforge->add_key('food_diary_meals_id',TRUE);
-        $this->dbforge->create_table('food_diary_meals');    
+        $this->dbforge->add_key('food_diary_course_id',TRUE);
+        $this->dbforge->create_table('food_diary_course');    
     }//up
     
     public function down(){
         $this->dbforge->drop_table('food_diary');
-        $this->dbforge->drop_table('food_diary_meals');
+        $this->dbforge->drop_table('food_diary_course');
     }//down
     
 }

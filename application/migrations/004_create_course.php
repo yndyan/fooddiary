@@ -1,22 +1,22 @@
 <?php
 
-class Migration_Create_meals extends CI_Migration
+class Migration_Create_course extends CI_Migration
 {
     public function up(){
         $this->dbforge->add_field(array(
-                    'meal_id' => array(
+                    'course_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE,
                                 'null'  => false
                                 ),
-                    'mealname' => array(
+                    'coursename' => array(
                                 'type' => 'varchar',
                                 'constraint'=> 100,
                                 'null' => false
                                 ),
-                    'mealdescption' => array(
+                    'coursedescption' => array(
                                 'type' => 'text',
                                 'constraint'=> 200,
                                 'null' => true
@@ -34,19 +34,19 @@ class Migration_Create_meals extends CI_Migration
                                 'null'  => false
 			),
             ));
-        $this->dbforge->add_key('meal_id',TRUE);
-        $this->dbforge->create_table('meals');
+        $this->dbforge->add_key('course_id',TRUE);
+        $this->dbforge->create_table('course');
         
         
             $this->dbforge->add_field(array(
-                    'meals_groceries_id' => array(
+                    'course_groceries_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE,
                                 'null'  => false
                                 ),
-                    'meal_id' => array(
+                    'course_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
@@ -64,13 +64,13 @@ class Migration_Create_meals extends CI_Migration
                                 )
 
             ));
-        $this->dbforge->add_key('meals_groceries_id',TRUE);
-        $this->dbforge->create_table('meals_groceries');    
+        $this->dbforge->add_key('course_groceries_id',TRUE);
+        $this->dbforge->create_table('course_groceries');    
     }//up
     
     public function down(){
-        $this->dbforge->drop_table('meals');
-        $this->dbforge->drop_table('meals_groceries');
+        $this->dbforge->drop_table('course');
+        $this->dbforge->drop_table('course_groceries');
     }//down
     
 }

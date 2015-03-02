@@ -1,6 +1,6 @@
 <?php
 
-class Meals_m extends MY_Model 
+class Course_m extends MY_Model 
 {
     function __construct() {
         parent::__construct();
