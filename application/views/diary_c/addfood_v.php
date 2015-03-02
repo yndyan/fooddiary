@@ -27,7 +27,7 @@
        <p> What:* </p>  
         <input  id = "food_in" > 
         <button id = "add">add</button>
-        <form action = "<?php echo base_url(); ?>index.php/diary_c/add_food" method = "post">
+        <form id = "add_form"action = "<?php echo base_url(); ?>index.php/diary_c/add_food" method = "post">
             <table style="width:100%" id = "food_list" > </table>
     </div>       
     <div style="float: right ;margin-right: 40px;">

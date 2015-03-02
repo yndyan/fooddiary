@@ -22,8 +22,5 @@ class Home_c extends CI_Controller
         {
             redirect('Auth_c/login','refresh');
         }
-
     }
-
-
 }

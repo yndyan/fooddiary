@@ -14,8 +14,8 @@
         </div>
             
         <div class="form-group">    
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6" >
+           
+            <div class="col-sm-6 col-md-offset-3" >
                 <button type="submit" class="btn btn-default" value = "Accept" >Submit</button> 
                 <label class="text-warning"> <?php echo $this->session->flashdata('verify_warning');?> </label>
             </div>

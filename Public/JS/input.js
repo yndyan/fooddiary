@@ -1,7 +1,8 @@
 $(document).ready(function() {
     var list = $('#food_list');
     var button_delete = $('#button_delete');
-
+    
+    
     $('#add').click(function(e) {
        
 
@@ -9,7 +10,7 @@ $(document).ready(function() {
                 var list_row = $('<tr><td width="90%" >'+$('#food_in').val()+ '</td>');
                 list_row.append('<input type="hidden" value="'+$('#food_in').val()+'" name="niz[]" /> ');
 
-                var delete_row = $('<td  width="10%"> <img src="http://localhost/fooddiary/public/img/trash.png"  style="width:20px;height:20px"></td></tr>');
+                var delete_row = $('<td  width="10%"> <span class="glyphicon glyphicon-remove"></span></td></tr>');
 
                 delete_row.click(function(e) {
                         e.preventDefault();

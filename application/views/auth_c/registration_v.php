@@ -47,15 +47,15 @@
             </div>
             
             <div class="form-group">    
-                <div class="col-sm-3"></div>
-                <div class="col-sm-6" >
+                
+                <div class="col-sm-6 col-md-offset-3" >
                     <button type="submit" class="btn btn-default" value = "Accept">Submit</button>
                 </div>
             </div>    
             
             <div class="form-group">    
-                <div class="col-sm-3"></div>
-                <div class="col-sm-6" >
+               
+                <div class="col-sm-6 col-md-offset-3" >
                     <h4>* - this fields are required for registration</h4>
                 </div>
             </div> 

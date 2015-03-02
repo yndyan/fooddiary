@@ -29,8 +29,8 @@
            <?php if($userStatus===  Users_m::USER_STATUS_NOT_VERIFIED){
             echo " <li><a href = ".base_url()."index.php/user_c/Send_new_verify_code> Send new verify code </a></li>";
            }?>
-            <li><a href = "<?php echo base_url();?>index.php/user_c/display_user_data"><?php echo $username; ?></a></li>
-            <li><a href = "<?php echo base_url();?>index.php/Auth_c/logout">Logout</a></li>
+            <li><a href = "<?php echo base_url();?>index.php/user_c/display_user_data"><span class="glyphicon glyphicon-user"></span> <?php echo $username; ?></a></li>
+            <li><a href = "<?php echo base_url();?>index.php/Auth_c/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
         </ul>
     </div>
   </div>

@@ -39,9 +39,10 @@ class Users_reasons_m extends MY_Model
         
     }//
     
-    function getAllUserReasons($items_per_page=2,$page_number = 1){
+    function getSinglePageReasons($items_per_page=2,$page_number = 1){
+        
         $offset = $items_per_page * ($page_number-1);
-        $data_content = 'reason';    
+        $data_content = 'reasonname,reason_id';    
         $this->db->select($data_content);
         $this->db->from(SELF::table_name);
         $this->db->where('user_id',  $this->user_id);
@@ -49,17 +50,14 @@ class Users_reasons_m extends MY_Model
         $this->db->limit($items_per_page,$offset);
         
         $query = $this->db->get();
-        $result_array = array();
-        foreach ($query->result() as $value){
-            array_push($result_array,$value->reason);    
-            }//foreach
-        return $result_array;
+        
+        return $query->result_array();
         
         
     }//getallUserReasons
     
-    function copyDefaultReasonsToNewUser($user_id){
-        
+    function copyDefaultReasonsToNewUser(){
+        $user_id = $this->user_id = $this->session->userdata('logged_in')['user_id'];
         $this->load->model('default_reasons_m'); 
         $default_reasons = $this->default_reasons_m->getDefaultReasons();
         foreach($default_reasons as $key => $reason){
@@ -68,4 +66,15 @@ class Users_reasons_m extends MY_Model
 
         $this->db->insert_batch(self::table_name,$default_reasons);
     }//copyDefaultreasonsToNewUser
+    
+    
+    function addReason($new_reason){
+         return $this->addDataToDb(['user_id'=>$this->user_id ,'reasonname'=>$new_reason]);
+    }//addNewUserReason
+    
+    function deleteReason($reason_id){
+        $this->db->limit(1);
+        $this->db->delete(self::table_name, ['reason_id'=>$reason_id,'user_id'=>  $this->user_id]);
+        return $this->db->affected_rows();
+    }
 } 
