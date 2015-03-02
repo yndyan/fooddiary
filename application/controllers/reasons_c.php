@@ -29,8 +29,6 @@ class Reasons_c extends CI_Controller
     }//show_reasons_old
     
     public function add_reason(){
-        
-        
         if($this->input->post('new_reason')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
             $this->form_validation->set_rules('new_reason', 'new reason', 'trim|required|min_length[2]');
@@ -38,22 +36,55 @@ class Reasons_c extends CI_Controller
             if($this->form_validation->run()==FALSE){
                 $this->load->view('reasons_c/add_reason_v');
             } else {
-                $new_reason = $this->input->post('new_reason');
-                $this->users_reasons_m->addReason($new_reason);
-                //mydo add notification that
-                $this->session->set_flashdata('reason_messages',"Reason sucessfully added");
+                $this->users_reasons_m->addReason($this->input->post('new_reason'));
+                $this->session->set_flashdata('reason_messages',"reason sucessfully added");
                 redirect('reasons_c/show_reasons','refresh');
                 return;
             }//else
                 
         } else {
             $this->load->view('reasons_c/add_reason_v');
+            return;
         }//else
         
     }//add_reason
 
-    
-    
+    function update_reason(){
+        
+        if($this->input->post('update_reason')){
+            $this->form_validation->set_error_delimiters('<font color="red">','</font>');
+            $this->form_validation->set_rules('update_reason', 'updated reason', 'trim|required|min_length[2]');
+            
+            if($this->form_validation->run()==FALSE){
+                $data['reasonname'] = $this->input->post('update_reason');
+                $data['reason_id'] = $this->input->post('reason_id');
+                $this->load->view('reasons_c/update_reason_v',$data);
+            } else {
+                $this->users_reasons_m->updateReason($this->input->post('update_reason'),$this->input->post('reason_id'));
+                
+                $this->session->set_flashdata('reason_messages',"reason sucessfully updated");
+                redirect('reasons_c/show_reasons','refresh');
+                return;
+            }//else
+                
+        } else {
+            $reason_id = trim($this->input->get('reason_id',TRUE));
+            $data_content = 'reasonname';
+            $reasonname = $this->users_reasons_m->getOneBySingleValue('reason_id',$reason_id,$data_content)[$data_content];
+            if($reasonname) {
+                $data['reasonname'] = $reasonname;
+                $data['reason_id'] = $reason_id;
+                $this->load->view('reasons_c/update_reason_v',$data);
+            } else {
+                $this->session->set_flashdata('reason_messages',"error finding reason");
+                redirect('reasons_c/show_reasons','refresh');
+            } 
+                
+            return;
+        }//else
+    }//update reason
+
+
     
     
     public function delete_reason(){
@@ -62,7 +93,7 @@ class Reasons_c extends CI_Controller
             $this->session->set_flashdata('reason_messages',"Reason sucessfully deleted");
             redirect('reasons_c/show_reasons','refresh');
         } else {
-            $this->session->set_flashdata('reason_messages',"Error deleting");
+            $this->session->set_flashdata('reason_messages',"Error deleting reason");
             redirect('reasons_c/show_reasons','refresh');
         }
     }//delete_reaosn

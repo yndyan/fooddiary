@@ -72,6 +72,12 @@ class Users_reasons_m extends MY_Model
          return $this->addDataToDb(['user_id'=>$this->user_id ,'reasonname'=>$new_reason]);
     }//addNewUserReason
     
+    
+    function updateReason($updated_reason,$reason_id){
+        $this->updateData('reason_id',$reason_id,['reasonname'=>$updated_reason]);
+    }//update reaosn
+    
+    
     function deleteReason($reason_id){
         $this->db->limit(1);
         $this->db->delete(self::table_name, ['reason_id'=>$reason_id,'user_id'=>  $this->user_id]);
