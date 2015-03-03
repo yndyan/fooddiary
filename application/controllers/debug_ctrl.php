@@ -5,6 +5,7 @@ class debug_ctrl extends CI_Controller
     {
         parent::__construct();
         $this->load->model('users_reasons_m');
+        $this->load->model('groceries_m');
        
         
     }
@@ -12,12 +13,16 @@ class debug_ctrl extends CI_Controller
     
    
     
-    function help(){
+    function reasons(){
         $this->users_reasons_m->copyDefaultReasonsToNewUser();
           
-    }//help
-
+    }//reasons
     
+    function groceries(){
+                $this->groceries_m->copyDefaultGroceriesToNewUser();
+
+    }//groceries
+            
     function migration()//mydo delete this later
     {
     $this->load->library('migration');

@@ -55,7 +55,7 @@ class Migration_Create_groceries extends CI_Migration
                                 )
         ));
         $this->dbforge->add_key('groceries_id',TRUE);
-        $this->dbforge->create_table('groseries');
+        $this->dbforge->create_table('groceries');
         
         $this->dbforge->add_field(array(
                 
@@ -74,14 +74,15 @@ class Migration_Create_groceries extends CI_Migration
                 
         ));
         $this->dbforge->add_key('groceries_id',TRUE);
-        $this->dbforge->create_table('default_groseries');
-        $this->db->insert_batch('default_groseries',  $this->default_groceries );
+        $this->dbforge->create_table('default_groceries');
+        $this->db->insert_batch('default_groceries',  $this->default_groceries );
 
 
     }//up
     
     public function down(){
-                $this->dbforge->drop_table('groseries');
+                $this->dbforge->drop_table('groceries');
+                $this->dbforge->drop_table('default_groceries');
         
     }//down
     
