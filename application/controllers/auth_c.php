@@ -8,7 +8,7 @@ class Auth_c extends CI_Controller
         parent::__construct();
         $this->load->helper('registration');
         $this->load->model('users_m');
-        $this->load->model('users_reasons_m');
+        $this->load->model('user_reasons_m');
         $this->load->view('auth_c/header_v');
     }
 
@@ -107,7 +107,7 @@ class Auth_c extends CI_Controller
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_c/verify_email/'.$verify_code.'');
                 $this->users_m->sendVerificationEmail($new_user_data['email'],$email_message);
                 //var_dump($user_id); die();//mydo delete
-                $this->users_reasons_m->copyDefaultReasonsToNewUser($user_id);
+                $this->user_reasons_m->copyDefaultReasonsToNewUser($user_id);
                 redirect('Home_c','refresh');
             }
         }

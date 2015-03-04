@@ -4,7 +4,7 @@ class Default_groceries_m extends MY_Model
 {   
     
     CONST table_name = 'default_groceries';
-    protected $TablePkName = "groceries_id";
+    protected $TablePkName = "grocery_id";
 
     function getTableName()
     {
@@ -15,7 +15,7 @@ class Default_groceries_m extends MY_Model
     }
     
     function getDefaultGroceries(){
-       $this->db->select('foodname');
+       $this->db->select('groceryname');
        $this->db->from(self::table_name);
        $query =  $this->db->get();
        return $query->result_array();

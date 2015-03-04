@@ -1,7 +1,7 @@
 <?php
 //require_once APPPATH.'models/MY_Model.php';
 
-class Users_reasons_m extends MY_Model
+class User_reasons_m extends MY_Model
 {
     CONST table_name = 'user_reasons';
     protected $TablePkName = "reason_id";

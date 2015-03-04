@@ -8,14 +8,12 @@ class Diary_c extends CI_Controller
     {
         parent::__construct();
         $this->load->model('users_m');
-        
-        $this->load->model('users_reasons_m');
         $session_data = $this->session->userdata('logged_in');
         $this->load->view('home_c/header_v',$session_data);
     }
 
 
-    function add_food(){
+    function add_food(){//mydo not working 
         if($this->users_m->check_Login_Status())
         {
             if($this->input->post('date'))
@@ -40,11 +38,6 @@ class Diary_c extends CI_Controller
         }
     }
     
-    function getAutocompleteReasons(){
-        $like_value = strtolower($this->input->get('term'));
-        $result = $this->users_reasons_m->searchUserReasons($like_value);
-        echo json_encode($result);//TODO vrati
-        die();
-        }
+    
     
 }

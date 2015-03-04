@@ -8,7 +8,10 @@ class User_c extends CI_Controller
         parent::__construct();
         $this->load->model('users_m');
         $this->load->helper('registration');
-        
+        $session_data = $this->session->userdata('logged_in');
+        if($session_data){
+            $this->load->view('home_c/header_v',$session_data);
+        }
 
     }
 
@@ -19,7 +22,7 @@ class User_c extends CI_Controller
         if($this->users_m->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
-            $this->load->view('home_c/header_v',$session_data);
+            
             $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
             $this->load->view('user_c/userdata_v',$data);
         }
@@ -40,7 +43,7 @@ class User_c extends CI_Controller
         $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
         if($this->input->post('email'))
             {
-            $this->load->view('home_c/header_v',$session_data);
+            
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
             $email = trim($this->input->post('email',TRUE));//ovo mora xss clean i trim!!
             $fullname = trim($this->input->post('fullname',TRUE));//ovo mora xss clean i trim!!
@@ -86,7 +89,6 @@ class User_c extends CI_Controller
         if($this->users_m->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
-            $this->load->view('home_c/header_v',$session_data);
             if($this->input->post('old_password'))
             {
                 $this->form_validation->set_error_delimiters('<font color="red">','</font>');

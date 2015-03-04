@@ -4,24 +4,20 @@ class debug_ctrl extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('users_reasons_m');
-        $this->load->model('groceries_m');
-       
-        
+        $this->load->model('user_reasons_m');
+        $this->load->model('user_groceries_m');
     }
     
     
    
     
-    function reasons(){
-        $this->users_reasons_m->copyDefaultReasonsToNewUser();
+    function copy_default_tables(){
+        $this->user_reasons_m->copyDefaultReasonsToNewUser();
+        $this->user_groceries_m->copyDefaultGroceriesToNewUser();
           
     }//reasons
     
-    function groceries(){
-                $this->groceries_m->copyDefaultGroceriesToNewUser();
-
-    }//groceries
+ 
             
     function migration()//mydo delete this later
     {

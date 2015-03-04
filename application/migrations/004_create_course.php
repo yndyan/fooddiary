@@ -39,7 +39,7 @@ class Migration_Create_course extends CI_Migration
         
         
             $this->dbforge->add_field(array(
-                    'course_groceries_id' => array(
+                    'course_grocery_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
@@ -52,7 +52,7 @@ class Migration_Create_course extends CI_Migration
 				'unsigned' => TRUE,
                                 'null'  => false
                                 ),
-                    'groceries_id' => array(
+                    'grocery_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
@@ -64,7 +64,7 @@ class Migration_Create_course extends CI_Migration
                                 )
 
             ));
-        $this->dbforge->add_key('course_groceries_id',TRUE);
+        $this->dbforge->add_key('course_grocery_id',TRUE);
         $this->dbforge->create_table('course_groceries');    
     }//up
     

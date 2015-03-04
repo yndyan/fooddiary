@@ -5,7 +5,7 @@
 <script src="<?php echo base_url();?>public/js/jquery-ui.min.js"></script>
 <script src="<?php echo base_url();?>public/js/jquery-ui-timepicker-addon.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui-timepicker-addon.min.css">
-<link rel = "stylesheet" href = "<?php echo base_url();?>public/css/fooddiary.css">
+
 <script src="<?php echo base_url(); ?>public/js/input.js"></script>
 
 

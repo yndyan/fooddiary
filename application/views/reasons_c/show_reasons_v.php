@@ -6,11 +6,8 @@
             <ul class="list-group col-sm-8 col-md-offset-2">
                 
                 <li class="list-group-item ">
-                    <a  href =  "<?php echo base_url();?>index.php/reasons_c/add_reason " class="btn btn-success col-md-offset-5"> 
-                        <h5>
-                            <span class="glyphicon glyphicon-plus"></span> 
-                            Add new reason
-                        </h5> 
+                    <a  href =  "<?php echo base_url("index.php/reasons_c/add_reason");?>" class="btn btn-success col-md-offset-5"> 
+                        <h5><span class="glyphicon glyphicon-plus"></span> Add new reason</h5> 
                     </a>
                 </li>     
                 
@@ -20,16 +17,9 @@
                 }//foreach
             ?>
                 <ul class="pagination ">
-                    <?php  
-                        for($i=0;$i<$number_of_pages;$i++){ 
-                            if ($i+1 == $current_page) { 
-                                 echo '<li><a href = "#">'.($i+1).'</a></li>';  
-                            } else { 
-                    ?>
-                            <li><a href="<?php echo base_url()?>index.php/reasons_c/show_reasons?page=<?php echo $i+1?>"><?php echo $i+1?></a></li>
-                    <?php   }//else 
-                        }//for 
-                    ?>   
+                    <?php  for($i=1;$i<($number_of_pages+1);$i++){  ?>
+                            <li><a href="<?php  echo ($i!= $current_page)? base_url("index.php/reasons_c/show_reasons?page=".$i) : '#'; ?>"><?php echo $i;?></a></li>
+                    <?php  }//for   ?>   
                  </ul>
              </ul>
         </div>
