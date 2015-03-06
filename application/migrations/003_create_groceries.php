@@ -22,13 +22,15 @@ class Migration_Create_groceries extends CI_Migration
         ['groceryname' => "majonez"],
         ['groceryname' => "crni luk"],
         ['groceryname' => "beli luk"],
-        ['groceryname' => "kratsavci"],
+        ['groceryname' => "krastavci"],
         ['groceryname' => "kiseli krastavci"],
         ['groceryname' => "sargarepa"],
         ['groceryname' => "krompir"],
         ['groceryname' => "praziluk"],
         ['groceryname' => "sampinjoni"],
         ['groceryname' => "testenina"],
+        ['groceryname' => "tunjevina u salamuri"],
+        ['groceryname' => "sardina u ulju"],
     );
     
     public function up(){

@@ -1,6 +1,6 @@
 <?php
 
-class Migration_Create_course extends CI_Migration
+class Migration_Create_courses extends CI_Migration
 {
     public function up(){
         $this->dbforge->add_field(array(
@@ -16,7 +16,7 @@ class Migration_Create_course extends CI_Migration
                                 'constraint'=> 100,
                                 'null' => false
                                 ),
-                    'coursedescption' => array(
+                    'coursedescription' => array(
                                 'type' => 'text',
                                 'constraint'=> 200,
                                 'null' => true
@@ -35,7 +35,7 @@ class Migration_Create_course extends CI_Migration
 			),
             ));
         $this->dbforge->add_key('course_id',TRUE);
-        $this->dbforge->create_table('course');
+        $this->dbforge->create_table('courses');
         
         
             $this->dbforge->add_field(array(
@@ -65,12 +65,12 @@ class Migration_Create_course extends CI_Migration
 
             ));
         $this->dbforge->add_key('course_grocery_id',TRUE);
-        $this->dbforge->create_table('course_groceries');    
+        $this->dbforge->create_table('courses_groceries');    
     }//up
     
     public function down(){
-        $this->dbforge->drop_table('course');
-        $this->dbforge->drop_table('course_groceries');
+        $this->dbforge->drop_table('courses');
+        $this->dbforge->drop_table('courses_groceries');
     }//down
     
 }

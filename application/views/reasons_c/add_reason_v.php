@@ -1,7 +1,7 @@
 <body>
 <div class="container" >
     <div class="row">
-        <div class="col-sm-8 col-md-offset-2">
+        <div class="col-sm-8">
         <h3 class ="text-center "> Add new grocery </h3>
         <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/reasons_c/add_reason" method = "post" >
         

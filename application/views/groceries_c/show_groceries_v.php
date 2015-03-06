@@ -2,8 +2,8 @@
     <div class="container" >
         <div class="row">
             <h2 class ="text-center"> User groceries </h2>
-            <h3 class="text-warning text-center"><?php echo $this->session->flashdata('grocery_messages');?></h3>
-            <ul class="list-group col-sm-8 col-md-offset-2">
+            <h3 class ="text-warning text-center"><?php echo $this->session->flashdata('grocery_messages');?></h3>
+            <ul class ="list-group col-sm-8 col-md-offset-2">
                 
                 <li class="list-group-item ">
                     <a  href =  "<?php echo base_url("index.php/groceries_c/add_grocery");?>" class="btn btn-success col-md-offset-5"> 

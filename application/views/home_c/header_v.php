@@ -18,7 +18,7 @@
         <ul class="nav navbar-nav">
             <li><a href = "<?php echo $base_url_index?>/diary_c/add_food">Add meal</a></li>
             <li><a href = "<?php echo $base_url_index?>"><span class="glyphicon glyphicon-calendar"></span> Diary</a></li>
-            <li><a href = "<?php echo $base_url_index?>"><span class="glyphicon glyphicon-list"></span> Course</a></li>    
+            <li><a href = "<?php echo $base_url_index?>/courses_c/show_courses"><span class="glyphicon glyphicon-list"></span> Courses</a></li>    
             <li><a href = "<?php echo $base_url_index?>/groceries_c/show_groceries"><span class="glyphicon glyphicon-apple"></span> Groceries</a></li>
             <li><a href = "<?php echo $base_url_index?>/reasons_c/show_reasons"><span class="glyphicon glyphicon-question-sign"></span> Reasons</a></li>
          

@@ -16,39 +16,34 @@ class User_reasons_m extends MY_Model
         return self::table_name;
     }
     
-    function searchUserReasons($like_value){
+    function api_searchReasons($like_value){
         
         $data_content = 'reasonname as value';
-        $this->db->select($data_content);
+        $like = ['reasonname' => $like_value];
+        $where = ['user_id'  => $this->user_id];
         
-        $this->db->from(SELF::table_name);
-        $this->db->where('user_id',  $this->user_id);
-        $this->db->like('reasonname',$like_value);
-        $this->db-> limit(10);
-
-        $query = $this->db->get();
-        return $query->result();
+        return $this->searchWhere($data_content,$like,$where);
     }
     
     
     function getReasonsPageCount($items_per_page = 2){
-        //$user_id = $this->session->userdata('logged_in')['user_id'];
         $this->db->where('user_id',  $this->user_id);
         $this->db->from(SELF::table_name);
         return (int)ceil($this->db->count_all_results()/$items_per_page);
         
     }//
     
-    function getSinglePageReasons($items_per_page=2,$page_number = 1){
+    function getSinglePageReasons($items_per_page=2,$page_number = 1,$like_value = null){
         
         $offset = $items_per_page * ($page_number-1);
         $data_content = 'reasonname,reason_id';    
         $this->db->select($data_content);
         $this->db->from(SELF::table_name);
         $this->db->where('user_id',  $this->user_id);
-       
+        if($like_value){
+            $this->db->like('reasonname',$like_value);
+        }//if
         $this->db->limit($items_per_page,$offset);
-        
         $query = $this->db->get();
         
         return $query->result_array();

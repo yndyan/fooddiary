@@ -13,6 +13,15 @@ class User_groceries_m extends MY_Model
         parent::__construct();
         $this->user_id = $this->session->userdata('logged_in')['user_id'];
     }
+    
+    function api_searchGroceries($like_value){
+        
+        $data_content = 'groceryname as value';
+        $like = ['groceryname' => $like_value];
+        $where = ['user_id'  => $this->user_id];
+        
+        return $this->searchWhere($data_content,$like,$where);
+    }
     function getGroceriesPageCount($items_per_page = 2){
         
         $this->db->where('user_id',  $this->user_id);

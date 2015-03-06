@@ -14,16 +14,11 @@ class Reasons_c extends CI_Controller
         
     }//construct
 //----------------------------------------------------------------------------
-   function getAutocompleteReasons(){
-        $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
-        $result = $this->user_reasons_m->searchUserReasons($like_value);
-        echo json_encode($result);//TODO vrati
-        
-    }
+
     
     
     
-    function show_reasons(){
+    function show_reasons(){//mydo add sort by name,  usage
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
         $items_per_page = 5;
         

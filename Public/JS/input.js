@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var list = $('#food_list');
-    var button_delete = $('#button_delete');
+    //var button_delete = $('#button_delete');
     
     
     $('#add').click(function(e) {
@@ -11,14 +11,14 @@ $(document).ready(function() {
                 list_row.append('<input type="hidden" value="'+$('#food_in').val()+'" name="niz[]" /> ');
 
                 var delete_row = $('<td  width="10%"> <span class="glyphicon glyphicon-remove"></span></td></tr>');
-
+                list_row.append(delete_row);    
                 delete_row.click(function(e) {
                         e.preventDefault();
                         $(this).parent().remove();
 
                 });
 
-                list_row.append(delete_row);
+                
 
                 list.append(list_row);
                 $('#food_in').val('');
@@ -29,15 +29,10 @@ $(document).ready(function() {
 
     $( "#datepicker" ).datepicker();
     $( "#timepicker" ).timepicker();
-    $( "#why" ).autocomplete({
-      source: "http://localhost/fooddiary/index.php/reasons_c/getAutocompleteReasons",
-      minLength: 2,
-      select: function( event, ui ) {
-        
-        
-            //ui.item.value:
-          
-      }
+    $( "#why" ).autocomplete({//mydo js base_url
+      source: "http://localhost/fooddiary/index.php/api_c/getAutocompleteReasons",
+      minLength: 2
+      
     });    
         
         

@@ -20,14 +20,14 @@ class MY_Model extends CI_Model
     }//getByPk
         
     
-    function getLikeBySingleValue($key,$like_value,$data_content){
+    function searchBySingleValue($key,$like_value,$data_content){
         $this->db-> select($data_content);
         $this->db-> from($this->getTableName());
         $this->db-> like($key,$like_value);
         
         $query = $this->db->get();
         if($query->num_rows() > 0 ){
-            return $query->result();
+            return $query->result_array();
             }//if
         else{
             return false;
@@ -90,5 +90,14 @@ class MY_Model extends CI_Model
         $this->db->update($this->getTableName(),$update_data);
     }
     
+    function searchWhere($data_content,$like,$where){
+        $this->db->select($data_content);
+        $this->db->from($this->getTableName());
+        $this->db->where($where);
+        $this->db->like($like);
+        $this->db-> limit(10);
+        $query = $this->db->get();
+        return $query->result();
+    }//searchWhere
 
 }
