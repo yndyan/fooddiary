@@ -13,9 +13,9 @@ class Auth_c extends CI_Controller
     }
 
 
-    function site_info()
+    function about()
     {
-        $this->load->view('siteinfo_v');
+        $this->load->view('about_v');
     }
 
     function login()

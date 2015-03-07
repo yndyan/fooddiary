@@ -56,7 +56,7 @@ $(document).ready(function(){
         });//delete_button.click
     });
     
-    $("#groceryname").autocomplete({
+    $("#groceryname").autocomplete({//add jq base_url
         source: "http://localhost/fooddiary/index.php/api_c/getAutocompleteGroceries",
         minLength: 2
         

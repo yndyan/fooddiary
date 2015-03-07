@@ -16,12 +16,13 @@
                     echo $this->load->view('reasons_c/reason_template_v', $data, true);
                 }//foreach
             ?>
-                <ul class="pagination ">
-                    <?php  for($i=1;$i<($number_of_pages+1);$i++){  ?>
-                            <li><a href="<?php  echo ($i!= $current_page)? base_url("index.php/reasons_c/show_reasons?page=".$i) : '#'; ?>"><?php echo $i;?></a></li>
-                    <?php  }//for   ?>   
-                 </ul>
-             </ul>
+            <?php 
+                $data['action_url']= ("index.php/reasons_c/show_reasons");
+                $data['number_of_pages']= $number_of_pages;
+                $data['current_page']= $current_page;
+                echo $this->load->view('help/pagination_v',$data);
+            ?>    
+             </ul
         </div>
     </div>
 </body>

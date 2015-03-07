@@ -14,12 +14,14 @@
     </div>
     <div>
         <ul class="nav navbar-nav">
-            <li><a href = "<?php echo base_url();?>index.php/Auth_c/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li><a href = "<?php echo base_url();?>index.php/Auth_c/register_new_user"><span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>
+            <li <?php if($this->uri->segment(2)=='login') {echo 'class="active"';}?>>
+                <a href = "<?php echo base_url();?>index.php/Auth_c/login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+            </li>
+            <li <?php if($this->uri->segment(2)=='register_new_user') {echo 'class="active"';}?>><a href = "<?php echo base_url();?>index.php/Auth_c/register_new_user"><span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>
         </ul>
         
         <ul class="nav navbar-nav navbar-right"> 
-            <li><a href = "<?php echo base_url();?>index.php/Auth_c/site_info"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+            <li <?php if($this->uri->segment(2)=='about') {echo 'class="active"';}?>><a href = "<?php echo base_url();?>index.php/Auth_c/about"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
         </ul>
     </div>
   </div>
