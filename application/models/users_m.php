@@ -33,9 +33,9 @@ Class Users_m extends MY_Model
     protected $TablePkName = "user_id";
 
 
-    function getTableName(){
-        return self::table_name;
-    }//getTableName
+//    function getTableName(){
+//        return self::table_name;
+//    }//getTableName
     
 
     function verifyUserData($username_or_email, $password)

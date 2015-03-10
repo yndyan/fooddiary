@@ -24,7 +24,7 @@ class Reasons_c extends CI_Controller
         
         if($this->users_m->check_Login_Status()){
             $data['user_reasons'] =  $this->user_reasons_m->getSinglePageReasons($items_per_page,$page_number);
-            $data['number_of_pages'] = $this->user_reasons_m->getReasonsPageCount($items_per_page);
+            $data['number_of_pages'] = $this->user_reasons_m->getPageCount($items_per_page);
             $data['current_page'] = $page_number;
             $this->load->view('reasons_c/show_reasons_v',$data);
         }//if

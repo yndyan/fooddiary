@@ -8,13 +8,17 @@ class debug_ctrl extends CI_Controller
         $this->load->model('user_groceries_m');
     }
     
+    function index(){
+        //$this->output->enable_profiler(TRUE);
+        echo $this->user_groceries_m->getTableName();
+        echo $this->user_groceries_m->getTableName();
+    }
     
    
     
     function copy_default_tables(){
         $this->user_reasons_m->copyDefaultReasonsToNewUser();
         $this->user_groceries_m->copyDefaultGroceriesToNewUser();
-          
     }//reasons
     
  

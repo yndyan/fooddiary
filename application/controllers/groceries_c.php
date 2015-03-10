@@ -21,7 +21,7 @@ class Groceries_c extends CI_Controller
         
         if($this->users_m->check_Login_Status()){
             $data['user_groceries'] =  $this->user_groceries_m->getSinglePageGroceries($items_per_page,$page_number);
-            $data['number_of_pages'] = $this->user_groceries_m->getGroceriesPageCount($items_per_page);
+            $data['number_of_pages'] = $this->user_groceries_m->getPageCount($items_per_page);
             $data['current_page'] = $page_number;
             $this->load->view('groceries_c/show_groceries_v',$data);
         }//if

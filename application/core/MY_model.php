@@ -2,8 +2,18 @@
 class MY_Model extends CI_Model
 {
     protected $TablePkName = "id";
+    protected $user_id = '';
+    CONST table_name = '';
     
-    protected function getTableName(){}
+    function __construct() {
+        parent::__construct();
+        $this->user_id = $this->session->userdata('logged_in')['user_id'];
+    }
+    function getTableName()
+    {
+        return static::table_name;
+    }
+
 
     protected function getByPk($pk_value){
         $this->db->select("*");
@@ -19,25 +29,30 @@ class MY_Model extends CI_Model
         }//else
     }//getByPk
         
-    
-    function searchBySingleValue($key,$like_value,$data_content){
-        $this->db-> select($data_content);
-        $this->db-> from($this->getTableName());
-        $this->db-> like($key,$like_value);
+    function getPageCount($items_per_page = 2){
+        $this->db->where('user_id',  $this->user_id);
+        $this->db->from($this->getTableName());//mydo change to getTablename
+        return (int)ceil($this->db->count_all_results()/$items_per_page);
         
-        $query = $this->db->get();
-        if($query->num_rows() > 0 ){
-            return $query->result_array();
-            }//if
-        else{
-            return false;
-            }//else
-        
-        
-    }
+    }//
+//    function searchBySingleValue($key,$like_value,$data_content){
+//        $this->db-> select($data_content);
+//        $this->db-> from($this->getTableName());
+//        $this->db-> like($key,$like_value);
+//        
+//        $query = $this->db->get();
+//        if($query->num_rows() > 0 ){
+//            return $query->result_array();
+//            }//if
+//        else{
+//            return false;
+//            }//else
+//        
+//        
+//    }
     
     
-    function getOneBySingleValue($key,$value,$data_content){
+    function getOneBySingleValue($key,$value,$data_content){//mydo replace this function wit getLikeWhere
         $this->db-> select($data_content);
         $this->db-> from($this->getTableName());
         $this->db-> where($key,$value);
@@ -52,10 +67,9 @@ class MY_Model extends CI_Model
     }//getSingleData
 
     
-    function chechValueExistsInDb($what,$value)
+    function chechValueExistsInDb($what)
     {
-        
-        $this->db->where($what,$value);// probaj i probaj obrnuto!!
+        $this->db->where($what);// probaj i probaj obrnuto!!
         $this->db->from($this->getTableName());
         return ($this->db->count_all_results() > 0);
     }    
@@ -90,14 +104,18 @@ class MY_Model extends CI_Model
         $this->db->update($this->getTableName(),$update_data);
     }
     
-    function searchWhere($data_content,$like,$where){
+    function geLikeWhere($data_content,$like = null,$where = null,$limit = 10){
         $this->db->select($data_content);
         $this->db->from($this->getTableName());
-        $this->db->where($where);
-        $this->db->like($like);
-        $this->db-> limit(10);
+        if($where){
+            $this->db->where($where);
+        }
+        if($like){
+            $this->db->like($like);
+        }
+        $this->db-> limit($limit);
         $query = $this->db->get();
-        return $query->result();
-    }//searchWhere
+        return $query->result_array();
+    }//geLikeWhere
 
 }

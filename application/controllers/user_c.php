@@ -33,7 +33,7 @@ class User_c extends CI_Controller
         }
     }//function display_user_data()
 
-    function change_user_data()
+    function change_user_data()//mydo edit because my form validation 
     {
     if($this->users_m->check_Login_Status())
         {
@@ -92,10 +92,9 @@ class User_c extends CI_Controller
             if($this->input->post('old_password'))
             {
                 $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-                $new_password = trim($this->input->post('new_password',TRUE));//ovo mora xss clean i trim!!
-                $this->form_validation->set_rules('old_password', 'old password', "trim|required|callback_check_Old_Password[$session_data[username]]");
-                $this->form_validation->set_rules('new_password', 'new password', 'trim|required|min_length[6]|callback_contain_number|callback_contain_Upper_Letter');//mora trim 2 puta
-                $this->form_validation->set_rules('new_confpass','confirm password',"trim|xss_clean|required|callback_compare_pass[$new_password]");
+                $this->form_validation->set_rules('old_password', 'old password', "trim|xss_clean|required|check_Old_Password[$session_data[username]]");
+                $this->form_validation->set_rules('new_password', 'new password', 'trim|xss_clean|required|min_length[6]|contain_number|contain_Upper_Letter');
+                $this->form_validation->set_rules('new_confpass','confirm password',"trim|xss_clean|required|matches[new_password]");
 
                 if($this->form_validation->run() === FALSE)
                 {
@@ -103,6 +102,7 @@ class User_c extends CI_Controller
                 }
                 else
                 {
+                    $new_password = $this->input->post('new_password');
                     $this->users_m->updateData('username',$session_data['username'],array('password'=> $new_password));
                     $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullName');
                     $this->load->view('user_c/userdata_v',$data);
@@ -123,28 +123,16 @@ class User_c extends CI_Controller
 
     }
 
-    function check_old_password($password,$username)//
-    {
-        if($this->users_m->verifyUserData($username,$password))
-        {
-            return true;
-        }
-        else
-        {
-            $this->form_validation->set_message('check_Old_Password','Old password is not valid ');
-            return false;
-        }
-    }
+    
 
     function send_new_verify_code()
     {
         if($this->users_m->check_Login_Status())
         {
             $session_data = $this->session->userdata('logged_in');
-            do
-            {
+            do{
                 $new_verify_code = Generate_random_string(users_m::VERIFY_CODE_LENGTH);
-            }while($this->users_m->chechValueExistsInDb('verifyCode',$new_verify_code));
+            } while($this->users_m->chechValueExistsInDb(['verifyCode'=>$new_verify_code]));
 
             $this->users_m->updateData('username',$session_data['username'], array('verifyCode' => $new_verify_code,'verifyExpTime'=> time() + users_m::TIMESTAMP_HOUR));
             $email = $this->users_m->getOneBySingleValue('username',$session_data['username'],'email');
@@ -220,45 +208,7 @@ class User_c extends CI_Controller
         }
     }
 
-    function contain_upper_letter($input)//TODO ove funkcije su duple, ne znam kako da izbacim iz kontrolera
-    {
-        if(preg_match('#[A-Z]#',$input))
-        {
-            return true;
-        }
-        else
-        {
-            $this->form_validation->set_message('contain_Upper_Letter','Must contain at least one upper letter');
-            return false;
-        }
-    }
-
-    function compare_pass($confpass,$password)
-    {
-
-        if($password===$confpass)
-        {
-            return true;
-        }
-        else
-        {
-            $this->form_validation->set_message('compare_pass','Password and confirm password must be the same');
-            return false;
-        }
-    }
-
-    function contain_number($input)
-    {
-        if(preg_match('#[0-9]#',$input))
-        {
-            return true;
-        }
-        else
-        {
-            $this->form_validation->set_message('contain_number','Must contain at least one number');
-            return false;
-        }
-    }
+   
 
 
 }

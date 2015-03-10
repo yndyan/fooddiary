@@ -6,7 +6,7 @@
             <ul class="list-group col-sm-8 col-md-offset-2">
                 
                 <li class="list-group-item ">
-                    <a  href =  "<?php echo base_url("index.php/courses_c/add_course");?>" class="btn btn-success col-md-offset-5"> 
+                    <a  href =  "<?php echo base_url("index.php/courses_c/show_add_course");?>" class="btn btn-success col-md-offset-5"> 
                         <h5><span class="glyphicon glyphicon-plus"></span> Add new course</h5> 
                     </a>
                 </li>     

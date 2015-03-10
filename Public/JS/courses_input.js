@@ -18,7 +18,7 @@ $(document).ready(function(){
 //            </button>
 //         </ul>
 //</div>    
-    $("#add_grocery").click(function(e){
+    $("#add_grocery_to_course").click(function(e){
         
         e.preventDefault();
         //add protection from 
@@ -45,7 +45,7 @@ $(document).ready(function(){
             
         var main_div = $(div).addClass('col-sm-10 col-md-offset-3'); 
             main_div.append(u_list);    
-        
+        //mydo if gorcery is not in grocery table, ask to add new grocery
         $('#grocery_list').append(main_div);
         $("#groceryname").val('');
         $("#quantity").val('');
@@ -63,6 +63,27 @@ $(document).ready(function(){
     });
     
     
-    //event trigered function that uses add_course_template
+    $("#add_course").click(function(e){
+        e.preventDefault();
+        //jQuery.post( url [, data ] [, success ] [, dataType ] )
+        addCorseUrl = 'http://localhost/fooddiary/index.php/api_c/addCourse';
+        courseData = $("#add_course_form").serializeArray();
+        //console.log(courseData);
+        var value0 = $("input[name='groceries[]']")[0];
+        var value2 = $("input[name='groceries[]']"[0]);
+        var value1 = $("input[name='groceries[]']")[1];
+        //console.log(value0 );//mydo delte this
+        console.log($(value0).attr('value'));//nmydo delete this
+        console.log($(value1).attr('value'));//mydo delete this
+        
+        
+        
+        
+        $.post(addCorseUrl,courseData,function(e){
+            console.log(e.result);
+            //console.log(e.result);
+        },'json')
+        
+    });
     
 });//$(document).ready

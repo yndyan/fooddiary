@@ -17,6 +17,7 @@ class Home_c extends CI_Controller
         if($session_data)
         {
             $this->load->view('home_c/header_v',$session_data);
+            //$this->output->enable_profiler(TRUE);
         }
         else
         {

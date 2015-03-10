@@ -4,31 +4,22 @@ class User_groceries_m extends MY_Model
 {   
     CONST table_name = 'user_groceries';
     protected $TablePkName = "grocery_id";
-    private $user_id = '';
-    function getTableName()
-    {
-        return self::table_name;
-    }
+//    function getTableName()
+//    {
+//        return self::table_name;
+//    }
     function __construct() {
         parent::__construct();
-        $this->user_id = $this->session->userdata('logged_in')['user_id'];
     }
     
-    function api_searchGroceries($like_value){
+    function api_searchGroceries($groceryname){
         
         $data_content = 'groceryname as value';
-        $like = ['groceryname' => $like_value];
+        $like = ['groceryname' => $groceryname];
         $where = ['user_id'  => $this->user_id];
         
-        return $this->searchWhere($data_content,$like,$where);
+        return $this->geLikeWhere($data_content,$like,$where);
     }
-    function getGroceriesPageCount($items_per_page = 2){
-        
-        $this->db->where('user_id',  $this->user_id);
-        $this->db->from(SELF::table_name);
-        return (int)ceil($this->db->count_all_results()/$items_per_page);
-        
-    }//
     
     function getSinglePageGroceries($items_per_page=2,$page_number = 1){
         

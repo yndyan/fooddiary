@@ -8,15 +8,10 @@ class Auth_c extends CI_Controller
         parent::__construct();
         $this->load->helper('registration');
         $this->load->model('users_m');
-        //$this->load->model('user_reasons_m');
+        $this->load->model('user_reasons_m');
+        $this->load->model('user_groceries_m');
         $this->load->view('auth_c/header_v');
-    }
-
-
-    function about()
-    {
-        $this->load->view('about_v');
-    }
+    }   
 
     function login()
     {
@@ -25,7 +20,7 @@ class Auth_c extends CI_Controller
             $username_or_email = trim($this->input->post('username_or_email',TRUE));//XSS_CLEAN
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
             $this->form_validation->set_rules('username_or_email', 'username or email', 'trim|required');
-            $this->form_validation->set_rules('password','password',"trim|required|xss_clean|callback_checkDatabase[$username_or_email]");
+            $this->form_validation->set_rules('password','password',"trim|required|xss_clean|checkDatabase[$username_or_email]");
             if($this->form_validation->run()==FALSE)
             {
                 $this->load->view('auth_c/login_v');
@@ -46,37 +41,23 @@ class Auth_c extends CI_Controller
 
     }
 
-    function checkDatabase($password,$username_or_email)
-    {
-        $result = $this->users_m->verifyUserData( $username_or_email,$password);
-        
-        if($result)
-        {
-            $this->session->set_userdata('logged_in',$result);
-            return TRUE;
-        }
-        else
-        {
-            $this->form_validation->set_message('checkDatabase','Username and/or password not valid ');
-            return false;
-        }
-    }
 
     function logout()
     {
         $this->session->unset_userdata('logged_in');
-        redirect('Home_c','refresh');
+        redirect('auth_c/login','refresh');//mydo change this to login
     }
 
     function register_new_user()
     {
         if($this->input->post('username'))
             {
-            $password = trim($this->input->post('password',TRUE));//ovo mora xss clean i trim!!
+            //ovo mora xss clean i trim!!
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('username', 'username', 'required|is_unique[users.username]');
-            $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[6]|callback_contain_number|callback_contain_Upper_Letter');//mora trim 2 puta
-            $this->form_validation->set_rules('confpass','confirm password',"trim|xss_clean|required|callback_compare_pass[$password]");
+            
+            $this->form_validation->set_rules('username', 'username', 'trim|xss_clean|required|is_unique[users.username]');
+            $this->form_validation->set_rules('password', 'password', 'trim|xss_clean|required|min_length[6]|contain_number|contain_Upper_Letter');//mora trim 2 puta
+            $this->form_validation->set_rules('confpass','confirm password',"trim|xss_clean|required|matches[password]");
             $this->form_validation->set_rules('email','email',"trim|xss_clean|required|valid_email|is_unique[users.email]");
             $this->form_validation->set_rules('fullname','full name','xss_clean|trim');
 
@@ -86,11 +67,11 @@ class Auth_c extends CI_Controller
             }
             else
             {
-                do
-                {
+                do{
                     $verify_code = Generate_random_string(users_m::VERIFY_CODE_LENGTH);
-                }while($this->users_m->chechValueExistsInDb('verifyCode',$verify_code));
+                } while($this->users_m->chechValueExistsInDb(['verifyCode'=>$verify_code]));
                 $username = $this->input->post('username');
+                $password = $this->input->post('password');
                 $new_user_data = [
                     'username'=> $username,
                     'password'=>$password,//mydo add password hash
@@ -102,11 +83,14 @@ class Auth_c extends CI_Controller
                 ];
 
                 $user_id = $this->users_m->addDataToDb($new_user_data);
+                //var_dump($user_id); die(); //mydo delete this
                 $this->session->set_flashdata('verify_warning',"Email is sent to you, please verify ");
                 $this->session->set_userdata('logged_in',array('user_id'=>$user_id,'username' => $username,'userStatus'=>users_m::USER_STATUS_NOT_VERIFIED));
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_c/verify_email/'.$verify_code.'');
                 $this->users_m->sendVerificationEmail($new_user_data['email'],$email_message);
-                $this->user_reasons_m->copyDefaultReasonsToNewUser($user_id);
+                
+                $this->user_reasons_m->copyDefaultReasonsToNewUser();
+                $this->user_groceries_m->copyDefaultGroceriesToNewUser();
                 redirect('Home_c','refresh');
             }
         }
@@ -129,10 +113,9 @@ class Auth_c extends CI_Controller
 
                 if($email)
                 {
-                    do
-                    {
+                    do{
                         $password_reset_code = Generate_random_string(users_m::PASS_RESET_CODE_LENGTH);
-                    }while ($this->users_m->chechValueExistsInDb('passResetCode',$password_reset_code));
+                    }while ($this->users_m->chechValueExistsInDb(['passResetCode'=>$password_reset_code]));
 
                     $this->users_m->updateData('email',$email,array('passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + users_m::TIMESTAMP_MINUTE )));
                     $email_message = array('subject' => 'Password reset email', 'message' => 'Go to '.base_url().'index.php/Auth_c/reset_password/'.$password_reset_code.'');
@@ -170,48 +153,42 @@ class Auth_c extends CI_Controller
                 case users_m::PASS_RESET_CODE_OK:
                 {
                     $new_password = trim($this->input->post('new_password',TRUE));//xss clean + trim
-                    if($new_password)
-                    {
+                    if($new_password){
                         $this->form_validation->set_error_delimiters('<font color = "#ff4500">','</font>');
-                        $this->form_validation->set_rules('new_password','new password','trim|required|min_length[6]|callback_contain_number|callback_contain_Upper_Letter');// dodaj da sadrzi Veliko slovo i Broj!!
-                        $this->form_validation->set_rules('new_confpass','confirm password',"trim|xss_clean|required|callback_compare_pass[$new_password]");
+                        $this->form_validation->set_rules('new_password','new password','trim|xss_clean|required|min_length[6]|contain_number|contain_Upper_Letter');// dodaj da sadrzi Veliko slovo i Broj!!
+                        $this->form_validation->set_rules('new_confpass','confirm password',"trim|xss_clean|required|matches[new_password]");
 
-                        if($this->form_validation->run() == FALSE)
-                        {
+                        if($this->form_validation->run() == FALSE){
                             $data = array('pass_code' =>  $reset_pass_verify_code);
                             $this->load->view('auth_c/newpass_v',$data);
-                        }
-                        else
-                        {
+                        } else {
                             $this->users_m->updateData('passResetCode',$reset_pass_verify_code,array('password' => $new_password,
                                                                                                     'passResetCode'   => NULL,
                                                                                                     'passResetExpTime'=> NULL));
                            
                             $this->session->set_flashdata('verify_warning','Password successfully changed, please login');
                             redirect('Auth_c/login','refresh');
-                        }
-                    }
-                    else
-                    {
+                        }//else $this->form_validation->run() == FALSE
+                    } else {
                         $data = array('pass_code' =>  $reset_pass_verify_code);
                         $this->load->view('auth_c/newpass_v',$data);
-                    }
+                    }//else $new_password
                 }
-                    break;
+                break;
 
                 case users_m::PASS_RESET_CODE_EXPIRED:
                 {
                     $this->session->set_flashdata('verify_warning','Password reset code expired!');
                     redirect('Auth_c/send_password_verify_code','refresh');
                 }
-                    break;
+                break;
 
                 case users_m::PASS_RESET_CODE_NOT_EXIST:
                 {
                     $this->session->set_flashdata('verify_warning','Password reset code not exist!');
                     redirect('Auth_c/send_password_verify_code','refresh');
                 }
-                    break;
+                break;
             }
         }
         else
@@ -221,44 +198,11 @@ class Auth_c extends CI_Controller
             redirect('Auth_c/send_password_verify_code','refresh');
         }
     }
-
-
-    function contain_Upper_Letter($input){
-        if(preg_match('#[A-Z]#',$input)){
-            return true;
-        }//if
-        else{
-            $this->form_validation->set_message('contain_Upper_Letter','Must contain at least one upper letter');
-            return false;
-        }//else
-    }//contain_Upper_Letter
-
-    function compare_pass($confpass,$password)
+    
+    function about()
     {
+        $this->load->view('about_v');
+    }//about()
 
-        if($password===$confpass)
-        {
-            return true;
-        }
-        else
-        {
-            $this->form_validation->set_message('compare_pass','Password and confirm password must be the same');
-            return false;
-        }
-    }
-
-    function contain_number($input)
-    {
-        if(preg_match('#[0-9]#',$input))
-        {
-            return true;
-        }
-        else
-        {
-            $this->form_validation->set_message('contain_number','Must contain at least one number');
-            return false;
-        }
-    }
-
-
+   
 }

@@ -5,16 +5,13 @@ class User_reasons_m extends MY_Model
 {
     CONST table_name = 'user_reasons';
     protected $TablePkName = "reason_id";
-    private $user_id = '';
     function __construct() {
         parent::__construct();
-        
-        $this->user_id = $this->session->userdata('logged_in')['user_id'];
     }
-            function getTableName()
-    {
-        return self::table_name;
-    }
+//    function getTableName()
+//    {
+//        return self::table_name;
+//    }
     
     function api_searchReasons($like_value){
         
@@ -22,16 +19,9 @@ class User_reasons_m extends MY_Model
         $like = ['reasonname' => $like_value];
         $where = ['user_id'  => $this->user_id];
         
-        return $this->searchWhere($data_content,$like,$where);
+        return $this->geLikeWhere($data_content,$like,$where);
     }
     
-    
-    function getReasonsPageCount($items_per_page = 2){
-        $this->db->where('user_id',  $this->user_id);
-        $this->db->from(SELF::table_name);
-        return (int)ceil($this->db->count_all_results()/$items_per_page);
-        
-    }//
     
     function getSinglePageReasons($items_per_page=2,$page_number = 1,$like_value = null){
         
