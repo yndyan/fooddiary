@@ -35,21 +35,18 @@ class MY_Model extends CI_Model
         return (int)ceil($this->db->count_all_results()/$items_per_page);
         
     }//
-//    function searchBySingleValue($key,$like_value,$data_content){
-//        $this->db-> select($data_content);
-//        $this->db-> from($this->getTableName());
-//        $this->db-> like($key,$like_value);
-//        
-//        $query = $this->db->get();
-//        if($query->num_rows() > 0 ){
-//            return $query->result_array();
-//            }//if
-//        else{
-//            return false;
-//            }//else
-//        
-//        
-//    }
+ 
+    function getSinglePageData($items_per_page=2,$page_number = 1,$data_content = null){
+        
+        $offset = $items_per_page * ($page_number-1);
+        $this->db->select($data_content);
+        $this->db->from($this->getTableName());
+        $this->db->where('user_id',  $this->user_id);
+        $this->db->limit($items_per_page,$offset);
+        $query = $this->db->get();
+        return $query->result_array();
+    }//getSinglePageData
+
     
     
     function getOneBySingleValue($key,$value,$data_content){//mydo replace this function wit getLikeWhere
@@ -117,5 +114,5 @@ class MY_Model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }//geLikeWhere
-
+    
 }

@@ -10,8 +10,23 @@
                         <h5><span class="glyphicon glyphicon-plus"></span> Add new course</h5> 
                     </a>
                 </li>     
+                <?php
+                //var_dump($courses);
+                echo '</br>';
+                echo '</br>';
+                foreach ($courses as $key => $course){
+                    var_dump($course);
+                    echo '</br>';
+                    echo '</br>';
+                }
                 
-
+                ?>
+                <?php 
+                $data['action_url']= ("index.php/courses_c/show_courses");
+                $data['number_of_pages']= $number_of_pages;
+                $data['current_page']= $current_page;
+                echo $this->load->view('help/pagination_v',$data);
+                ?>
              </ul>
         </div>
     </div>

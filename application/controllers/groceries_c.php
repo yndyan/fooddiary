@@ -20,7 +20,8 @@ class Groceries_c extends CI_Controller
         $items_per_page = 5;
         
         if($this->users_m->check_Login_Status()){
-            $data['user_groceries'] =  $this->user_groceries_m->getSinglePageGroceries($items_per_page,$page_number);
+            $data_content = 'groceryname,grocery_id'; 
+            $data['user_groceries'] =  $this->user_groceries_m->getSinglePageData($items_per_page,$page_number,$data_content);
             $data['number_of_pages'] = $this->user_groceries_m->getPageCount($items_per_page);
             $data['current_page'] = $page_number;
             $this->load->view('groceries_c/show_groceries_v',$data);
@@ -32,7 +33,7 @@ class Groceries_c extends CI_Controller
      public function add_grocery(){
         if($this->input->post('new_grocery')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('new_grocery', 'new grocery', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('new_grocery', 'new grocery', 'trim|required|min_length[2]|is_unique[user_groceries.groceryname]');
             //mydo add unique chack for user grocery
             if($this->form_validation->run()==FALSE){
                 $this->load->view('groceries_c/add_grocery_v');
@@ -54,7 +55,7 @@ class Groceries_c extends CI_Controller
         
         if($this->input->post('update_grocery')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('update_grocery', 'updated grocery', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('update_grocery', 'updated grocery', 'trim|required|min_length[2]|is_unique[user_groceries.groceryname]');
             
             if($this->form_validation->run()==FALSE){
                 $data['groceryname'] = $this->input->post('update_grocery');

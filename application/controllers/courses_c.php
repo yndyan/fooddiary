@@ -16,7 +16,7 @@ class Courses_c extends CI_Controller
     function show_courses(){
         
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
-        $items_per_page = 5;
+        $items_per_page = 2;
         
         if($this->users_m->check_Login_Status()){
             $data['courses'] =  $this->courses_m->getSinglePageCourses($items_per_page,$page_number);
@@ -27,10 +27,6 @@ class Courses_c extends CI_Controller
         else{
             redirect('Auth_c/login','refresh');
         }//else
-        
-        //get courses
-        //send as data
-        
     }//show_courses
     
     function show_add_course(){

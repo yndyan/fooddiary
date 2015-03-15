@@ -8,10 +8,6 @@ class User_reasons_m extends MY_Model
     function __construct() {
         parent::__construct();
     }
-//    function getTableName()
-//    {
-//        return self::table_name;
-//    }
     
     function api_searchReasons($like_value){
         
@@ -28,7 +24,7 @@ class User_reasons_m extends MY_Model
         $offset = $items_per_page * ($page_number-1);
         $data_content = 'reasonname,reason_id';    
         $this->db->select($data_content);
-        $this->db->from(SELF::table_name);
+        $this->db->from($this->getTableName());
         $this->db->where('user_id',  $this->user_id);
         if($like_value){
             $this->db->like('reasonname',$like_value);
@@ -49,7 +45,7 @@ class User_reasons_m extends MY_Model
             $default_reasons[$key] += ['user_id'=> $user_id]; 
         }//foreach
 
-        $this->db->insert_batch(self::table_name,$default_reasons);
+        $this->db->insert_batch($this->getTableName(),$default_reasons);
     }//copyDefaultreasonsToNewUser
     
     
@@ -65,7 +61,7 @@ class User_reasons_m extends MY_Model
     
     function deleteReason($reason_id){
         $this->db->limit(1);
-        $this->db->delete(self::table_name, ['reason_id'=>$reason_id,'user_id'=>  $this->user_id]);
+        $this->db->delete($this->getTableName(), ['reason_id'=>$reason_id,'user_id'=>  $this->user_id]);
         return $this->db->affected_rows();
     }
 } 

@@ -21,7 +21,7 @@ class Reasons_c extends CI_Controller
     function show_reasons(){//mydo add sort by name,  usage
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
         $items_per_page = 5;
-        
+        $data_content = 'reasonname,reason_id';         
         if($this->users_m->check_Login_Status()){
             $data['user_reasons'] =  $this->user_reasons_m->getSinglePageReasons($items_per_page,$page_number);
             $data['number_of_pages'] = $this->user_reasons_m->getPageCount($items_per_page);

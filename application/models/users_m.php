@@ -23,21 +23,19 @@ Class Users_m extends MY_Model
         'charset'  => 'iso-8859-1',
         'wordwrap' => TRUE,
     );
+    
+    CONST table_name = 'users';
+    protected $TablePkName = "user_id";
+    
+    
     function __construct()
     {
         parent::__construct();
         $this->load->library('email');
     }
 
-    CONST table_name = 'users';
-    protected $TablePkName = "user_id";
-
-
-//    function getTableName(){
-//        return self::table_name;
-//    }//getTableName
     
-
+ 
     function verifyUserData($username_or_email, $password)
     {
         $this -> db -> select($this->TablePkName.',username,userStatus');
