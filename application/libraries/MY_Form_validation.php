@@ -65,7 +65,7 @@ class MY_Form_validation extends CI_Form_validation
         if ($result) {
             return TRUE;
         } else {
-            $this->set_message('checkGroceryExist','no such grocery');
+            $this->set_message('checkGroceryExist','No such grocery');
             return false;
         }
             

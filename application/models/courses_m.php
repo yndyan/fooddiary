@@ -16,7 +16,7 @@ class Courses_m extends MY_Model
         $data_content = 'grocery_id';
         $limit = 1;
         $this->load->model('courses_groceries_m');
-        if($course_id){
+        if($course_id && $groceries_array){
             foreach ($groceries_array as $key => $grocery) {
                 $where = ['groceryname'=>$grocery,
                           'user_id'=> $this->user_id];

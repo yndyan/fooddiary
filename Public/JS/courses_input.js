@@ -7,6 +7,10 @@ $(document).ready(function(){
     var button = '<button></button>';
     var span = '<span></span>';
     var input = '<input></input>';
+    var h5 = '<h5></h5>';
+    
+    var baseUrl =window.location.origin + "/" + window.location.pathname.split('/')[1];
+    
 
 //<div class="col-sm-10 col-md-offset-3"
 //        <ul class="list-group list-inline">
@@ -57,7 +61,7 @@ $(document).ready(function(){
     });
     
     $("#groceryname").autocomplete({//add jq base_url
-        source: "http://localhost/fooddiary/index.php/api_c/getAutocompleteGroceries",
+        source: baseUrl + "/index.php/api_c/getAutocompleteGroceries",
         minLength: 2
         
     });
@@ -65,25 +69,30 @@ $(document).ready(function(){
     
     $("#add_course").click(function(e){
         e.preventDefault();
-        //jQuery.post( url [, data ] [, success ] [, dataType ] )
-        addCorseUrl = 'http://localhost/fooddiary/index.php/api_c/addCourse';
+        addCorseUrl = baseUrl + '/index.php/api_c/addCourse';
         courseData = $("#add_course_form").serializeArray();
-        //console.log(courseData);
-        var value0 = $("input[name='groceries[]']")[0];
-        var value2 = $("input[name='groceries[]']"[0]);
-        var value1 = $("input[name='groceries[]']")[1];
-        //console.log(value0 );//mydo delte this
-        console.log($(value0).attr('value'));//nmydo delete this
-        console.log($(value1).attr('value'));//mydo delete this
         
-        
-        
-        
+        $("#coursename_error").remove();
+        $(".groceries_error").remove();
+
         $.post(addCorseUrl,courseData,function(e){
-            console.log(e.result);
-            //console.log(e.result);
-        },'json')
-        
-    });
-    
+            if(e.success === false){
+                
+                $.each(e.errors,function(key,value){
+                    if(key === 'coursename'){
+                        var coursename_error = $(h5).attr('id','coursename_error').addClass("alert alert-warning");
+                        $("#coursename").after(coursename_error.append(value));
+                    } else if (key.indexOf('groceries')>=0){
+                        position = key[key.length - 2];
+                        //position = key.match(/\d+/);
+                        var grocery_parent = $($("input[name='groceries[]']")[position]).parent();
+                        var grocery_error = $(h5).addClass('groceries_error').addClass("alert alert-danger").addClass('col-sm-4 ');
+                        grocery_parent.after(grocery_error.append(value));
+                    }//else
+                });//each
+            } else if(e.success === true){
+                //redirect to main page, add message 
+            }//
+        },'json');
+    });//click
 });//$(document).ready

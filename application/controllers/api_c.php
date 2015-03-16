@@ -36,7 +36,7 @@ class Api_c extends CI_Controller
         $this->form_validation->set_rules('quantity[]', 'quantity','xss_clean|trim');//mydo add chech grocery tabe
         $this->form_validation->set_rules('calories', 'calories','xss_clean|trim');
         if($this->form_validation->run() == FALSE ){
-             $this->output->set_output(json_encode(['result'=>$this->form_validation->form_validation_errors()]));
+             $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
         } else {
             $course_data = ['coursename' => $this->input->post('coursename'),
                      'coursedescription'=>$this->input->post('coursedescription'),
@@ -47,12 +47,8 @@ class Api_c extends CI_Controller
             
             $course_id = $this->courses_m->add_course($course_data,$groceries_array,$quantity_array);
             
-            var_dump($course_id); die();//mydo delete this
-
-            
+            $this->output->set_output(json_encode(['success' => true,'course_id'=>$course_id]));
         }
-
-        
 
     }//addCourse
 }
