@@ -14,10 +14,11 @@
                 //var_dump($courses);
                 echo '</br>';
                 echo '</br>';
-                foreach ($courses as $key => $course){
-                    var_dump($course);
+                foreach ($courses as $key => $data){
+                    var_dump($data);
                     echo '</br>';
                     echo '</br>';
+                    echo $this->load->view('courses_c/course_template_v', $data, true);
                 }
                 
                 ?>

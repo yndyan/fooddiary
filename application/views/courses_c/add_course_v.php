@@ -16,9 +16,6 @@
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="coursename" name="coursename" required = "true" placeholder="Enter course name">
                 </div>
-                <h4 class="text-center col-sm-8 col-md-offset-3">
-                <?php echo form_error('coursename'); ?>
-                </h4>
             </div>
                 
             <div class="form-group">
@@ -49,18 +46,41 @@
             </div>    
 
             <div class="form-group" id = "grocery_list"> 
-                <!-- dynamically added list-->
+<!--                <div class="col-sm-10 col-md-offset-3">
+                    <div class="grocery_data">
+                    
+                        <p class="list-group-item col-sm-4 ">Item 1</p>
+                        <p class="list-group-item col-sm-2 col-md-offset-1 ">3000</p>
+                        <button class="btn btn-danger col-md-offset-1">
+                                <span class="glyphicon glyphicon-remove"></span> 
+                                Delete
+                        </button>
+                    </div> 
+                    </br>
+                    <div class="grocery_error">
+                    
+                        <p class="list-group-item col-sm-4 ">no such grocery</p>
+                        
+                        <button class="btn btn-success col-md-offset-2">
+                                <span class="glyphicon glyphicon-plus"></span> 
+                                Add
+                        </button>
+                        <button class="btn btn-danger col-md-offset-1">
+                                <span class="glyphicon glyphicon-edit"></span> 
+                                Edit
+                        </button>
+                    </div>    
+                     
+                </div>  -->
             </div>    
-
+                </br>        
+                </br>        
             <div class="form-group">
                 <label class="control-label col-sm-3" for="calories">Calories:</label>
                 <div class="col-sm-4">
                     <input type="number" class="form-control" id="calories" name="calories"  placeholder="Enter course calories">
                 </div>
 
-                <h4 class="text-center col-sm-8 col-md-offset-3">
-                <?php echo form_error('calories'); ?>
-                </h4>
             </div>    
             <div class="form-group">    
 

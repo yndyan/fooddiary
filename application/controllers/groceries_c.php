@@ -33,8 +33,7 @@ class Groceries_c extends CI_Controller
      public function add_grocery(){
         if($this->input->post('new_grocery')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('new_grocery', 'new grocery', 'trim|required|min_length[2]|is_unique[user_groceries.groceryname]');
-            //mydo add unique chack for user grocery
+            $this->form_validation->set_rules('new_grocery', 'new grocery', 'trim|required|min_length[2]');//mydo add unique chack for user grocery, is_unigue not useable
             if($this->form_validation->run()==FALSE){
                 $this->load->view('groceries_c/add_grocery_v');
             } else {

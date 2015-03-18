@@ -8,20 +8,38 @@ $(document).ready(function(){
     var span = '<span></span>';
     var input = '<input></input>';
     var h5 = '<h5></h5>';
-    
+    var par = '<p></p>';
+    var new_line = '</br>';
     var baseUrl =window.location.origin + "/" + window.location.pathname.split('/')[1];
-    
-
-//<div class="col-sm-10 col-md-offset-3"
-//        <ul class="list-group list-inline">
-//            <li class="list-group-item col-sm-4 ">Item 1</li>
-//            <li class="list-group-item col-sm-2 col-md-offset-1 ">3000</li>
-//            <button class="btn btn-danger col-md-offset-1">
-//                    <span class="glyphicon glyphicon-remove"></span> 
-//                    Delete
-//            </button>
-//         </ul>
-//</div>    
+/*    
+ <div class="col-sm-10 col-md-offset-3">
+                    <div class="grocery_data">
+                    
+                        <p class="list-group-item col-sm-4 ">Item 1</p>
+                        <p class="list-group-item col-sm-2 col-md-offset-1 ">3000</p>
+                        <button class="btn btn-danger col-md-offset-1">
+                                <span class="glyphicon glyphicon-remove"></span> 
+                                Delete
+                        </button>
+                        <input type="hidden" name="groceries[]" value="wqgeg">
+                        <input type="hidden" name="quantity[]" value="fawrgerg">
+                    </div> 
+                    </br>
+                    <div class="grocery_error">
+                    
+                        <p class=" col-sm-4 ">no such grocery</p>
+                        
+                        <button class="btn btn-success col-md-offset-2">
+                                <span class="glyphicon glyphicon-plus"></span> 
+                                Add
+                        </button>
+                        <button class="btn btn-danger col-md-offset-1">
+                                <span class="glyphicon glyphicon-edit"></span> 
+                                Edit
+                        </button>
+                    </div>  
+                    
+*/  
     $("#add_grocery_to_course").click(function(e){
         
         e.preventDefault();
@@ -36,36 +54,35 @@ $(document).ready(function(){
                                         .attr('name','quantity[]')
                                         .attr('value',quantity);
         
-        var delete_button = $(button).addClass("btn btn-danger col-md-offset-1")
+        var delete_grocery = $(button).addClass("btn btn-danger col-md-offset-1")
                                      .append($(span).addClass("glyphicon glyphicon-remove"))
                                      .append(' Delete');
             
-        var u_list = ($(ul).addClass("list-group list-inline"));
-            u_list.append($(li).addClass('list-group-item col-sm-4 ').text(groceryname));
-            u_list.append($(li).addClass('list-group-item col-sm-2 col-md-offset-1 ').text(quantity));
-            u_list.append(delete_button);
-            u_list.append(hidden_groceryname);
-            u_list.append(hidden_quantity);
-            
-        var main_div = $(div).addClass('col-sm-10 col-md-offset-3'); 
-            main_div.append(u_list);    
-        //mydo if gorcery is not in grocery table, ask to add new grocery
-        $('#grocery_list').append(main_div);
+        var div_grocery_data = $(div).addClass('grocery_data');
+            div_grocery_data.append($(par).addClass("list-group-item col-sm-4").text(groceryname));
+            div_grocery_data.append($(par).addClass("list-group-item col-sm-2 col-md-offset-1").text(quantity))
+            div_grocery_data.append(delete_grocery);
+            div_grocery_data.append(hidden_groceryname);
+            div_grocery_data.append(hidden_quantity);
+        
+        var grocery_div = $(div).addClass('grocery col-sm-10 col-md-offset-3'); 
+            grocery_div.append(div_grocery_data);    
+        
+        $('#grocery_list').append(grocery_div);
         $("#groceryname").val('');
         $("#quantity").val('');
         
-        delete_button.click(function(e){
+        delete_grocery.click(function(e){
             e.preventDefault();
-            $(this).parent().remove();
+            $(this).parents('.grocery').remove();
+            
         });//delete_button.click
     });
     
-    $("#groceryname").autocomplete({//add jq base_url
+    $("#groceryname").autocomplete({
         source: baseUrl + "/index.php/api_c/getAutocompleteGroceries",
         minLength: 2
-        
     });
-    
     
     $("#add_course").click(function(e){
         e.preventDefault();
@@ -74,24 +91,69 @@ $(document).ready(function(){
         
         $("#coursename_error").remove();
         $(".groceries_error").remove();
-
+        //mydo must have at least one grocery for submit
         $.post(addCorseUrl,courseData,function(e){
             if(e.success === false){
                 
                 $.each(e.errors,function(key,value){
+                    
                     if(key === 'coursename'){
                         var coursename_error = $(h5).attr('id','coursename_error').addClass("alert alert-warning");
                         $("#coursename").after(coursename_error.append(value));
                     } else if (key.indexOf('groceries')>=0){
-                        position = key[key.length - 2];
-                        //position = key.match(/\d+/);
-                        var grocery_parent = $($("input[name='groceries[]']")[position]).parent();
-                        var grocery_error = $(h5).addClass('groceries_error').addClass("alert alert-danger").addClass('col-sm-4 ');
-                        grocery_parent.after(grocery_error.append(value));
+                        
+                        position = key.match(/\d+/);
+                        var dom_input = $($("input[name='groceries[]']")[position]);
+                        
+                        var dom_grocery_div = dom_input.parents('.grocery');
+                        
+                        var grocery_error = $(par).addClass("alert alert-danger col-sm-4");
+                        var add_grocery_button = $(button).addClass("btn btn-success col-md-offset-2")
+                                     .append($(span).addClass("glyphicon glyphicon-plus"))
+                                     .append(' Add');
+                        var edit_grocery_button = $(button).addClass("btn btn-danger col-md-offset-1")
+                                     .append($(span).addClass("glyphicon glyphicon-edit"))
+                                     .append(' Edit');
+                         var div_grocery_error = $(div).addClass('groceries_error');
+                        div_grocery_error.append(grocery_error.append(value));
+                        div_grocery_error.append(add_grocery_button);
+                        div_grocery_error.append(edit_grocery_button);
+                        dom_grocery_div.append(new_line); 
+                        dom_grocery_div.append(div_grocery_error); 
+                                                   
+                        $(edit_grocery_button).click(function(e){
+                            e.preventDefault();
+                            $("#groceryname").val(dom_input.val());
+                            $("#quantity").val($($("input[name='quantity[]']")[0]).val());
+                            $(this).parents('.grocery').remove();
+                        });//delete_button.click 
+                        
+                        $(add_grocery_button).click(function(e){
+                            e.preventDefault();
+                            addGroceryUrl = baseUrl + '/index.php/api_c/addGrocery';
+                            groceryData = { 'new_grocery' : dom_input.val()};
+                            $.post(addGroceryUrl,groceryData,function(e){
+                                if(e.success === true){
+                                    console.log($(this));
+                                    $(add_grocery_button).parents('.groceries_error').remove();
+                                    var grocery_msg = $(par).addClass("alert alert-danger col-sm-4");
+                                    var sub_div = $(div).addClass('groceries_error');
+                                    sub_div.append(grocery_msg.append('grocery successfully added'));
+                                    dom_grocery_div.append(sub_div);    
+                                } else if(e.success === false) {
+                                    
+                                }
+                            },'json');
+                            
+                            
+                            
+                        });//delete_button.click 
+                        
+                        //mydo if gorcery is not in grocery table, append ADD and  EDIT  button
                     }//else
                 });//each
             } else if(e.success === true){
-                //redirect to main page, add message 
+                window.location.replace(baseUrl +'/index.php/courses_c/show_courses');
             }//
         },'json');
     });//click
