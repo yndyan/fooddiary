@@ -12,22 +12,23 @@ $(document).ready(function(){
     var new_line = '</br>';
     var baseUrl =window.location.origin + "/" + window.location.pathname.split('/')[1];
 /*    
- <div class="col-sm-10 col-md-offset-3">
-                    <div class="grocery_data">
+                <div class="col-sm-10 col-md-offset-3">
+                    <div class="grocery_data ">
                     
-                        <p class="list-group-item col-sm-4 ">Item 1</p>
-                        <p class="list-group-item col-sm-2 col-md-offset-1 ">3000</p>
+                        <div class="well well-sm col-sm-4 ">Item 1</div>
+                        <div class="well well-sm col-sm-2 col-md-offset-1 ">3000</div>
+                        
                         <button class="btn btn-danger col-md-offset-1">
                                 <span class="glyphicon glyphicon-remove"></span> 
                                 Delete
                         </button>
-                        <input type="hidden" name="groceries[]" value="wqgeg">
-                        <input type="hidden" name="quantity[]" value="fawrgerg">
                     </div> 
-                    </br>
+                    </br>  
+                    </br>  
+                    
                     <div class="grocery_error">
                     
-                        <p class=" col-sm-4 ">no such grocery</p>
+                        <div class="well well-sm col-sm-4 ">no such grocery</div>
                         
                         <button class="btn btn-success col-md-offset-2">
                                 <span class="glyphicon glyphicon-plus"></span> 
@@ -37,7 +38,8 @@ $(document).ready(function(){
                                 <span class="glyphicon glyphicon-edit"></span> 
                                 Edit
                         </button>
-                    </div>  
+                    </div>    
+                </div>
                     
 */  
     $("#add_grocery_to_course").click(function(e){
@@ -59,11 +61,13 @@ $(document).ready(function(){
                                      .append(' Delete');
             
         var div_grocery_data = $(div).addClass('grocery_data');
-            div_grocery_data.append($(par).addClass("list-group-item col-sm-4").text(groceryname));
-            div_grocery_data.append($(par).addClass("list-group-item col-sm-2 col-md-offset-1").text(quantity))
+            div_grocery_data.append($(div).addClass("well well-sm col-sm-4").text(groceryname));
+            div_grocery_data.append($(div).addClass("well well-sm col-sm-2 col-md-offset-1").text(quantity))
             div_grocery_data.append(delete_grocery);
             div_grocery_data.append(hidden_groceryname);
             div_grocery_data.append(hidden_quantity);
+            div_grocery_data.append(new_line); ;
+            div_grocery_data.append(new_line); ;
         
         var grocery_div = $(div).addClass('grocery col-sm-10 col-md-offset-3'); 
             grocery_div.append(div_grocery_data);    
@@ -98,7 +102,7 @@ $(document).ready(function(){
                 $.each(e.errors,function(key,value){
                     
                     if(key === 'coursename'){
-                        var coursename_error = $(h5).attr('id','coursename_error').addClass("alert alert-warning");
+                        var coursename_error = $(div).attr('id','coursename_error').addClass("well well-sm alert alert-warning");//.attr('role','alert');
                         $("#coursename").after(coursename_error.append(value));
                     } else if (key.indexOf('groceries')>=0){
                         
@@ -107,7 +111,7 @@ $(document).ready(function(){
                         
                         var dom_grocery_div = dom_input.parents('.grocery');
                         
-                        var grocery_error = $(par).addClass("alert alert-danger col-sm-4");
+                        var grocery_error = $(div).addClass("well well-sm alert alert-warning col-sm-4");
                         var add_grocery_button = $(button).addClass("btn btn-success col-md-offset-2")
                                      .append($(span).addClass("glyphicon glyphicon-plus"))
                                      .append(' Add');
@@ -126,6 +130,9 @@ $(document).ready(function(){
                             $("#groceryname").val(dom_input.val());
                             $("#quantity").val($($("input[name='quantity[]']")[0]).val());
                             $(this).parents('.grocery').remove();
+                            //mydo remove everything except grocery div, add input with autocomplete filled 
+                            //value and ok button
+                            
                         });//delete_button.click 
                         
                         $(add_grocery_button).click(function(e){

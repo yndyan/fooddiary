@@ -47,19 +47,22 @@
 
             <div class="form-group" id = "grocery_list"> 
 <!--                <div class="col-sm-10 col-md-offset-3">
-                    <div class="grocery_data">
+                    <div class="grocery_data ">
                     
-                        <p class="list-group-item col-sm-4 ">Item 1</p>
-                        <p class="list-group-item col-sm-2 col-md-offset-1 ">3000</p>
+                        <div class="well well-sm col-sm-4 ">Item 1</div>
+                        <div class="well well-sm col-sm-2 col-md-offset-1 ">3000</div>
+                        
                         <button class="btn btn-danger col-md-offset-1">
                                 <span class="glyphicon glyphicon-remove"></span> 
                                 Delete
                         </button>
                     </div> 
-                    </br>
+                    </br>  
+                    </br>  
+                    
                     <div class="grocery_error">
                     
-                        <p class="list-group-item col-sm-4 ">no such grocery</p>
+                        <div class="well well-sm col-sm-4 ">no such grocery</div>
                         
                         <button class="btn btn-success col-md-offset-2">
                                 <span class="glyphicon glyphicon-plus"></span> 
@@ -70,9 +73,10 @@
                                 Edit
                         </button>
                     </div>    
-                     
-                </div>  -->
-            </div>    
+                </div> -->
+            </div>   
+                
+                
                 </br>        
                 </br>        
             <div class="form-group">
