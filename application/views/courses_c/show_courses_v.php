@@ -12,15 +12,10 @@
                 </li>     
                 <?php
                 //var_dump($courses);
-                echo '</br>';
-                echo '</br>';
                 foreach ($courses as $key => $data){
-                    var_dump($data);
-                    echo '</br>';
-                    echo '</br>';
+                    //var_dump($data);
                     echo $this->load->view('courses_c/course_template_v', $data, true);
                 }
-                
                 ?>
                 <?php 
                 $data['action_url']= ("index.php/courses_c/show_courses");

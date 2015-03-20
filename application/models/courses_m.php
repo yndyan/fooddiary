@@ -64,9 +64,9 @@ class Courses_m extends MY_Model
         $courses_ids = array_unique(array_column($query_data, 'course_id'));
         
         //$course_needed_keys =  [ "course_id" => '',"coursename"=> '',"coursedescription"=>'', "calories" => '', "quantity"  =>''];
-        $course_needed_keys =  [ "course_id" => '',"coursename"=> ''];
-        //$grocery_needed_keys =['groceryname' =>'','grocery_id'=>''];
-        $grocery_needed_keys =['groceryname' =>''];
+        $course_needed_keys =  [ "course_id" => '',"coursename"=> '',"coursedescription"=>'', "calories" => ''];
+        //$grocery_needed_keys =['groceryname' =>'','grocery_id'=>'', "quantity"  =>''];
+        $grocery_needed_keys =['groceryname' =>'',   "quantity"  =>''];
            
         foreach ($courses_ids as $course_key =>$course_id) {
             $grocery_cnt = 0;
