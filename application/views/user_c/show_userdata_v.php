@@ -1,34 +1,61 @@
-
-<style>
-    #content
-    {
-        width: 600px;
-        height: 400px;
-        position: absolute;
-        top: 300px;
-        left: 100px;
-        border-style: solid;
-        border-color: black;
-        padding-left :10px;
-
-    }
-
-</style>
-
 <body>
-<div id="content">
-    <h3>User data page </h3>
-    <h4>
-        <fieldset >
-        <legend>Personal data:</legend>
-        Username: <input type="text" value = "<?php echo $username; ?>"  size="35" readonly><br>
-        Email: <input type="text" size="35" value = "<?php echo $email,$userStatus === users_m:: USER_STATUS_VERIFIED ? ' (verified)':' (not verified)';?>"  readonly><br>
-        Full name: <input type="text"  size="35" value = "<?php echo $fullName; ?>" readonly> 
-        </fieldset>
-        <?php echo "<a href = ".base_url()."index.php/user_c/Send_new_verify_code> Send new verify code </a>";//mydo delete this ?>
-    </h4>
-    
-    <p><a href = "<?php echo base_url();?>index.php/user_c/change_user_password">Change password</a></p>
-    <p><a href = "<?php echo base_url();?>index.php/user_c/change_user_data">Change user data</a></p>
-</div>
-</body>
+    <div class="container" >
+        <div class="row">
+            <h2 class ="text-center"> User data page </h2>
+            <h3 class ="text-warning text-center"><?php echo $this->session->flashdata('grocery_messages');?></h3>
+            
+            <div class="row  col-sm-9 col-md-offset-2">
+                 
+                <div class="form-group">
+                    <label class="control-label col-sm-3" >Username:*</label>
+                    <div class="well well-sm col-sm-6 "><?php echo $username; ?></div>
+                </div>
+                
+                </br>
+                </br>
+                </br>
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-3" >Email:</label>
+                    <div class="well well-sm col-sm-6 "><?php echo $email,$userstatus === users_m:: USER_STATUS_VERIFIED ? ' (verified)':' (not verified)';?></div>
+                </div>
+                
+                </br>
+                </br>
+                </br>
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-3" >Full name:</label>
+                    <div class="well well-sm col-sm-6 "><?php echo $fullname; ?></div>
+                </div>
+                
+                </br>
+                </br>
+                </br>
+                
+                <div class="form-group col-md-offset-3">
+                <label class="control-label col-sm-6" > <?php echo "<a href = ".base_url()."index.php/user_c/Send_new_verify_code> Send new verify code (delete this)</a>";//mydo delete this ?>:</label>
+                
+                </div>
+               
+                </br>
+                </br>
+                <div class="form-group col-md-offset-3">
+                <label class="control-label col-sm-6" > <a href = "<?php echo base_url();?>index.php/user_c/change_user_password">Change password</a></label>
+                
+                </div>
+               
+                </br>
+                </br>
+                <div class="form-group col-md-offset-3">
+                <label class="control-label col-sm-6" > <a href = "<?php echo base_url();?>index.php/user_c/change_user_data">Change user data</a></label>
+                
+                </div>
+              
+            
+            </div>
+            
+        </div>
+    </div>
+
+

@@ -55,6 +55,11 @@ class User_groceries_m extends MY_Model
     function deleteGrocery($grocery_id){
         $this->db->limit(1);
         $this->db->delete($this->getTableName(), ['grocery_id'=>$grocery_id,'user_id'=>$this->user_id]);
+        //mydo must find tables where this grocery is used and delete them all, maybe warning before
         return $this->db->affected_rows();
     }//deleteGrocery
+    
+    function checkGroceryExist($groceryname){
+        return $this->chechValueExistsInDb(['groceryname'=>$groceryname,'user_id'=>$this->user_id]);    
+    }//checkGroceryExist
 }

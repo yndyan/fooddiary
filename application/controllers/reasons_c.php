@@ -1,20 +1,13 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Reasons_c extends CI_Controller
+class Reasons_c extends MY_Controller
 {
     function __construct(){
         parent::__construct();
-        $this->load->model('users_m');
         $this->load->model('user_reasons_m');
-        $session_data = $this->session->userdata('logged_in');
-        if($session_data){
-            $this->load->view('home_c/header_v',$session_data);
-        }
-        
     }//construct
 //----------------------------------------------------------------------------
-
     
     
     
@@ -22,15 +15,12 @@ class Reasons_c extends CI_Controller
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
         $items_per_page = 5;
         $data_content = 'reasonname,reason_id';         
-        if($this->users_m->check_Login_Status()){
+        
             $data['user_reasons'] =  $this->user_reasons_m->getSinglePageReasons($items_per_page,$page_number);
             $data['number_of_pages'] = $this->user_reasons_m->getPageCount($items_per_page);
             $data['current_page'] = $page_number;
             $this->load->view('reasons_c/show_reasons_v',$data);
-        }//if
-        else{
-            redirect('Auth_c/login','refresh');
-        }//else
+        
     }//show_reasons_old
 //----------------------------------------------------------------------------
    
@@ -103,6 +93,6 @@ class Reasons_c extends CI_Controller
             $this->session->set_flashdata('reason_messages',"Error deleting reason");
             redirect('reasons_c/show_reasons','refresh');
         }
-    }//delete_reaosn
+    }//delete_reason
     
 }//class

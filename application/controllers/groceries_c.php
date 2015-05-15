@@ -1,35 +1,28 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Groceries_c extends CI_Controller
-{
+class Groceries_c extends MY_Controller {
     
     function __construct(){
         parent::__construct();
-        $this->load->model('users_m');
-        $this->load->model('user_groceries_m');
-        $session_data = $this->session->userdata('logged_in');
-        if($session_data){
-            $this->load->view('home_c/header_v',$session_data);
-        }
-        
+        $this->load->model('user_groceries_m');  
     }//construct
+    
+//----------------------------------------------------------------------------    
+    
     function show_groceries(){
-        
+       
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
         $items_per_page = 5;
+        $data_content = 'groceryname,grocery_id'; 
+        $data['user_groceries'] =  $this->user_groceries_m->getSinglePageData($items_per_page,$page_number,$data_content);
+        $data['number_of_pages'] = $this->user_groceries_m->getPageCount($items_per_page);
+        $data['current_page'] = $page_number;
+        $this->load->view('groceries_c/show_groceries_v',$data);
         
-        if($this->users_m->check_Login_Status()){
-            $data_content = 'groceryname,grocery_id'; 
-            $data['user_groceries'] =  $this->user_groceries_m->getSinglePageData($items_per_page,$page_number,$data_content);
-            $data['number_of_pages'] = $this->user_groceries_m->getPageCount($items_per_page);
-            $data['current_page'] = $page_number;
-            $this->load->view('groceries_c/show_groceries_v',$data);
-        }//if
-        else{
-            redirect('Auth_c/login','refresh');
-        }//else
-    }//show_groceries_old
+    }//show_groceries
+    //
+//----------------------------------------------------------------------------    
      public function add_grocery(){
         if($this->input->post('new_grocery')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
@@ -49,7 +42,7 @@ class Groceries_c extends CI_Controller
         }//else
         
     }//add_grocery
-    
+//----------------------------------------------------------------------------    
     function update_grocery(){
         
         if($this->input->post('update_grocery')){
@@ -84,6 +77,7 @@ class Groceries_c extends CI_Controller
             return;
         }//else
     }//update grocery
+//----------------------------------------------------------------------------    
     public function delete_grocery(){
         $grocery_id = trim($this->input->get('grocery_id',TRUE));
         if($this->user_groceries_m->deleteGrocery($grocery_id)){

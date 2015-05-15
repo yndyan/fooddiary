@@ -27,17 +27,16 @@ Class Users_m extends MY_Model
     CONST table_name = 'users';
     protected $TablePkName = "user_id";
     
-    
+//----------------------------------------------------------------------------    
     function __construct()
     {
         parent::__construct();
         $this->load->library('email');
     }
 
-    
+//----------------------------------------------------------------------------    
  
-    function verifyUserData($username_or_email, $password)
-    {
+    function verifyUserData($username_or_email, $password){
         $this -> db -> select($this->TablePkName.',username,userStatus');
         $this -> db -> from('users');
         $this -> db -> where('username = '."'".$username_or_email."'");
@@ -47,16 +46,13 @@ Class Users_m extends MY_Model
         $this -> db -> limit(1);
         $query= $this -> db -> get();
 
-        if($query -> num_rows() == 1)
-        {
+        if($query -> num_rows() == 1){
             return get_object_vars($query->result()[0]);
-        }
-        else
-        {
+        } else {
             return false;
-        }
-    }
-
+        }//else
+    }//verifyUserData
+//----------------------------------------------------------------------------
 
     function checkUserExist($username_or_email)
     {
@@ -66,19 +62,15 @@ Class Users_m extends MY_Model
         $this->db->or_where('email',$username_or_email);
         $this->db->limit(1);
         $query = $this->db->get();
-        if($query->num_rows()==1)
-        {
+        if($query->num_rows()==1){
             return $query->result()[0]->email;
-        }
-        else
-        {
+        } else {
             return false;
-        }
-    }
+        }//else
+    }//checkUserExist
+//----------------------------------------------------------------------------
 
-
-    function sendVerificationEmail($user_email,$email_message)
-    {
+    function sendVerificationEmail($user_email,$email_message){
         $this->email->initialize(self::$email_config);
         $this->email->set_newline("\r\n");
         $this->email->from('rastayndyan@gmail.com','www.mojprvisajt.net');
@@ -86,8 +78,12 @@ Class Users_m extends MY_Model
         $this->email->subject($email_message['subject']);
         $this->email->message($email_message['message']);
         $this->email->send();
-        //show_error($this->email->print_debugger());
-    }
+        //show_error($this->email->print_debugger());//mydo keep this for errors
+        
+    }//sendVerificationEmail
+    
+//----------------------------------------------------------------------------
+    
     function verifyEmailUsingCode($email_verify_code){
         $result = $this->getOneBySingleValue('verifyCode',$email_verify_code,'username,verifyExpTime,userStatus');
         if($result)
@@ -106,9 +102,10 @@ Class Users_m extends MY_Model
         else{
             return self::VERIFY_CODE_NOT_EXIST;
         }//else
-    }//function
+    }//verifyEmailUsingCode
 
-
+//----------------------------------------------------------------------------
+    
     function checkPassResetCodeStatus($password_reset_code){
         $result = $this->getOneBySingleValue('passResetCode',$password_reset_code,'passResetExpTime');
 
@@ -118,7 +115,7 @@ Class Users_m extends MY_Model
         else{
             return self::PASS_RESET_CODE_NOT_EXIST;
         }//else
-    }//function
+    }//checkPassResetCodeStatus
     
 
 

@@ -1,23 +1,19 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Diary_c extends CI_Controller
+class Diary_c extends MY_Controller
 {
 
-    function __construct()
-    {
+    function __construct(){
         parent::__construct();
-        $this->load->model('users_m');
-        $session_data = $this->session->userdata('logged_in');
-        if($session_data){
-        $this->load->view('home_c/header_v',$session_data);
-        }
     }
-
+    function index(){
+        //this is main page, it would be changed to add
+    }
+//------------------------------------------------------------------------------
 
     function add_food(){//mydo not working 
-        if($this->users_m->check_Login_Status())
-        {
+        
             if($this->input->post('date'))
             {
                 echo ($this->input->post('date'));
@@ -32,13 +28,8 @@ class Diary_c extends CI_Controller
                 
                 $this->load->view('diary_c/addfood_v');
             }
-        }
-        else
-        {
-            $this->session->set_flashdata('verify_warning','Please login to proceed!');
-            redirect('Auth_c/login','refresh');
-        }
-    }
+        
+    }//add food
     
     
     

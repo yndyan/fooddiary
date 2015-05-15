@@ -71,8 +71,7 @@ class MY_Model extends CI_Model
         return ($this->db->count_all_results() > 0);
     }    
     
-    function deleteByKey($key = NULL, $value= NULL)
-    {
+    function deleteByKey($key = NULL, $value= NULL){
         // zastita je rako stigne prazno obrisace celu tabelu
         if(($key!==NULL)AND($value!==NULL))
         {

@@ -1,5 +1,5 @@
 <body>
-    <div class="container" >
+<div class="container" >
         <div class="row">
             <h2 class ="text-center"> User groceries </h2>
             <h3 class ="text-warning text-center"><?php echo $this->session->flashdata('grocery_messages');?></h3>
@@ -25,4 +25,3 @@
              </ul>
         </div>
     </div>
-</body>

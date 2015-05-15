@@ -18,6 +18,7 @@ class Migration_Create_reasons extends CI_Migration
         ['reasonname' => "Feeling empty"],
         ['reasonname' => "Special occasion"],
         ['reasonname' => "Take a break"],
+        ['reasonname' => "Worried"],
         ['reasonname' => "Procrastinate"],
     );
 

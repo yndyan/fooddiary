@@ -46,46 +46,70 @@ class Courses_m extends MY_Model
         $this->load->model('user_groceries_m');
         $offset = $items_per_page * ($page_number-1);
         
-        $subquery = "(";
-            $subquery .= "SELECT * FROM ".$this->courses_m->getTableName();
-            $subquery .=" WHERE courses.user_id = '".$this->user_id."'";
-            $subquery .=" LIMIT ".$items_per_page ;
-            $subquery .=" OFFSET ".$offset;
-        $subquery .= ")";
-        $subquery .= " AS subcourses";
-        
-        //$course_data_content = 'course_id,coursename,coursedescription,calories';
-        //$this->db->select('subcourses.course_id,subcourses.coursename,user_groceries.groceryname,user_groceries.grocery_id');
-        $this->db->select('*');
-        $this->db->from($subquery);
-        $this->db->join('courses_groceries', 'subcourses.course_id = courses_groceries.course_id');
-        $this->db->join('user_groceries', 'user_groceries.grocery_id = courses_groceries.grocery_id' );
+        $this->db->select('coursename,course_id');
+        $this->db->from($this->courses_m->getTableName());
+        $this->db->where('user_id',$this->user_id);
+        $this->db->limit($items_per_page,$offset);
         $query_data = $this->db->get()->result_array();
-        $courses_ids = array_unique(array_column($query_data, 'course_id'));
-        
-        //$course_needed_keys =  [ "course_id" => '',"coursename"=> '',"coursedescription"=>'', "calories" => '', "quantity"  =>''];
-        $course_needed_keys =  [ "course_id" => '',"coursename"=> '',"coursedescription"=>'', "calories" => ''];
-        //$grocery_needed_keys =['groceryname' =>'','grocery_id'=>'', "quantity"  =>''];
-        $grocery_needed_keys =['groceryname' =>'',   "quantity"  =>''];
-           
-        foreach ($courses_ids as $course_key =>$course_id) {
-            $grocery_cnt = 0;
-            foreach ($query_data as $single_query_data) {
-                if($course_id == $single_query_data['course_id']){
-                    if($grocery_cnt==0){
-                        $return_course_data[$course_key] = array_intersect_key($single_query_data, $course_needed_keys);   
-                    }//if2 
-                    $return_course_data[$course_key]['groceries'][$grocery_cnt] = array_intersect_key($single_query_data, $grocery_needed_keys);   
-                $grocery_cnt++;  
-                }//if
-            }//foreach2
-           
-        }//foreach 
-        
-        return $return_course_data;    
+        if($query_data){
+            return $query_data;  
+        } else {
+            return false;
+        }
     }//getSinglePageCourses
     
     
+   /* SELECT * FROM 
+    (courses LEFT JOIN courses_groceries ON courses.course_id = courses_groceries.course_id) 
+    LEFT JOIN user_groceries ON user_groceries.grocery_id = courses_groceries.grocery_id 
+    WHERE courses.course_id = 56;
+
+    */
     
+    function getSingleCourse($course_id){
+        $this->load->model('courses_groceries_m');
+        $this->load->model('user_groceries_m');
+        $this->db->select('*');
+        $this->db->select('courses.course_id');//mydo without this not returning course_id on course with no groceries  
+        $this->db->from($this->courses_m->getTableName());
+        $this->db->join('courses_groceries', 'courses.course_id = courses_groceries.course_id','left');
+        $this->db->join('user_groceries', 'user_groceries.grocery_id = courses_groceries.grocery_id','left' );
+        $this->db->where(['courses.user_id'=> $this->user_id,'courses.course_id' =>$course_id]);
+        $query_data = $this->db->get()->result_array();
+        //var_dump($query_data); die(); //mydo delte this
+        $single_course_data['course_id'] = $query_data[0]['course_id'];
+        $single_course_data['coursename'] = $query_data[0]['coursename'];
+        $single_course_data['coursedescription'] = $query_data[0]['coursedescription'];
+        $single_course_data['calories'] = $query_data[0]['calories'];
+        $grocery_needed_keys = ["groceryname" =>'',   
+                                "quantity"  =>'',
+                                "course_grocery_id"=>''];
+        foreach ($query_data as $key => $value){
+            $single_course_data['groceries'][$key] = array_intersect_key($value, $grocery_needed_keys); 
+        }//foreach
+        
+        return $single_course_data;
+    }//getSingleCourse
+    
+    function deleteCourse($course_id){
+        $this->load->model('courses_groceries_m');
+        $this->db->delete($this->courses_groceries_m->getTableName(), ['course_id'=>$course_id]);
+             
+        $this->db->limit(1);
+        $this->db->delete($this->getTableName(), ['course_id'=>$course_id,'user_id'=>$this->user_id]);
+        
+        //mydo when finish diary must add deleting in-between table
+        return $this->db->affected_rows();
+        
+        //$this->db->affected_rows();
+        
+    }//
+    
+    function deleteSingleGroceryFromCourse($course_grocery_id){
+        $this->load->model('courses_groceries_m');
+        $this->db->limit(1);
+        $this->db->delete($this->courses_groceries_m->getTableName(), ['course_grocery_id'=>$course_grocery_id]);
+        return $this->db->affected_rows();
+    }//deleteSingleGroceryFromCourse
     
 }//class

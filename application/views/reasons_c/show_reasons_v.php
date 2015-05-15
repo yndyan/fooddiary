@@ -22,7 +22,6 @@
                 $data['current_page']= $current_page;
                 echo $this->load->view('help/pagination_v',$data);
             ?>    
-             </ul
+            </ul>
         </div>
     </div>
-</body>

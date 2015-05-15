@@ -9,7 +9,7 @@ class Api_c extends CI_Controller
         $this->load->model('user_groceries_m');
         $this->load->model('courses_m');
         $this->load->model('user_groceries_m');
-    }
+    }//__construct
             
     function getAutocompleteReasons(){
         //check login status
@@ -18,7 +18,8 @@ class Api_c extends CI_Controller
         $result = $this->user_reasons_m->api_searchReasons($like_value);
         echo json_encode($result);//TODO vrati
         
-    }
+    }//getAutocompleteReasons
+    
     function getAutocompleteGroceries(){
         //check login status
         //mydo add form validatio
@@ -26,10 +27,11 @@ class Api_c extends CI_Controller
         $result = $this->user_groceries_m->api_searchGroceries($like_value);
         echo json_encode($result);//TODO vrati
         
-    }
+    }//    function getAutocompleteGroceries(){
+
     
     function addCourse(){
-        $this->form_validation->set_rules('coursename', 'course name','xss_clean|trim|required|min_length[2]|is_unique[courses.coursename]');//mydo add unique
+        $this->form_validation->set_rules('coursename', 'course name','xss_clean|trim|required|min_length[2]');//mydo add unique, |is_unique[courses.coursename] not working
         $this->form_validation->set_rules('coursedescription', 'description','xss_clean|trim');
         
         for($i = 0; $i< sizeof($this->input->post('groceries'));$i++){
@@ -41,7 +43,7 @@ class Api_c extends CI_Controller
         if($this->form_validation->run() == FALSE ){
              $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
         } else {
-            $course_data = ['coursename' => $this->input->post('coursename'),
+            $course_data = ['coursename' => ucfirst($this->input->post('coursename')),
                      'coursedescription'=>$this->input->post('coursedescription'),
                      'calories' =>$this->input->post('calories')
                     ];
@@ -56,16 +58,77 @@ class Api_c extends CI_Controller
 
     }//addCourse
     
+    
+
+    
     function addGrocery(){
-           
-            $this->form_validation->set_rules('new_grocery', 'new grocery', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('groceryname', 'new grocery', 'trim|required|min_length[2]');
             if($this->form_validation->run()==FALSE){
                 $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
             } else {
-              $grocery_id = $this->user_groceries_m->addGrocery($this->input->post('new_grocery')); //mydo return 
-                $this->output->set_output(json_encode(['success' => true,'course_id'=>$grocery_id]));
+              $grocery_id = $this->user_groceries_m->addGrocery($this->input->post('grocery')); //mydo return 
+                $this->output->set_output(json_encode(['success' => true,'grocery_id'=>$grocery_id]));
                 return;
             }//else
-    }
-}
+    }//addGrocery
+    
+    
+    function getCourseData(){
+        $course_id = trim($this->input->post('course_id',TRUE));
+        if($course_id){
+        $data = $this->courses_m->getSingleCourse($course_id);
+        //var_dump($data); //mydo delete this
+        $data['success'] = true;
+        $this->output->set_output(json_encode($data));
+        } else { 
+        $this->output->set_output(json_encode(['success' => false]));
+        }
+    }//getExpandedCourse
+    
+    function deleteGroceryFromCourse(){
+        $course_grocery_id = trim($this->input->post('course_grocery_id',TRUE));
+        if($course_grocery_id){
+            if($this->courses_m->deleteSingleGroceryFromCourse($course_grocery_id)){
+                $this->output->set_output(json_encode(['success' => true]));
+            } else {
+                $this->output->set_output(json_encode(['success' => false]));
+            }//if
+        }//if $course_grocery_id
+    }//deleteGroceryFromCourse
+    
+    function checkGroceryExist(){//mydo finish this function
+        $groceryname = trim($this->input->post('groceryname',TRUE));
+        
+        //var_dump($groceryname); die();//mydo delete this
+        $result = $this->user_groceries_m->checkGroceryExist($groceryname);
+        $this->output->set_output(json_encode(['exist' => $result]));
+    }//checkGroceryExist
+    
+
+    function addGroceryToCourse(){
+        $groceryname = trim($this->input->post('groceryname',TRUE));
+        $course_id = trim($this->input->post('course_id',TRUE));
+        $quantity = trim($this->input->post('quantity',TRUE));
+        
+        var_dump($course_id);
+    }//addGroceryToCourse
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}//class
 

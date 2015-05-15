@@ -49,7 +49,8 @@
 
     <h4><?php echo $this->session->flashdata('verify_warning');?></h4>
 
-</body>
+
+
 
 
 
