@@ -66,7 +66,7 @@ class Api_c extends CI_Controller
             if($this->form_validation->run()==FALSE){
                 $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
             } else {
-              $grocery_id = $this->user_groceries_m->addGrocery($this->input->post('grocery')); //mydo return 
+                $grocery_id = $this->user_groceries_m->addGrocery($this->input->post('groceryname')); //mydo return 
                 $this->output->set_output(json_encode(['success' => true,'grocery_id'=>$grocery_id]));
                 return;
             }//else
@@ -109,8 +109,13 @@ class Api_c extends CI_Controller
         $groceryname = trim($this->input->post('groceryname',TRUE));
         $course_id = trim($this->input->post('course_id',TRUE));
         $quantity = trim($this->input->post('quantity',TRUE));
-        
-        var_dump($course_id);
+        $this->load->model('courses_groceries_m');
+        $course_grocery_id = $this->courses_groceries_m->addGroceryToCourse($course_id, $groceryname,$quantity);
+        if($course_grocery_id){
+            $this->output->set_output(json_encode(['success' => true, 'course_grocery_id' => $course_grocery_id]));
+        } else {
+            $this->output->set_output(json_encode(['success' => false]));
+        }//else if course_grocery_id
     }//addGroceryToCourse
     
     

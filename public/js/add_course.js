@@ -89,11 +89,9 @@ $(document).ready(function(){
         var data = {};
         data.groceryname = $("#groceryname").val();
         data.quantity    = $("#quantity").val();
-        json_groceryname = { 'grocery' : data.groceryname };
-        //mydo add check grocery list
         checkGroceryExistUrl = baseUrl + '/index.php/api_c/checkGroceryExist';
         
-        $.post(checkGroceryExistUrl,json_groceryname,function(e){
+        $.post(checkGroceryExistUrl,data,function(e){
             if(e.exist == true){
                 $('#grocery_list').append(add_grocery_to_dom(data));
                 $("#groceryname").val('');
@@ -108,7 +106,7 @@ $(document).ready(function(){
                 if(confirm('No such grocery! \n Add grocery?')){
                     addGroceryUrl = baseUrl + '/index.php/api_c/addGrocery';
                     
-                    $.post(addGroceryUrl,json_groceryname,function(e){
+                    $.post(addGroceryUrl,data,function(e){
                         if(e.success === true){
                             $('#grocery_list').append(add_grocery_to_dom(data));
                             $("#groceryname").val('');
