@@ -63,7 +63,7 @@ $(document).ready(function(){
                     }//if(confirm 
                 });//$(".delete_grocery").click
                 
-                $("#groceryname").autocomplete({
+                $("#groceryname").autocomplete({//mydo problem whem more when one is expanded
                     source: baseUrl + "/index.php/api_c/getAutocompleteGroceries",
                     minLength: 2
                 });
@@ -84,14 +84,14 @@ $(document).ready(function(){
 var add_grocery_to_course = function(e){        
     e.preventDefault();
     var data = { 'groceryname' : $("#groceryname").val(),
-                 'quantity'    :   $("#quantity").val(),
-                  'course_id'  : $(this).parents(".course").attr('id').match(/\d+/)[0]};
+                 'quantity'    : $("#quantity").val(),
+                 'course_id'   : $(this).parents(".course").attr('id').match(/\d+/)[0]};
     
     
     checkGroceryExistUrl = baseUrl + '/index.php/api_c/checkGroceryExist';
 
     $.post(checkGroceryExistUrl,data,function(e){
-        if(e.exist == true){
+        if(e.exist === true){
             addGroceryToCourseDatabase(data);
         } else {
             if(confirm('No such grocery! \n Add grocery?')){
@@ -154,22 +154,24 @@ function addGroceryToCourseDatabase(data){
 function add_grocery_template(data){
     
     
-    var grocery_template = '<div id="course_grocery_id_' + data.course_grocery_id +' " class="grocery_data">'
-                + '<div class="well well-sm col-sm-5">'+data.groceryname+'</div>'
-                + '<div class="well well-sm col-sm-3 col-md-offset-1">'+data.quantity+'</div>'
-                + '<button class="delete_grocery btn btn-danger col-md-offset-1">'
-                    + '<span class="glyphicon glyphicon-remove"></span>'
-                    + 'Delete'
-                + '</button>'
-                + '<input type="hidden" name="groceries[]" value="'+data.groceryname+'">'
-                + '<input type="hidden" name="quantity[]" value="'+data.quantity+'">'
-             + '</div>';
-    return    grocery_template ;
-    
+var grocery_template = 
+ '<div id="course_grocery_id_' + data.course_grocery_id +' " class="grocery_data">'
++'  <div class="well well-sm col-sm-5">'+data.groceryname+'</div>'
++'  <div class="well well-sm col-sm-3 col-md-offset-1">'+data.quantity+'</div>'
++'  <button class="delete_grocery btn btn-danger col-md-offset-1">'
++'      <span class="glyphicon glyphicon-remove"></span>'
++'      Delete'
++'  </button>'
++'  <input type="hidden" name="groceries[]" value="'+data.groceryname+'">'
++'  <input type="hidden" name="quantity[]" value="'+data.quantity+'">'
+ +'</div>';
+ 
+return grocery_template ;
 }//add grocery
  
 function expanded_grocery_template(data){
-    var expanded_template = '<div class="expanded_grocery">'
+var expanded_template = 
+ '<div class="expanded_grocery">'
 +'	<button class="collapse_course btn btn-info pull-right" type="submit"> '
 +'		<span class="glyphicon glyphicon-collapse-up"></span>'
 +'		collapse'
@@ -206,13 +208,10 @@ function expanded_grocery_template(data){
 +'				</button>'
 +'			</div>'
 +'		</div>'
-
 +'	<br>'
 +'	<br>'
 +'	<br>'
-
 +'		<div class="groceries_list col-sm-12"> 	</div>'
-
 +'		<div class="calories col-sm-12">'
 +'			<p>Calories</p>'
 +'			<div class="well well-sm col-sm-5">'+data.calories+'</div>'

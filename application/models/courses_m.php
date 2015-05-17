@@ -103,4 +103,11 @@ class Courses_m extends MY_Model
         return $this->db->affected_rows();
     }//deleteSingleGroceryFromCourse
     
+    function updateCourseData($course_id, $updated_course_data){
+        $where = ['course_id'=> $course_id, 'user_id'=>$this->user_id];
+        //var_dump($updated_course_data); die();//mydo delete; 
+        return $this->updateData($where,$updated_course_data);
+    }//updateCourseData
+    
+    
 }//class

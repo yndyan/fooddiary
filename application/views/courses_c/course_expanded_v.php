@@ -56,7 +56,7 @@
         <div class="well well-sm col-sm-5"><?php echo $calories;?></div>
         
         <div class="pull-right"> 
-            <a  href="<?php echo base_url();?>index.php/courses_c/show_update_course?course_id=<?php echo $course_id?>" class=" btn btn-success "><span class="glyphicon glyphicon-edit"></span> Edit course</a>
+            <a  href="<?php echo base_url();?>index.php/courses_c/update_course?course_id=<?php echo $course_id?>" class=" btn btn-success "><span class="glyphicon glyphicon-edit"></span> Edit course</a>
             <a  href="<?php echo base_url();?>index.php/courses_c/delete_course?course_id=<?php echo $course_id?>" class=" btn btn-danger "><span class="glyphicon glyphicon-remove"></span> Delete course</a>
         </div>  
     </div>

@@ -49,7 +49,7 @@ class User_groceries_m extends MY_Model
     }//addGrocery
     
     function updateGrocery($updated_grocery,$grocery_id){
-        $this->updateData('grocery_id',$grocery_id,['groceryname'=>$updated_grocery]);
+        $this->updateData(['grocery_id'=>$grocery_id],['groceryname'=>$updated_grocery]);
     }//updateGrocery
     
     function deleteGrocery($grocery_id){

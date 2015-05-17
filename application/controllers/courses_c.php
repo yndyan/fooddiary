@@ -24,15 +24,7 @@ class Courses_c extends MY_Controller
         $this->load->view('courses_c/add_course_v');
         
     }//add_course
-//----------------------------------------------------------------------------    
-    function show_update_course(){
-       
-            $course_id = trim($this->input->get('course_id',TRUE));
-            $data = $this->courses_m->getSingleCourse($course_id);
-            //var_dump($data); die();//mydo delete this
-            $this->load->view('courses_c/update_course_v',$data);
-        
-    }//update_course
+
 //----------------------------------------------------------------------------    
     public function delete_course(){
         $course_id = trim($this->input->get('course_id',TRUE));
@@ -44,35 +36,48 @@ class Courses_c extends MY_Controller
             redirect('courses_c/show_courses','refresh');
         }
     }//delete_grocery
-    
-//        function updateCourse(){
-//        $this->form_validation->set_rules('coursename', 'course name','xss_clean|trim|required|min_length[2]');//mydo update unique check unique
-//        $this->form_validation->set_rules('coursedescription', 'description','xss_clean|trim');
-//        
-//        for($i = 0; $i< sizeof($this->input->post('groceries'));$i++){
-//            $this->form_validation->set_rules("groceries[".$i."]", 'groceries','xss_clean|checkGroceryExist');//mydo add chech grocery tabe
-//        }//for 
-//        
-//        $this->form_validation->set_rules('quantity[]', 'quantity','xss_clean|trim');//mydo add chech grocery tabe
-//        $this->form_validation->set_rules('calories', 'calories','xss_clean|trim');
-//        if($this->form_validation->run() == FALSE ){
-//             $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
-//        } else {
-//            $course_data = ['coursename' => $this->input->post('coursename'),
-//                     'coursedescription'=>$this->input->post('coursedescription'),
-//                     'calories' =>$this->input->post('calories')
-//                    ];
-//            $groceries_array = $this->input->post('groceries');
-//            $quantity_array = $this->input->post('quantity');
-//            var_dump($course_data); die();//mydo delete this
-//            
-//            //$course_id = $this->courses_m->add_course($course_data,$groceries_array,$quantity_array);
-//            $this->session->set_flashdata('course_messages',"Course sucessfully added");
-//            $this->output->set_output(json_encode(['success' => true,'course_id'=>$course_id]));
-//            
-//        }
+//----------------------------------------------------------------------------    
+    function update_course(){
+        if($this->input->post('new_coursename')){//mydo bug, when coursename is empty, dont go tyo required!
+            $course_id = trim($this->input->get('course_id',TRUE));
+            $this->form_validation->set_rules('new_coursename', 'course name','xss_clean|trim|required|min_length[2]');//mydo add unique, |is_unique[courses.coursename] not working
+            $this->form_validation->set_rules('coursedescription', 'description','xss_clean|trim');
+            $this->form_validation->set_rules('calories', 'calories','xss_clean|trim');
 
-//    }//
-  
+            if($this->form_validation->run() == FALSE ){
+                $data['course_id'] = $course_id;
+                $data['coursename'] = $this->input->post('new_coursename');
+                $data['coursedescription'] = $this->input->post('new_coursedescription');
+                $data['calories'] = $this->input->post('new_calories');
+                $this->load->view('courses_c/update_course_v',$data);
+            } else {
+                
+                $updated_course_data = ['coursename' => ucfirst($this->input->post('new_coursename')),
+                                        'coursedescription'=>$this->input->post('new_coursedescription'),
+                                        'calories' =>$this->input->post('new_calories')
+                                        ];
+                $course_update_success = $this->courses_m->updateCourseData($course_id, $updated_course_data);
+                $course_update_success ?  $this->session->set_flashdata('course_messages',"Course sucessfully updated") 
+                                       :  $this->session->set_flashdata('course_messages',"Error updating course");
+                redirect('courses_c/show_courses','refresh');
+            }//else if($this->form_validation->run() == FALSE     
+        } else {
+            $course_id = trim($this->input->get('course_id',TRUE));
+            if($course_id){
+            $data = $this->courses_m->getSingleCourse($course_id);
+            //var_dump($data); die();//mydo delete this
+            $this->load->view('courses_c/update_course_v',$data);    
+            }
+            else {
+                $this->session->set_flashdata('course_messages',"Unknown error");
+                redirect('courses_c/show_courses','refresh');
+            }
+            
+        }
+        
+        
+        
 
+    }//updateCourse
+//----------------------------------------------------------------------------
 }

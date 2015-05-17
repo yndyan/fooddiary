@@ -89,7 +89,7 @@ Class Users_m extends MY_Model
         if($result)
         {
             if($result['verifyExpTime']>time()){
-                $this->updateData('verifyCode',$email_verify_code,array('userStatus' => self::USER_STATUS_VERIFIED,
+                $this->updateData(['verifyCode'=>$email_verify_code],array('userStatus' => self::USER_STATUS_VERIFIED,
                                                                         'verifyCode' => NULL,
                                                                         'verifyExpTime' => NULL));
                 $result['userStatus'] = self::USER_STATUS_VERIFIED;

@@ -94,11 +94,14 @@ class MY_Model extends CI_Model
     }
 
 
-    function updateData($key,$value,$update_data)
+    function updateData($where,$update_data)
     {
-        $this->db->where($key,$value);
+        $this->db->where($where);
         $this->db->update($this->getTableName(),$update_data);
-    }
+        return $this->db->affected_rows();
+    }//updateData
+    
+  
     
     function geLikeWhere($data_content,$like = null,$where = null,$limit = 10){
         $this->db->select($data_content);

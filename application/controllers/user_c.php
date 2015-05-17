@@ -40,7 +40,7 @@ class User_c extends MY_Controller {
             if($this->form_validation->run() == FALSE){
                     $this->load->view('/user_c/change_userdata_v',$data);
             } else {
-                $this->users_m->updateData('username',$session_data['username'],$new_user_data);
+                $this->users_m->updateData(['username'=>$session_data['username']],$new_user_data);
                 $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullname,userstatus');
                 $this->load->view('/user_c/show_userdata_v',$data);
             }//else 
@@ -66,7 +66,7 @@ class User_c extends MY_Controller {
             else
             {
                 $new_password = $this->input->post('new_password');
-                $this->users_m->updateData('username',$session_data['username'],array('password'=> $new_password));
+                $this->users_m->updateData(['username'=>$session_data['username']],array('password'=> $new_password));
                 $data = $this->users_m->getOneBySingleValue('username',$session_data['username'],'username,email,fullname,userstatus');
                 $this->load->view('user_c/show_userdata_v',$data);
             }
@@ -84,7 +84,7 @@ class User_c extends MY_Controller {
             $new_verify_code = Generate_random_string(users_m::VERIFY_CODE_LENGTH);
         } while($this->users_m->chechValueExistsInDb(['verifyCode'=>$new_verify_code]));
 
-        $this->users_m->updateData('username',$session_data['username'], array('verifyCode' => $new_verify_code,'verifyExpTime'=> time() + users_m::TIMESTAMP_HOUR));
+        $this->users_m->updateData(['username'=>$session_data['username']], array('verifyCode' => $new_verify_code,'verifyExpTime'=> time() + users_m::TIMESTAMP_HOUR));
         $email = $this->users_m->getOneBySingleValue('username',$session_data['username'],'email');
 
         if($email)

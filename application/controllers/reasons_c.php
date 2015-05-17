@@ -48,7 +48,7 @@ class Reasons_c extends MY_Controller
 
     function update_reason(){
         
-        if($this->input->post('update_reason')){
+        if($this->input->post('update_reason')){ //bug, on submit empty input doesn't respond requred
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
             $this->form_validation->set_rules('update_reason', 'updated reason', 'trim|required|min_length[2]');
             

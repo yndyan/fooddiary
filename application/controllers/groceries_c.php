@@ -45,17 +45,16 @@ class Groceries_c extends MY_Controller {
 //----------------------------------------------------------------------------    
     function update_grocery(){
         
-        if($this->input->post('update_grocery')){
+        if($this->input->post('update_groceryname')){//bug, on submit empty input doesn't respond requred
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('update_grocery', 'updated grocery', 'trim|required|min_length[2]|is_unique[user_groceries.groceryname]');
+            $this->form_validation->set_rules('update_groceryname', 'updated grocery', 'trim|required|min_length[2]|is_unique[user_groceries.groceryname]');
             
             if($this->form_validation->run()==FALSE){
-                $data['groceryname'] = $this->input->post('update_grocery');
+                $data['groceryname'] = $this->input->post('update_groceryname');
                 $data['grocery_id'] = $this->input->post('grocery_id');
                 $this->load->view('groceries_c/update_grocery_v',$data);
             } else {
-                $this->user_groceries_m->updateGrocery($this->input->post('update_grocery'),$this->input->post('grocery_id'));
-                
+                $this->user_groceries_m->updateGrocery($this->input->post('update_groceryname'),$this->input->post('grocery_id'));
                 $this->session->set_flashdata('grocery_messages',"Grocery sucessfully updated");
                 redirect('groceries_c/show_groceries','refresh');
                 return;

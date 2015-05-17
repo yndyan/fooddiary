@@ -117,7 +117,7 @@ class Auth_c extends CI_Controller
                         $password_reset_code = Generate_random_string(users_m::PASS_RESET_CODE_LENGTH);
                     }while ($this->users_m->chechValueExistsInDb(['passResetCode'=>$password_reset_code]));
 
-                    $this->users_m->updateData('email',$email,array('passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + users_m::TIMESTAMP_MINUTE )));
+                    $this->users_m->updateData(['email' => $email],['passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + users_m::TIMESTAMP_MINUTE )]);
                     $email_message = array('subject' => 'Password reset email', 'message' => 'Go to '.base_url().'index.php/Auth_c/reset_password/'.$password_reset_code.'');
                     $this->users_m->sendVerificationEmail($email,$email_message);
                     $this->session->set_flashdata('verify_warning','Email with link sent');
@@ -162,7 +162,7 @@ class Auth_c extends CI_Controller
                             $data = array('pass_code' =>  $reset_pass_verify_code);
                             $this->load->view('auth_c/newpass_v',$data);
                         } else {
-                            $this->users_m->updateData('passResetCode',$reset_pass_verify_code,array('password' => $new_password,
+                            $this->users_m->updateData(['passResetCode'=>$reset_pass_verify_code],array('password' => $new_password,
                                                                                                     'passResetCode'   => NULL,
                                                                                                     'passResetExpTime'=> NULL));
                            
