@@ -24,24 +24,24 @@ $(document).ready(function(){
         $.post(getCourseUrl,json_course_id,function(result){
             if(result.success === true){
                 var buttons = expand_button.parent(".buttons");
-                expand_button.detach();
-                buttons.detach();
+                var collapse_button_html ='<button class="collapse_course btn btn-info" type="submit"> '
+                                         +'      <span class="glyphicon glyphicon-collapse-up"></span>'
+                                         +'      collapse'
+                                         +'</button>';
+                            
+                expand_button.detach();                        
+                var collapse_button = $(collapse_button_html).appendTo(buttons);
                 courses_list_item.append(expanded_grocery_template(result));
                 if(result.groceries[0]['groceryname'] !== null){                
                     for (var i = 0, len = result.groceries.length; i < len; i++) {
-                        courses_list_item.find(".groceries_list").append(add_grocery_template(result.groceries[i]))
-                                   .append(new_line)
-                                   .append(new_line);
+                        courses_list_item.find(".groceries_list").append(add_grocery_template(result.groceries[i]));
                     }//for
                 }//if
                 
-                courses_list_item.find(".calories").append(buttons);
-                
-                courses_list_item.find(".collapse_course").click(function(){
-                    buttons .detach()
-                            .append(expand_button);
+                collapse_button.click(function(){
+                    buttons.append(expand_button);
                     courses_list_item.find(".expanded_grocery").remove();
-                    courses_list_item.append(buttons);
+                    collapse_button.remove();
                 });//collapse_button.click
                 
                 $(".delete_grocery").click(function(e){ 
@@ -118,9 +118,7 @@ function addGroceryToCourseDatabase(data){
     $.post(addGroceryToCourseUrl,data,function(result){
         if(result.success === true){
             data.course_grocery_id = result.course_grocery_id; 
-            $('.groceries_list').append(add_grocery_template(data))
-                                .append(new_line)
-                                .append(new_line);
+            $('.groceries_list').append(add_grocery_template(data));
             $("#groceryname").val('');
             $("#quantity").val('');  
             $(".delete_grocery").click(function(e){ 
@@ -156,14 +154,19 @@ function add_grocery_template(data){
     
 var grocery_template = 
  '<div id="course_grocery_id_' + data.course_grocery_id +' " class="grocery_data">'
-+'  <div class="well well-sm col-sm-5">'+data.groceryname+'</div>'
-+'  <div class="well well-sm col-sm-3 col-md-offset-1">'+data.quantity+'</div>'
-+'  <button class="delete_grocery btn btn-danger col-md-offset-1">'
-+'      <span class="glyphicon glyphicon-remove"></span>'
-+'      Delete'
-+'  </button>'
-+'  <input type="hidden" name="groceries[]" value="'+data.groceryname+'">'
-+'  <input type="hidden" name="quantity[]" value="'+data.quantity+'">'
++'      <div class="col-sm-6">'
++'          <div class="well well-sm">'+data.groceryname+'</div>'
++'      </div>'
++'      <div class="col-sm-4">'
++'           <div class="well well-sm">'+data.quantity+'&nbsp</div>'//&nbsp is because moziila make problem with empty div
++'      </div>'
++'      <input type="hidden" name="groceries[]" value="'+data.groceryname+'">'
++'      <input type="hidden" name="quantity[]" value="'+data.quantity+'">'
++'      <div class="cm_button col-sm-2">'
++'          <button class="delete_grocery btn btn-danger col-sm-offset-1">'
++'              <span class="glyphicon glyphicon-trash"></span>'
++'          </button>'
++'      </div>'
  +'</div>';
  
 return grocery_template ;
@@ -172,49 +175,40 @@ return grocery_template ;
 function expanded_grocery_template(data){
 var expanded_template = 
  '<div class="expanded_grocery">'
-+'	<button class="collapse_course btn btn-info pull-right" type="submit"> '
-+'		<span class="glyphicon glyphicon-collapse-up"></span>'
-+'		collapse'
-+'	</button>'
 
-+'	<br>'
-+'	<br>'
-+'	<br>'
++'  <div class="col-sm-12">'
++'	    <div class="panel panel-default">'
++'		    <div class="panel-heading">'
++'			    <h3 class="panel-title">Description</h3>'
++'		    </div>'
 
-+'	<div class="panel panel-default">'
-+'		<div class="panel-heading">'
-+'			<h3 class="panel-title">Description</h3>'
-+'		</div>'
++'		    <div class="panel-body">'+data.coursedescription +'</div>'
++'	    </div>'
++'  </div>'
 
-+'		<div class="panel-body">'+data.coursedescription +'</div>'
-+'	</div>'
-
-+'		<div class="form-group col-sm-12">'
-+'			<div class="col-sm-5">'
++'		<div class="form-group clearfix">'
++'			<div class="col-sm-6">'
 +'				<label class="control-label" for="groceryname">Grocery name: </label>'
 +'				<input id="groceryname" class="form-control ui-widget ui-autocomplet-input" type="text" name="groceryname" placeholder="Enter grocery name" autocomplete="off">'
 +'			</div>'
 
-+'			<div class="col-sm-3 col-md-offset-1">'
++'			<div class="col-sm-4">'
 +'				<label class="control-label" for="quantity">Quantity: </label>'
 +'				<input id="quantity" class="form-control ui-widget" type="text" name="quantity" placeholder="Enter quantity">'
 +'			</div>'
 
-+'			<div class="col-sm-2">'
-+'				<label class="control-label">???: </label>'
++'			<div class="col-sm-2 cm_fake_label">'
 +'				<button id="add_grocery_to_course" class="btn btn-success" type="submit">'
-+'				<span class="glyphicon glyphicon-plus"></span>'
-+'				Add grocery'
++'				   <span class="glyphicon glyphicon-plus"></span>'
++'				   <span>Add grocery</span>'
 +'				</button>'
 +'			</div>'
 +'		</div>'
-+'	<br>'
-+'	<br>'
-+'	<br>'
-+'		<div class="groceries_list col-sm-12"> 	</div>'
-+'		<div class="calories col-sm-12">'
+
++'		<div class="groceries_list"> 	</div>'
++'		<div class="calories col-sm-3">'
 +'			<p>Calories</p>'
-+'			<div class="well well-sm col-sm-5">'+data.calories+'</div>'
++'			<div class="well well-sm">'+data.calories+'</div>'
 +'		</div>'
 +'</div>';     
 

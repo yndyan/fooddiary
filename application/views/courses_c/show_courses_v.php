@@ -10,7 +10,7 @@
             <h2 class ="text-center"> User courses </h2>
             <h3 class="text-warning text-center"><?php echo $this->session->flashdata('course_messages');?></h3>
         </div>
-             <ul class="list-group col-sm-8 col-md-offset-2">
+             <ul class="list-group col-sm-12">
                 
                 <li class="list-group-item ">
                     <a  href =  "<?php echo base_url("index.php/courses_c/show_add_course");?>" class="btn btn-success col-md-offset-5"> 

@@ -1,0 +1,23 @@
+.well{
+	min-height: 40px;
+}
+
+
+.cm_button{
+	display: inline-block;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.cm_button .btn{
+	height: 40px;
+}
+
+.cm_fake_label{
+	margin-top: 25px;
+}
+
+.cm_row_title{
+	line-height: 34px;
+	font-weight: bold;	
+}
