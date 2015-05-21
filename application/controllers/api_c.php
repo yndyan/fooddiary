@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Api_c extends CI_Controller
+class Api_c extends MY_Controller
 {
     function __construct() {
         parent::__construct();
@@ -12,8 +12,6 @@ class Api_c extends CI_Controller
     }//__construct
             
     function getAutocompleteReasons(){
-        //check login status
-        //mydo add form validatio
         $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
         $result = $this->user_reasons_m->api_searchReasons($like_value);
         echo json_encode($result);//TODO vrati
@@ -21,13 +19,18 @@ class Api_c extends CI_Controller
     }//getAutocompleteReasons
     
     function getAutocompleteGroceries(){
-        //check login status
-        //mydo add form validatio
         $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
         $result = $this->user_groceries_m->api_searchGroceries($like_value);
         echo json_encode($result);//TODO vrati
         
     }//    function getAutocompleteGroceries(){
+    
+    function getAutocompleteCourses(){
+        $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
+        $result = $this->courses_m->api_searchCourses($like_value);
+        echo json_encode($result);//TODO vrati
+        
+    }//    function getAutocompleteCourses(){
 
     
     function addCourse(){
@@ -101,6 +104,14 @@ class Api_c extends CI_Controller
         
         //var_dump($groceryname); die();//mydo delete this
         $result = $this->user_groceries_m->checkGroceryExist($groceryname);
+        $this->output->set_output(json_encode(['exist' => $result]));
+    }//checkGroceryExist
+    
+    function checkCourseExist(){//mydo finish this function
+        $coursename = trim($this->input->post('coursename',TRUE));
+        
+        //var_dump($coursename); die();//mydo delete this
+        $result = $this->courses_m->checkCourseExist($coursename);
         $this->output->set_output(json_encode(['exist' => $result]));
     }//checkGroceryExist
     

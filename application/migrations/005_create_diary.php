@@ -65,6 +65,10 @@ class Migration_Create_diary extends CI_Migration
 				'unsigned' => TRUE,
                                 'null'  => false
                                 ),
+                    'quantity' => array(
+                                    'type' => 'varchar',
+                                    'constraint' => 50,
+                                ),
             ));
         $this->dbforge->add_key('food_diary_course_id',TRUE);
         $this->dbforge->create_table('food_diary_course');    

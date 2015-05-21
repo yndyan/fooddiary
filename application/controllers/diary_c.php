@@ -26,7 +26,7 @@ class Diary_c extends MY_Controller
             else
             {
                 
-                $this->load->view('diary_c/addfood_v');
+                $this->load->view('diary_c/add_diary_entry_v');
             }
         
     }//add food

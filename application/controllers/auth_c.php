@@ -10,7 +10,7 @@ class Auth_c extends CI_Controller
         $this->load->model('users_m');
         $this->load->model('user_reasons_m');
         $this->load->model('user_groceries_m');
-        $this->load->view('auth_c/header_v');
+        $this->load->view('templates/public_header_v');
     }   
 
     function login()

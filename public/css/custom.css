@@ -14,10 +14,15 @@
 }
 
 .cm_fake_label{
-	margin-top: 25px;
+	margin-top: 24px;
 }
 
 .cm_row_title{
 	line-height: 34px;
 	font-weight: bold;	
+}
+
+div.ui-datepicker    {
+
+    font-size: 140%;
 }

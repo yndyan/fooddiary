@@ -29,7 +29,7 @@
                 $data['action_url']= ("index.php/courses_c/show_courses");
                 $data['number_of_pages']= $number_of_pages;
                 $data['current_page']= $current_page;
-                echo $this->load->view('help/pagination_v',$data);
+                echo $this->load->view('templates/pagination_v',$data);
             ?>    
             </ul>
     

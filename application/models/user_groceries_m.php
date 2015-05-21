@@ -18,20 +18,9 @@ class User_groceries_m extends MY_Model
         $like = ['groceryname' => $groceryname];
         $where = ['user_id'  => $this->user_id];
         
-        return $this->geLikeWhere($data_content,$like,$where);
+        return $this->getLikeWhere($data_content,$like,$where);
     }
     
-//    function getSinglePageGroceries($items_per_page=2,$page_number = 1){
-//        
-//        $offset = $items_per_page * ($page_number-1);
-//           
-//        $this->db->select($data_content);
-//        $this->db->from($this->getTableName());
-//        $this->db->where('user_id',  $this->user_id);
-//        $this->db->limit($items_per_page,$offset);
-//        $query = $this->db->get();
-//        return $query->result_array();
-//    }//getallUserReasons
     
      function copyDefaultGroceriesToNewUser(){
         $user_id = $this->user_id = $this->session->userdata('logged_in')['user_id'];

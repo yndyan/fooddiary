@@ -20,7 +20,7 @@ class Courses_groceries_m extends MY_Model
         $like = null;
         $limit = 1;
          
-        $grocery_id = $this->user_groceries_m->geLikeWhere($data_content,$like,$where,$limit)[0]['grocery_id'];
+        $grocery_id = $this->user_groceries_m->getLikeWhere($data_content,$like,$where,$limit)[0]['grocery_id'];
         $grocery_course_data = ['course_id'=>$course_id,
                                 'grocery_id'=>$grocery_id,
                                 'quantity' => $quantity ];

@@ -15,7 +15,7 @@ class User_reasons_m extends MY_Model
         $like = ['reasonname' => $like_value];
         $where = ['user_id'  => $this->user_id];
         
-        return $this->geLikeWhere($data_content,$like,$where);
+        return $this->getLikeWhere($data_content,$like,$where);
     }
     
     

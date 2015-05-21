@@ -9,6 +9,15 @@ class Courses_m extends MY_Model
         parent::__construct();
     }
     
+    function api_searchCourses($coursename){
+        
+        $data_content = 'coursename as value';
+        $like = ['coursename' => $coursename];
+        $where = ['user_id'  => $this->user_id];
+        
+        return $this->getLikeWhere($data_content,$like,$where);
+    }
+    
     function add_course($course_data,$grocerynames_array,$quantity_array){
         
         $course_data['user_id'] = $this->user_id;
@@ -108,6 +117,10 @@ class Courses_m extends MY_Model
         //var_dump($updated_course_data); die();//mydo delete; 
         return $this->updateData($where,$updated_course_data);
     }//updateCourseData
+    
+    function checkCourseExist($coursename){
+        return $this->chechValueExistsInDb(['coursename'=>$coursename,'user_id'=>$this->user_id]);    
+    }//checkGroceryExist
     
     
 }//class

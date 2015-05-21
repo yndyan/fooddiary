@@ -1,20 +1,22 @@
 $(document).ready(function(){
     
-    var div = '<div></div>';
-    var anc = '<a></a>';
-    var ul = '<ul></ul>';
-    var li = '<li></li>';
-    var button = '<button></button>';
-    var span = '<span></span>';
-    var input = '<input></input>';
-    var label = '<label></label>';
-    var h3 = '<h3></h3>';
-    var h5 = '<h5></h5>';
-    var par = '<p></p>';
-    var new_line = '</br>';
-    var baseUrl =window.location.origin + "/" + window.location.pathname.split('/')[1];
+var div = '<div></div>';
+var anc = '<a></a>';
+var ul = '<ul></ul>';
+var li = '<li></li>';
+var button = '<button></button>';
+var span = '<span></span>';
+var input = '<input></input>';
+var label = '<label></label>';
+var h3 = '<h3></h3>';
+var h5 = '<h5></h5>';
+var par = '<p></p>';
+var new_line = '</br>';
+var baseUrl =window.location.origin + "/" + window.location.pathname.split('/')[1];
     
-    $(".expand_course").click(function(e){
+    
+//----------------------------------------------------------------------------------    
+$(".expand_course").click(function(e){
         e.preventDefault();
         var expand_button = $(this);
         var courses_list_item = $(expand_button).parents(".course");
@@ -34,7 +36,7 @@ $(document).ready(function(){
                 courses_list_item.append(expanded_grocery_template(result));
                 if(result.groceries[0]['groceryname'] !== null){                
                     for (var i = 0, len = result.groceries.length; i < len; i++) {
-                        courses_list_item.find(".groceries_list").append(add_grocery_template(result.groceries[i]));
+                        courses_list_item.find(".groceries_list").append(grocery_template(result.groceries[i]));
                     }//for
                 }//if
                 
@@ -46,21 +48,7 @@ $(document).ready(function(){
                 
                 $(".delete_grocery").click(function(e){ 
                     e.preventDefault();
-                    var delete_button = $(this);
-                    if(confirm("Confirm deleting?")){
-                        var deleteGroceryUrl = baseUrl + '/index.php/api_c/deleteGroceryFromCourse';//api delete from course
-                        var grocery_list_item = delete_button.parents('.grocery_data');
-                        var course_grocery_id = { 'course_grocery_id' : grocery_list_item.attr('id').match(/\d+/)[0]};
-                        $.post(deleteGroceryUrl,course_grocery_id,function(e){
-                            if(e.success === true){
-                                console.log('grocery deleted');
-                                grocery_list_item.remove();
-                                //mydo bug -- two new lines not deleted
-                            } else {
-                                console.log('error delete');
-                            }//else 
-                        },'json');//post deleteGroceryUrl
-                    }//if(confirm 
+                    delete_grocery($(this))
                 });//$(".delete_grocery").click
                 
                 $("#groceryname").autocomplete({//mydo problem whem more when one is expanded
@@ -78,7 +66,7 @@ $(document).ready(function(){
         },'json');//post
     });//expand_course.click
     
-
+//----------------------------------------------------------------------------------
 
     
 var add_grocery_to_course = function(e){        
@@ -111,6 +99,7 @@ var add_grocery_to_course = function(e){
     },'json');//$.post(checkGroceryExistUrl
 };// $("#add_grocery_to_course")
 
+//----------------------------------------------------------------------------------
     
 function addGroceryToCourseDatabase(data){
     addGroceryToCourseUrl = baseUrl + '/index.php/api_c/addGroceryToCourse';
@@ -118,26 +107,12 @@ function addGroceryToCourseDatabase(data){
     $.post(addGroceryToCourseUrl,data,function(result){
         if(result.success === true){
             data.course_grocery_id = result.course_grocery_id; 
-            $('.groceries_list').append(add_grocery_template(data));
+            $('.groceries_list').append(grocery_template(data));
             $("#groceryname").val('');
             $("#quantity").val('');  
             $(".delete_grocery").click(function(e){ 
                 e.preventDefault();
-                var delete_button = $(this);
-                if(confirm("Confirm deleting?")){
-                    var deleteGroceryUrl = baseUrl + '/index.php/api_c/deleteGroceryFromCourse';//api delete from course
-                    var grocery_list_item = delete_button.parents('.grocery_data');
-                    var course_grocery_id = { 'course_grocery_id' : grocery_list_item.attr('id').match(/\d+/)[0]};
-                    $.post(deleteGroceryUrl,course_grocery_id,function(e){
-                        if(e.success === true){
-                            console.log('grocery deleted');
-                            grocery_list_item.remove();
-                            //mydo bug -- two new lines not deleted
-                        } else {
-                            console.log('error delete');
-                        }//else 
-                    },'json');//post deleteGroceryUrl
-                }//if(confirm 
+                delete_grocery($(this));
             });//$(".delete_grocery").click   
         } else {
             console.log('database error adding grocery to course');
@@ -145,11 +120,30 @@ function addGroceryToCourseDatabase(data){
     },'json');//post
       
 }//addGroceryToCourseDatabase
+ 
+ 
+//---------------------------------------------------------------------------------- 
+ 
+function delete_grocery(delete_button){
+    if(confirm("Confirm deleting?")){
+        var deleteGroceryUrl = baseUrl + '/index.php/api_c/deleteGroceryFromCourse';//api delete from course
+        var grocery_list_item = delete_button.parents('.grocery_data');
+        var course_grocery_id = { 'course_grocery_id' : grocery_list_item.attr('id').match(/\d+/)[0]};
+        $.post(deleteGroceryUrl,course_grocery_id,function(e){
+            if(e.success === true){
+                console.log('grocery deleted');
+                grocery_list_item.remove();
+                //mydo bug -- two new lines not deleted
+            } else {
+                console.log('error delete');
+            }//else 
+        },'json');//post deleteGroceryUrl
+    }//if(confirm 
+}//delete_course    
     
-    
-    
-    
-function add_grocery_template(data){
+//----------------------------------------------------------------------------------
+
+function grocery_template(data){
     
     
 var grocery_template = 
@@ -171,7 +165,7 @@ var grocery_template =
  
 return grocery_template ;
 }//add grocery
- 
+//----------------------------------------------------------------------------------
 function expanded_grocery_template(data){
 var expanded_template = 
  '<div class="expanded_grocery">'
@@ -194,7 +188,7 @@ var expanded_template =
 
 +'			<div class="col-sm-4">'
 +'				<label class="control-label" for="quantity">Quantity: </label>'
-+'				<input id="quantity" class="form-control ui-widget" type="text" name="quantity" placeholder="Enter quantity">'
++'				<input id="quantity" class="form-control" type="text" name="quantity" placeholder="Enter quantity">'
 +'			</div>'
 
 +'			<div class="col-sm-2 cm_fake_label">'
@@ -214,7 +208,7 @@ var expanded_template =
 
 return expanded_template;
 }//expanded_grocery_template 
-
+//----------------------------------------------------------------------------------
     
 });//$(document).ready
 

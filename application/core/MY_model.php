@@ -103,7 +103,7 @@ class MY_Model extends CI_Model
     
   
     
-    function geLikeWhere($data_content,$like = null,$where = null,$limit = 10){
+    function getLikeWhere($data_content,$like = null,$where = null,$limit = 10){
         $this->db->select($data_content);
         $this->db->from($this->getTableName());
         if($where){
@@ -115,6 +115,6 @@ class MY_Model extends CI_Model
         $this->db-> limit($limit);
         $query = $this->db->get();
         return $query->result_array();
-    }//geLikeWhere
+    }//getLikeWhere
     
 }
