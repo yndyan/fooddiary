@@ -5,7 +5,7 @@ class Migration_Create_diary extends CI_Migration
     public function up(){
         
         $this->dbforge->add_field(array(
-                    'food_diary_id' => array(
+                'food_diary_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,

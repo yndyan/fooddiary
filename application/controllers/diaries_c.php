@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Diary_c extends MY_Controller
+class Diaries_c extends MY_Controller
 {
 
     function __construct(){
@@ -26,7 +26,7 @@ class Diary_c extends MY_Controller
             else
             {
                 
-                $this->load->view('diary_c/add_diary_entry_v');
+                $this->load->view('Diaries_c/add_diary_entry_v');
             }
         
     }//add food

@@ -31,7 +31,7 @@ class Auth_c extends CI_Controller
                 {
                     $this->session->set_flashdata('verify_warning',"Please verify email address ");
                 }
-                redirect('Diary_c/add_food','refresh');
+                redirect('Diaries_c/add_food','refresh');
             }
         }
         else
@@ -91,7 +91,7 @@ class Auth_c extends CI_Controller
                 
                 $this->user_reasons_m->copyDefaultReasonsToNewUser();
                 $this->user_groceries_m->copyDefaultGroceriesToNewUser();
-                redirect('Diary_c/add_food','refresh');
+                redirect('Diaries_c/add_food','refresh');
             }
         }
         else

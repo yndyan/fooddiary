@@ -33,11 +33,11 @@ class Migration_Create_reasons extends CI_Migration
                                 'null'  => false
 			),
                         
-                        'reasonname' => array(
-                                'type' => 'varchar',
-                                'constraint'=> 100,
-                                'null' => true,
-                        ),
+            'reasonname' => array(
+                    'type' => 'varchar',
+                    'constraint'=> 100,
+                    'null' => true,
+            ),
                         
 		));
                 
@@ -55,13 +55,13 @@ class Migration_Create_reasons extends CI_Migration
                                 'null'  => false
 			),
                         
-                        'reasonname' => array(
-                                'type' => 'varchar',
-                                'constraint'=> 100,
-                                'null' => true,
-                                
-                        ),
-                        'user_id' => array(
+            'reasonname' => array(
+                    'type' => 'varchar',
+                    'constraint'=> 100,
+                    'null' => true,
+                    
+            ),
+            'user_id' => array(
 				'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,

@@ -92,7 +92,7 @@ class User_c extends MY_Controller {
             $email_message = array('subject' => 'Verification email', 'message' => 'smekeru klikni na: '.base_url().'index.php/user_c/verify_email/'.$new_verify_code.'');
             $this->users_m->sendVerificationEmail($email,$email_message);
             $this->session->set_flashdata('verify_warning','New validation code sent!');
-            redirect('Diary_c','refresh');//mydo return this
+            redirect('Diaries_c','refresh');//mydo return this
         }
         else
         {
@@ -113,7 +113,7 @@ class User_c extends MY_Controller {
             if($result === users_m::VERIFY_CODE_NOT_EXIST){
                 $this->session->set_flashdata('verify_warning','Verify code not exist');
                 if($session_data){
-                    redirect('Diary_c','refresh');
+                    redirect('Diaries_c','refresh');
                 } else {
                     redirect('Auth_c/login','refresh');
                 }//else
@@ -122,7 +122,7 @@ class User_c extends MY_Controller {
             {
                 $this->session->set_flashdata('verify_warning','Verify code expired');
                 if($session_data){
-                    redirect('Diary_c','refresh');
+                    redirect('Diaries_c','refresh');
                 } else {
                     redirect('Auth_c/login','refresh');
                 }//else
@@ -134,7 +134,7 @@ class User_c extends MY_Controller {
                 if($session_data === false){
                     $this->session->set_userdata('logged_in',$result);
                 }
-                redirect('Diary_c','refresh');
+                redirect('Diaries_c','refresh');
             }
         }
         else

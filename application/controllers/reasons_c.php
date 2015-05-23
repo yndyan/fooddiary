@@ -27,7 +27,7 @@ class Reasons_c extends MY_Controller
     public function add_reason(){
         if($this->input->post('new_reason')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('new_reason', 'new reason', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('new_reason', 'new reason', 'trim|required|min_length[2]|FV_CheckReasonNotExist');
             //mydo add unique chack for user reason
             if($this->form_validation->run()==FALSE){
                 $this->load->view('reasons_c/add_reason_v');
@@ -50,7 +50,7 @@ class Reasons_c extends MY_Controller
         
         if($this->input->post('update_reason')){ //bug, on submit empty input doesn't respond requred
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('update_reason', 'updated reason', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('update_reason', 'updated reason', 'trim|required|min_length[2]|FV_CheckReasonNotExist');
             
             if($this->form_validation->run()==FALSE){
                 $data['reasonname'] = $this->input->post('update_reason');

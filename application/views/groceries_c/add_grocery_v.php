@@ -18,8 +18,7 @@
         <div class="form-group">    
            
             <div class="col-sm-8 col-md-offset-3" >
-                <button type="submit" class="btn btn-default " value = "Accept" >Submit</button> 
-                
+                <button type="submit" class="btn btn-default btn-lg" value = "Accept" >Submit</button> 
             </div>
         </div>    
         </form>

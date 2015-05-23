@@ -64,4 +64,10 @@ class User_reasons_m extends MY_Model
         $this->db->delete($this->getTableName(), ['reason_id'=>$reason_id,'user_id'=>  $this->user_id]);
         return $this->db->affected_rows();
     }
-} 
+
+    function checkReasonExist($reasonname){
+        return $this->chechValueExistsInDb(['reasonname'=>$reasonname,'user_id'=>$this->user_id]);    
+    }//checkGroceryExist
+    
+}//class
+ 

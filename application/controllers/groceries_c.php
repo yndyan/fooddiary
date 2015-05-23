@@ -26,7 +26,7 @@ class Groceries_c extends MY_Controller {
      public function add_grocery(){
         if($this->input->post('new_grocery')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('new_grocery', 'new grocery', 'trim|required|min_length[2]');//mydo add unique chack for user grocery, is_unigue not useable
+            $this->form_validation->set_rules('new_grocery', 'new grocery', 'trim|required|min_length[2]|FV_CheckGroceryNotExist');
             if($this->form_validation->run()==FALSE){
                 $this->load->view('groceries_c/add_grocery_v');
             } else {
@@ -35,19 +35,17 @@ class Groceries_c extends MY_Controller {
                 redirect('groceries_c/show_groceries','refresh');
                 return;
             }//else
-                
         } else {
             $this->load->view('groceries_c/add_grocery_v');
             return;
         }//else
-        
     }//add_grocery
 //----------------------------------------------------------------------------    
     function update_grocery(){
         
         if($this->input->post('update_groceryname')){//bug, on submit empty input doesn't respond requred
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('update_groceryname', 'updated grocery', 'trim|required|min_length[2]|is_unique[user_groceries.groceryname]');
+            $this->form_validation->set_rules('update_groceryname', 'updated grocery', 'trim|required|min_length[2]|FV_CheckGroceryNotExist');
             
             if($this->form_validation->run()==FALSE){
                 $data['groceryname'] = $this->input->post('update_groceryname');

@@ -15,7 +15,7 @@ var baseUrl =window.location.origin + "/" + window.location.pathname.split('/')[
 //-----------------------------------------------------------------------------------
     
     
-$("#coursename" ).autocomplete({//mydo js base_url
+$("#coursenameinput" ).autocomplete({//mydo js base_url
       source: baseUrl +"/index.php/api_c/getAutocompleteCourses",
       minLength: 2
     });// coursename autocomplete     
@@ -26,7 +26,7 @@ $("#add_course_to_diary").click(function(e){
     e.preventDefault();
     console.log('ola');
     var data = {};
-    data.coursename = $("#coursename").val();
+    data.coursename = $("#coursenameinput").val();
     data.quantity    = $("#quantity").val();
     checkCourseExistUrl = baseUrl + '/index.php/api_c/checkCourseExist';
     $.post(checkCourseExistUrl,data,function(e){
@@ -67,18 +67,59 @@ $("#add_course_to_diary").click(function(e){
     
     
 });// $("#add_course_to_diary")
+//-------------------------------------------------------------------------------------
+$("#add_diary").click(function(e){
+    e.preventDefault();
+    var addDiaryUrl = baseUrl + '/index.php/api_c/addDiary';
+    diaryData = $("#add_diary_form").serializeArray(); 
 
+    $(".course_error").remove();
+    $("#reason_error").remove();
+    $("#date_error").remove();
+    $("#time_error").remove();
+    
+    $.post(addDiaryUrl,diaryData,function(e){
+        if(e.success === false){
+
+            $.each(e.errors,function(key,value){
+                if (key.indexOf('courses')>=0){
+
+                    var course_error = $(div).addClass("course_error").addClass("well well-sm alert alert-warning");
+                    if(value === 'The courses field is required.'){
+                        $("#coursenameinput").after(course_error.append(value));
+                    } else {
+                        position = key.match(/\d+/);
+                        var dom_coursename_div = $($("input[name='courses[]']")[position]).parents(".course_data").find(".coursename");
+                        dom_coursename_div.append(course_error.append(value)); 
+                    }
+                } else if (key === 'reasonname'){
+                    var reason_error = $(div).attr('id','reason_error').addClass("well well-sm alert alert-warning");//.attr('role','alert');
+                    $("#reason").after(reason_error.append(value));
+                } else if (key === 'date'){
+                    var date_error = $(div).attr('id','date_error').addClass("well well-sm alert alert-warning");//.attr('role','alert');
+                    $("#datepicker").after(date_error.append(value));
+                }else if (key === 'time'){
+                    var time_error = $(div).attr('id','time_error').addClass("well well-sm alert alert-warning");//.attr('role','alert');
+                    $("#timepicker").after(time_error.append(value));
+                }
+            });//each
+        } else if(e.success === true){
+            window.location.replace(baseUrl +'/index.php/diaries_c/show_diaries');
+        }//
+    },'json');
+});//#add_course.click
+//-------------------------------------------------------------------------------
 function add_course_template(data){
     
 var course_template = 
  '<div class="course_data">'
-+'      <div class="col-sm-6">'
++'      <div class="coursename col-sm-6">'
 +'          <div class="well well-sm">'+data.coursename+'</div>'
 +'      </div>'
 +'      <div class="col-sm-4">'
 +'           <div class="well well-sm">'+data.quantity+'&nbsp</div>'//&nbsp is because moziila make problem with empty div
 +'      </div>'
-+'      <input type="hidden" name="courses[]" value="'+data.coursename+'">'
++'      <input type="hidden" name="courses[]" value="'+ data.coursename +'">'
 +'      <input type="hidden" name="quantity[]" value="'+data.quantity+'">'
 +'      <div class="cm_button col-sm-2">'
 +'          <button class="delete_course btn btn-danger ">'
@@ -91,68 +132,23 @@ return course_template ;
 }//add_course_template
     
 //-----------------------------------------------------------------------------------
-$( "#datepicker" ).datepicker();
+$( "#datepicker" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    firstDay: 1}
+    );
+//-----------------------------------------------------------------------------------
 $( "#timepicker" ).timepicker();
 //-----------------------------------------------------------------------------------
 
 $( "#reason" ).autocomplete({
       source: baseUrl +"/index.php/api_c/getAutocompleteReasons",
       minLength: 2
-      
     });  
+//-----------------------------------------------------------------------------------      
 
 
 
 
-});
+});//$(document).ready(function() {
 
 
-
-
-
-
-
-
-
-/*
-$(document).ready(function() {
-    var list = $('#food_list');
-    //var button_delete = $('#button_delete');
-    
-    
-    $('#add').click(function(e) {
-       
-
-        if ($('#food_in').val()) {
-                var list_row = $('<tr><td width="90%" >'+$('#food_in').val()+ '</td>');
-                list_row.append('<input type="hidden" value="'+$('#food_in').val()+'" name="niz[]" /> ');
-
-                var delete_row = $('<td  width="10%"> <span class="glyphicon glyphicon-remove"></span></td></tr>');
-                list_row.append(delete_row);    
-                delete_row.click(function(e) {
-                        e.preventDefault();
-                        $(this).parent().remove();
-
-                });
-
-                
-
-                list.append(list_row);
-                $('#food_in').val('');
-        } else {
-                alert('Please enter data');
-        } // else if
-    });
-
-    $( "#datepicker" ).datepicker();
-    $( "#timepicker" ).timepicker();
-    $( "#why" ).autocomplete({//mydo js base_url
-      source: "http://localhost/fooddiary/index.php/api_c/getAutocompleteReasons",
-      minLength: 2
-      
-    });    
-        
-        
-});
-    
-*/

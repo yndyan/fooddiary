@@ -69,6 +69,7 @@ $("#add_course").click(function(e){
     courseData = $("#add_course_form").serializeArray();
 
     $("#coursename_error").remove();
+    $("#calories_error").remove();
     $(".groceries_error").remove();
     
     $.post(addCorseUrl,courseData,function(e){
@@ -87,7 +88,10 @@ $("#add_course").click(function(e){
                                       + '    <div class="well well-sm alert alert-warning">'+value+'</div>'
                                       + '</div>';
                     dom_grocery_div.append(grocery_error); 
-                }//else
+                } else if (key === 'calories'){
+                    var coursename_error = $(div).attr('id','calories_error').addClass("well well-sm alert alert-warning");//.attr('role','alert');
+                    $("#calories").after(coursename_error.append(value));
+                }
             });//each
         } else if(e.success === true){
             window.location.replace(baseUrl +'/index.php/courses_c/show_courses');

@@ -3,6 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Api_c extends MY_Controller
 {
+
     function __construct() {
         parent::__construct();
         $this->load->model('user_reasons_m');
@@ -29,27 +30,26 @@ class Api_c extends MY_Controller
         $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
         $result = $this->courses_m->api_searchCourses($like_value);
         echo json_encode($result);//TODO vrati
-        
     }//    function getAutocompleteCourses(){
 
     
     function addCourse(){
-        $this->form_validation->set_rules('coursename', 'course name','xss_clean|trim|required|min_length[2]');//mydo add unique, |is_unique[courses.coursename] not working
+        $this->form_validation->set_rules('coursename', 'course name','xss_clean|trim|required|min_length[2]|FV_CheckCourseNotExist');
         $this->form_validation->set_rules('coursedescription', 'description','xss_clean|trim');
         
         for($i = 0; $i< sizeof($this->input->post('groceries'));$i++){
-            $this->form_validation->set_rules("groceries[".$i."]", 'groceries','xss_clean|checkGroceryExist');//mydo add chech grocery tabe
+            $this->form_validation->set_rules("groceries[".$i."]", 'groceries','xss_clean');
         }//for 
         
         $this->form_validation->set_rules('quantity[]', 'quantity','xss_clean|trim');//mydo add chech grocery tabe
-        $this->form_validation->set_rules('calories', 'calories','xss_clean|trim');
+        $this->form_validation->set_rules('calories', 'calories','xss_clean|trim|integer');
         if($this->form_validation->run() == FALSE ){
              $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
         } else {
-            $course_data = ['coursename' => ucfirst($this->input->post('coursename')),
-                     'coursedescription'=>$this->input->post('coursedescription'),
-                     'calories' =>$this->input->post('calories')
-                    ];
+            $course_data =  ['coursename' => $this->input->post('coursename'),
+                             'coursedescription'=>$this->input->post('coursedescription'),
+                             'calories' =>$this->input->post('calories')
+                            ];
             $groceries_array = $this->input->post('groceries');
             $quantity_array = $this->input->post('quantity');
             
@@ -65,7 +65,7 @@ class Api_c extends MY_Controller
 
     
     function addGrocery(){
-            $this->form_validation->set_rules('groceryname', 'new grocery', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('groceryname', 'new grocery', 'trim|required|min_length[2]|FV_CheckGroceryNotExist');
             if($this->form_validation->run()==FALSE){
                 $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
             } else {
@@ -101,7 +101,6 @@ class Api_c extends MY_Controller
     
     function checkGroceryExist(){//mydo finish this function
         $groceryname = trim($this->input->post('groceryname',TRUE));
-        
         //var_dump($groceryname); die();//mydo delete this
         $result = $this->user_groceries_m->checkGroceryExist($groceryname);
         $this->output->set_output(json_encode(['exist' => $result]));
@@ -109,7 +108,6 @@ class Api_c extends MY_Controller
     
     function checkCourseExist(){//mydo finish this function
         $coursename = trim($this->input->post('coursename',TRUE));
-        
         //var_dump($coursename); die();//mydo delete this
         $result = $this->courses_m->checkCourseExist($coursename);
         $this->output->set_output(json_encode(['exist' => $result]));
@@ -130,7 +128,34 @@ class Api_c extends MY_Controller
     }//addGroceryToCourse
     
     
- 
+    function addDiary(){
+        for($i = 0; $i< sizeof($this->input->post('courses'));$i++){
+            $this->form_validation->set_rules("courses[".$i."]", 'courses','xss_clean|FV_CheckCourseExist|required');//mydo add at least one course is reqired
+        }//for 
+        $this->form_validation->set_rules('quantity[]', 'quantity','xss_clean|trim');//mydo add chech grocery tabe
+        
+        $this->form_validation->set_rules('reasonname', 'reason','xss_clean|trim|required|min_length[2]|FV_CheckReasonExist');
+        $this->form_validation->set_rules('date', 'date','xss_clean|trim|required|FV_date');//mydo add FV_date function
+        $this->form_validation->set_rules('time', 'time','xss_clean|trim');//mydo add FV_time function
+        
+        if($this->form_validation->run() == FALSE ){
+             $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
+        } else {
+            $courses_array = $this->input->post('courses');
+            $quantity_array = $this->input->post('quantity');
+            $diary_data =  ['reasonname' => $this->input->post('reasonname'),
+                             'date'=>$this->input->post('date'),
+                             'time' =>$this->input->post('time')
+                            ];
+            
+            //$food_diary_id = $this->courses_m->add_course($course_data,$groceries_array,$quantity_array);
+            $this->session->set_flashdata('course_messages',"Course sucessfully added");
+            $this->output->set_output(json_encode(['success' => true,'food_diary_id'=>123]));
+            
+        }
+
+    }//addCourse
+    
     
     
     

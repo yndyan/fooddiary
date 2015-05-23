@@ -7,27 +7,27 @@
 <body>
 <div class="container" >
     <div class="row col-sm-12">
-            <h3 class ="text-center "> Add new course </h3>
-            <form class="form-horizontal" role="form" id = "add_course_form" >
+        <h3 class ="text-center "> Add new course </h3>
+        <form class="form-horizontal" role="form" id = "add_course_form" >
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="coursename">Name:*</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" id="coursename" name="coursename" required = "true" placeholder="Enter course name">
-                </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="coursename">Name:*</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="coursename" name="coursename" required = "true" placeholder="Enter course name">
             </div>
+        </div>
                 
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="coursedescription">Description:</label>
-                <div class="col-sm-10">
-                    <textarea class="form-control" rows="5" id="coursedescription" name="coursedescription"  placeholder="Enter description"></textarea>
-                </div>
-                <h4 class="text-center col-sm-8 col-md-offset-3">
-
-                </h4>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="coursedescription">Description:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="5" id="coursedescription" name="coursedescription"  placeholder="Enter description"></textarea>
             </div>
+            <h4 class="text-center col-sm-8 col-md-offset-3">
 
-                <div class="form-group clearfix">
+            </h4>
+        </div>
+
+        <div class="form-group clearfix">
                         <label class="control-label col-sm-2" for="groceryname">Groceries:*</label>
 			<div class="col-sm-5">
 				<label class="control-label" for="groceryname">Grocery name: </label>
@@ -48,54 +48,25 @@
 		</div>
 
             
-            <div class="form-group " id = "grocery_list"> 
-<!--                <div class="col-sm-10 col-md-offset-3">
-                    <div class="grocery_data ">
-                    
-                        <div class="well well-sm col-sm-4 ">Item 1</div>
-                        <div class="well well-sm col-sm-2 col-md-offset-1 ">3000</div>
-                        
-                        <button class="btn btn-danger col-md-offset-1">
-                                <span class="glyphicon glyphicon-remove"></span> 
-                                Delete
-                        </button>
-                    </div> 
-                    </br>  
-                    </br>  
-                    
-                    <div class="grocery_error">
-                    
-                        <div class="well well-sm col-sm-4 ">no such grocery</div>
-                        
-                        <button class="btn btn-success col-md-offset-2">
-                                <span class="glyphicon glyphicon-plus"></span> 
-                                Add
-                        </button>
-                        <button class="btn btn-danger col-md-offset-1">
-                                <span class="glyphicon glyphicon-edit"></span> 
-                                Edit
-                        </button>
-                    </div>    
-                </div> -->
-            </div>   
-                
-                
+        <div class="form-group " id = "grocery_list"> 
+        <!--   here you add groceries with JQ        -->
+        </div>   
                      
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="calories">Calories:</label>
-                <div class="col-sm-4">
-                    <input type="number" class="form-control" id="calories" name="calories"  placeholder="Enter course calories">
-                </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="calories">Calories:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="calories" name="calories"  placeholder="Enter course calories">
+            </div>
 
-            </div>    
-            <div class="form-group">    
+        </div>   
 
-                <div class="col-sm-8 col-md-offset-2" >
-                    <button type="submit" class="btn btn-default " id = "add_course" >Submit</button> 
-
-                </div>
-            </div>    
-            </form>
+        <div class="form-group">    
+            <div class="col-sm-8 col-md-offset-2" >
+                <button type="submit" class="btn btn-default btn-lg" id = "add_course" >Submit</button> 
+            </div>
+        </div>   
+         
+        </form>
     </div>
 </div>
 </body>
