@@ -51,7 +51,7 @@
 
                 <div class="col-sm-3">
                     <label class="control-label" for="time">Time <span class="glyphicon glyphicon-time"></span></label>
-                    <input id="timepicker" class="picker form-control" type="text" name="time" placeholder="Enter time 24h">
+                    <input id="timepicker" class="picker form-control" type="text" name="time" placeholder="Enter time hh:mm, 24 hour">
                 </div>
             </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-class User_groceries_m extends MY_Model
+class groceries_m extends MY_Model
 {   
     CONST table_name = 'user_groceries';
     protected $TablePkName = "grocery_id";
@@ -20,7 +20,14 @@ class User_groceries_m extends MY_Model
         
         return $this->getLikeWhere($data_content,$like,$where);
     }
-    
+    function getSinglePageGroceries($page_number = 1,$items_per_page=5,$like = null){
+        
+        $data_content = 'groceryname,grocery_id';  
+        $data['user_groceries'] =  $this->getSinglePageData($items_per_page,$page_number,$data_content,$like);
+        $data['number_of_pages'] = $this->getPageCount($items_per_page,$like);
+        $data['current_page'] = $page_number;
+        return $data;
+    }//getallUserReasons 
     
      function copyDefaultGroceriesToNewUser(){
         $user_id = $this->user_id = $this->session->userdata('logged_in')['user_id'];

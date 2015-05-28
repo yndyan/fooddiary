@@ -5,48 +5,41 @@ class Migration_Create_diary extends CI_Migration
     public function up(){
         
         $this->dbforge->add_field(array(
-                'food_diary_id' => array(
+                'diary_id' => array(
                                 'type' => 'tinyint',
-				'constraint' => 11,
-				'unsigned' => TRUE,
-				'auto_increment' => TRUE,
+                				'constraint' => 11,
+                				'unsigned' => TRUE,
+                				'auto_increment' => TRUE,
                                 'null'  => false
                                 ),
-                    'date' => array(
+                'date' => array(
                                 'type' => 'date',
                                 'null' => false
                                 ),
-                    'time' => array(
-                                'type' => 'time',
-                                'null' => true
-                                ),
-                    'calories' => array(
-                                    'type' => 'int',
-                                    'constraint' => 20,
-                                    'unsigned' => TRUE,
-                                    'null'  => true
-
-                                ),
-                    'user_id' => array(
-				'type' => 'tinyint',
-				'constraint' => 11,
-				'unsigned' => TRUE,
+                'time' => array(
+                            'type' => 'time',
+                            'null' => true
+                            ),
+                'user_id' => array(
+                				'type' => 'tinyint',
+                				'constraint' => 11,
+                				'unsigned' => TRUE,
                                 'null'  => false
                                 ),
-                    'reason_id' => array(
-				'type' => 'tinyint',
-				'constraint' => 11,
-				'unsigned' => TRUE,
-                                'null'  => true
+                'reason_id' => array(
+            				'type' => 'tinyint',
+            				'constraint' => 11,
+            				'unsigned' => TRUE,
+                            'null'  => true
 			),
             ));
-        $this->dbforge->add_key('food_diary_id',TRUE);
-        $this->dbforge->create_table('food_diary');
+        $this->dbforge->add_key('diary_id',TRUE);
+        $this->dbforge->create_table('diary');
         
         
                 
             $this->dbforge->add_field(array(
-                    'food_diary_course_id' => array(
+                    'diary_course_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
@@ -59,7 +52,7 @@ class Migration_Create_diary extends CI_Migration
 				'unsigned' => TRUE,
                                 'null'  => false
                                 ),
-                    'food_diary_id' => array(
+                    'diary_id' => array(
                                 'type' => 'tinyint',
 				'constraint' => 11,
 				'unsigned' => TRUE,
@@ -70,13 +63,13 @@ class Migration_Create_diary extends CI_Migration
                                     'constraint' => 50,
                                 ),
             ));
-        $this->dbforge->add_key('food_diary_course_id',TRUE);
-        $this->dbforge->create_table('food_diary_course');    
+        $this->dbforge->add_key('diary_course_id',TRUE);
+        $this->dbforge->create_table('diary_course');    
     }//up
     
     public function down(){
-        $this->dbforge->drop_table('food_diary');
-        $this->dbforge->drop_table('food_diary_course');
+        $this->dbforge->drop_table('diary');
+        $this->dbforge->drop_table('diary_course');
     }//down
     
 }

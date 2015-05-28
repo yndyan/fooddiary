@@ -12,7 +12,7 @@
                 </li>     
                 
             <?php    
-                foreach($user_reasons as $data) {
+                foreach($reasons as $data) {
                     echo $this->load->view('reasons_c/reason_template_v', $data, true);
                 }//foreach
             ?>

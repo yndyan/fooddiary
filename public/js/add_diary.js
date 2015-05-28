@@ -33,7 +33,7 @@ $("#add_course_to_diary").click(function(e){
         if(e.exist === true){
             
             $('.courses_list').append(add_course_template(data));
-            $("#coursename").val('');
+            $("#coursenameinput").val('');
             $("#quantity").val('');
             $(".course_data").find(".delete_course").click(function(e){
                 e.preventDefault();
@@ -45,7 +45,6 @@ $("#add_course_to_diary").click(function(e){
 
                 $.post(addCourseUrl,data,function(e){
                     if(e.success === true){
-                        console.log('aleluja');
                         $('.courses_list').append(add_course_template(data));
                         $("#coursename").val('');
                         $("#quantity").val('');
@@ -85,7 +84,7 @@ $("#add_diary").click(function(e){
                 if (key.indexOf('courses')>=0){
 
                     var course_error = $(div).addClass("course_error").addClass("well well-sm alert alert-warning");
-                    if(value === 'The courses field is required.'){
+                    if(value === 'The course field is required.'){
                         $("#coursenameinput").after(course_error.append(value));
                     } else {
                         position = key.match(/\d+/);
@@ -104,7 +103,7 @@ $("#add_diary").click(function(e){
                 }
             });//each
         } else if(e.success === true){
-            window.location.replace(baseUrl +'/index.php/diaries_c/show_diaries');
+            window.location.replace(baseUrl +'/index.php/diaries_c/show_add_diary');//mydo change to show_diary
         }//
     },'json');
 });//#add_course.click
@@ -133,8 +132,9 @@ return course_template ;
     
 //-----------------------------------------------------------------------------------
 $( "#datepicker" ).datepicker({
-    dateFormat: "dd-mm-yy",
-    firstDay: 1}
+        dateFormat: "dd-mm-yy",
+        firstDay: 1,
+        }
     );
 //-----------------------------------------------------------------------------------
 $( "#timepicker" ).timepicker();

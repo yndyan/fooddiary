@@ -6,6 +6,7 @@ class MY_Form_validation extends CI_Form_validation
     
     function __construct() {
         parent::__construct();
+        
     }//__construct
     
 //-----------------------------------------------------------------------------   
@@ -51,7 +52,7 @@ class MY_Form_validation extends CI_Form_validation
 //-----------------------------------------------------------------------------    
 //-----------------------------------------------------------------------------    
     function FV_CheckGroceryExist($groceryname){
-        if ($this->CI->user_groceries_m->checkGroceryExist($groceryname)) {
+        if ($this->CI->groceries_m->checkGroceryExist($groceryname)) {
             return TRUE;
         } else {
             $this->set_message('FV_CheckGroceryExist','No such grocery');
@@ -62,7 +63,7 @@ class MY_Form_validation extends CI_Form_validation
 //-----------   
     
     function FV_CheckGroceryNotExist($groceryname){
-        if ($this->CI->user_groceries_m->checkGroceryExist($groceryname)) {
+        if ($this->CI->groceries_m->checkGroceryExist($groceryname)) {
             $this->set_message('FV_CheckGroceryNotExist','Grocery already exist');
             return false;
         } else {
@@ -73,7 +74,7 @@ class MY_Form_validation extends CI_Form_validation
 //-----------------------------------------------------------------------------    
 //-----------------------------------------------------------------------------    
     function FV_CheckReasonNotExist($reasonname){
-        if ($this->CI->user_reasons_m->checkReasonExist($reasonname)) {
+        if ($this->CI->reasons_m->checkReasonExist($reasonname)) {
             $this->set_message('FV_CheckReasonNotExist','Reason already exist');
             return false;
         } else {
@@ -84,7 +85,7 @@ class MY_Form_validation extends CI_Form_validation
 //-----------   
     
     function FV_CheckReasonExist($reasonname){
-        if ($this->CI->user_reasons_m->checkReasonExist($reasonname)) {
+        if ($this->CI->reasons_m->checkReasonExist($reasonname)) {
             
             return true;
         } else {
@@ -111,18 +112,40 @@ class MY_Form_validation extends CI_Form_validation
         } else {
             
             return true;
-        }//FV_CheckCourseNotExist
-    }
- function FV_date($date){
-     $date_array = explode('-',$date);
-     if((count($date_array) === 3) && ($date_array[2]>2000) && ($date_array[2]<2100) && checkdate ($date_array[1],$date_array[0],$date_array[2])){
-        return true;
-    } else {
-       $this->set_message('FV_date','Date not valid, dd-mm-yyyy');
-        return false;
-    }
-    
- }
+        }
+    }//FV_CheckCourseNotExist
+//----------------------------------------------------------------------------------
+    function FV_date($date){
+        $date_array = explode('-',$date);
+        if((count($date_array) === 3) 
+            && is_numeric($date_array[0])
+            && is_numeric($date_array[1]) 
+            && is_numeric($date_array[2])
+            && $this->in_between($date_array[2],2000,2100)
+            && checkdate ($date_array[1],$date_array[0],$date_array[2]))
+        {
+            return true;
+        } else {
+            $this->set_message('FV_date','Date not valid, dd-mm-yyyy');
+            return false;
+        }
+    }//FV_date
+
+//-----------------------------------------------------------------------------
+    function FV_time($time){
+        $time_array = explode(':',$time);
+        if((count($time_array) === 2) 
+            && is_numeric($time_array[0])
+            && is_numeric($time_array[1]) 
+            && $this->in_between($time_array[0],0,23)
+            && $this->in_between($time_array[1],0,59))
+        {
+            return true;
+        } else {
+            $this->set_message('FV_time','Time not valid, hh:mm, 24hour');
+            return false;
+        }
+    }//FV_time
 
 //-----------------------------------------------------------------------------
     function form_validation_errors(){//mydo  delete this
@@ -134,4 +157,19 @@ class MY_Form_validation extends CI_Form_validation
     }//error_array
 
 //-----------------------------------------------------------------------------    
+
+    private function in_between($input,$floor,$ceil){
+        
+        if(is_numeric($input) &&  is_numeric($floor) && is_numeric($ceil)){
+
+            if(($input >= $floor)&&($input <= $ceil)){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return null;
+        }
+
+    }//in_between
 }//class

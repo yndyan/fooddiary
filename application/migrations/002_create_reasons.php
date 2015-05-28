@@ -71,13 +71,13 @@ class Migration_Create_reasons extends CI_Migration
 		));
                 
                 $this->dbforge->add_key('reason_id',TRUE);
-		$this->dbforge->create_table('user_reasons');
+		$this->dbforge->create_table('reasons');
 	}
 
 	public function down()
 	{
 		$this->dbforge->drop_table('default_reasons');
-                $this->dbforge->drop_table('user_reasons');
+                $this->dbforge->drop_table('reasons');
 	}
     
     

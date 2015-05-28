@@ -29,19 +29,25 @@ class MY_Model extends CI_Model
         }//else
     }//getByPk
         
-    function getPageCount($items_per_page = 2){
+    function getPageCount($items_per_page = 2,$like){
         $this->db->where('user_id',  $this->user_id);
+        if($like){
+            $this->db->like($like);
+        }
         $this->db->from($this->getTableName());//mydo change to getTablename
         return (int)ceil($this->db->count_all_results()/$items_per_page);
         
     }//
  
-    function getSinglePageData($items_per_page=2,$page_number = 1,$data_content = null){
+    function getSinglePageData($items_per_page=2,$page_number = 1,$data_content = null, $like = null){
         
         $offset = $items_per_page * ($page_number-1);
         $this->db->select($data_content);
         $this->db->from($this->getTableName());
         $this->db->where('user_id',  $this->user_id);
+        if($like){
+            $this->db->like($like);
+        }
         $this->db->limit($items_per_page,$offset);
         $query = $this->db->get();
         return $query->result_array();

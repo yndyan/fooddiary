@@ -6,22 +6,23 @@ class Api_c extends MY_Controller
 
     function __construct() {
         parent::__construct();
-        $this->load->model('user_reasons_m');
-        $this->load->model('user_groceries_m');
+        $this->load->model('reasons_m');
+        $this->load->model('groceries_m');
         $this->load->model('courses_m');
-        $this->load->model('user_groceries_m');
+        $this->load->model('groceries_m');
+        $this->load->model('diary_m');
     }//__construct
             
     function getAutocompleteReasons(){
         $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
-        $result = $this->user_reasons_m->api_searchReasons($like_value);
+        $result = $this->reasons_m->api_searchReasons($like_value);
         echo json_encode($result);//TODO vrati
         
     }//getAutocompleteReasons
     
     function getAutocompleteGroceries(){
         $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
-        $result = $this->user_groceries_m->api_searchGroceries($like_value);
+        $result = $this->groceries_m->api_searchGroceries($like_value);
         echo json_encode($result);//TODO vrati
         
     }//    function getAutocompleteGroceries(){
@@ -69,7 +70,7 @@ class Api_c extends MY_Controller
             if($this->form_validation->run()==FALSE){
                 $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
             } else {
-                $grocery_id = $this->user_groceries_m->addGrocery($this->input->post('groceryname')); //mydo return 
+                $grocery_id = $this->groceries_m->addGrocery($this->input->post('groceryname')); //mydo return 
                 $this->output->set_output(json_encode(['success' => true,'grocery_id'=>$grocery_id]));
                 return;
             }//else
@@ -102,7 +103,7 @@ class Api_c extends MY_Controller
     function checkGroceryExist(){//mydo finish this function
         $groceryname = trim($this->input->post('groceryname',TRUE));
         //var_dump($groceryname); die();//mydo delete this
-        $result = $this->user_groceries_m->checkGroceryExist($groceryname);
+        $result = $this->groceries_m->checkGroceryExist($groceryname);
         $this->output->set_output(json_encode(['exist' => $result]));
     }//checkGroceryExist
     
@@ -130,14 +131,13 @@ class Api_c extends MY_Controller
     
     function addDiary(){
         for($i = 0; $i< sizeof($this->input->post('courses'));$i++){
-            $this->form_validation->set_rules("courses[".$i."]", 'courses','xss_clean|FV_CheckCourseExist|required');//mydo add at least one course is reqired
+            $this->form_validation->set_rules("courses[".$i."]", 'course','xss_clean|FV_CheckCourseExist|required');//mydo add at least one course is reqired
         }//for 
         $this->form_validation->set_rules('quantity[]', 'quantity','xss_clean|trim');//mydo add chech grocery tabe
         
         $this->form_validation->set_rules('reasonname', 'reason','xss_clean|trim|required|min_length[2]|FV_CheckReasonExist');
         $this->form_validation->set_rules('date', 'date','xss_clean|trim|required|FV_date');//mydo add FV_date function
-        $this->form_validation->set_rules('time', 'time','xss_clean|trim');//mydo add FV_time function
-        
+        $this->form_validation->set_rules('time', 'time','xss_clean|trim|FV_time');//mydo add FV_time function
         if($this->form_validation->run() == FALSE ){
              $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
         } else {
@@ -148,9 +148,9 @@ class Api_c extends MY_Controller
                              'time' =>$this->input->post('time')
                             ];
             
-            //$food_diary_id = $this->courses_m->add_course($course_data,$groceries_array,$quantity_array);
-            $this->session->set_flashdata('course_messages',"Course sucessfully added");
-            $this->output->set_output(json_encode(['success' => true,'food_diary_id'=>123]));
+            $diary_id = $this->diary_m->addDiary($diary_data,$courses_array,$quantity_array);
+            $this->session->set_flashdata('diary_messages',"Diary sucessfully added");
+            $this->output->set_output(json_encode(['success' => true,'diary_id'=>$diary_id]));
             
         }
 

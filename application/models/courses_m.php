@@ -41,21 +41,13 @@ class Courses_m extends MY_Model
     
     
     
-    function getSinglePageCourses($items_per_page = 2, $page_number = 1) {
-        $this->load->model('courses_groceries_m');
-        $this->load->model('user_groceries_m');
-        $offset = $items_per_page * ($page_number-1);
-        
-        $this->db->select('coursename,course_id');
-        $this->db->from($this->courses_m->getTableName());
-        $this->db->where('user_id',$this->user_id);
-        $this->db->limit($items_per_page,$offset);
-        $query_data = $this->db->get()->result_array();
-        if($query_data){
-            return $query_data;  
-        } else {
-            return false;
-        }
+    function getSinglePageCourses($page_number = 1,$items_per_page=5,$like = null) {
+       
+        $data_content = 'coursename,course_id';         
+        $data['courses'] =  $this->getSinglePageData($items_per_page,$page_number,$data_content,$like);
+        $data['number_of_pages'] = $this->getPageCount($items_per_page,$like);
+        $data['current_page'] = $page_number; 
+        return $data;
     }//getSinglePageCourses
     
     
@@ -68,7 +60,7 @@ class Courses_m extends MY_Model
     
     function getSingleCourse($course_id){
         $this->load->model('courses_groceries_m');
-        $this->load->model('user_groceries_m');
+        $this->load->model('groceries_m');
         $this->db->select('*');
         $this->db->select('courses.course_id');//mydo without this not returning course_id on course with no groceries  
         $this->db->from($this->courses_m->getTableName());

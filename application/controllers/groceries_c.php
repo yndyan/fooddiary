@@ -5,21 +5,15 @@ class Groceries_c extends MY_Controller {
     
     function __construct(){
         parent::__construct();
-        $this->load->model('user_groceries_m');  
+        $this->load->model('groceries_m');  
     }//construct
     
 //----------------------------------------------------------------------------    
     
     function show_groceries(){
-       
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
-        $items_per_page = 5;
-        $data_content = 'groceryname,grocery_id'; 
-        $data['user_groceries'] =  $this->user_groceries_m->getSinglePageData($items_per_page,$page_number,$data_content);
-        $data['number_of_pages'] = $this->user_groceries_m->getPageCount($items_per_page);
-        $data['current_page'] = $page_number;
+        $data = $this->groceries_m->getSinglePageGroceries($page_number); 
         $this->load->view('groceries_c/show_groceries_v',$data);
-        
     }//show_groceries
     //
 //----------------------------------------------------------------------------    
@@ -30,7 +24,7 @@ class Groceries_c extends MY_Controller {
             if($this->form_validation->run()==FALSE){
                 $this->load->view('groceries_c/add_grocery_v');
             } else {
-                $this->user_groceries_m->addGrocery($this->input->post('new_grocery'));
+                $this->groceries_m->addGrocery($this->input->post('new_grocery'));
                 $this->session->set_flashdata('grocery_messages',"Grocery sucessfully added");
                 redirect('groceries_c/show_groceries','refresh');
                 return;
@@ -52,7 +46,7 @@ class Groceries_c extends MY_Controller {
                 $data['grocery_id'] = $this->input->post('grocery_id');
                 $this->load->view('groceries_c/update_grocery_v',$data);
             } else {
-                $this->user_groceries_m->updateGrocery($this->input->post('update_groceryname'),$this->input->post('grocery_id'));
+                $this->groceries_m->updateGrocery($this->input->post('update_groceryname'),$this->input->post('grocery_id'));
                 $this->session->set_flashdata('grocery_messages',"Grocery sucessfully updated");
                 redirect('groceries_c/show_groceries','refresh');
                 return;
@@ -61,7 +55,7 @@ class Groceries_c extends MY_Controller {
         } else {
             $grocery_id = trim($this->input->get('grocery_id',TRUE));
             $data_content = 'groceryname';
-            $groceryname = $this->user_groceries_m->getOneBySingleValue('grocery_id',$grocery_id,$data_content)[$data_content];
+            $groceryname = $this->groceries_m->getOneBySingleValue('grocery_id',$grocery_id,$data_content)[$data_content];
             if($groceryname) {
                 $data['groceryname'] = $groceryname;
                 $data['grocery_id'] = $grocery_id;
@@ -77,13 +71,12 @@ class Groceries_c extends MY_Controller {
 //----------------------------------------------------------------------------    
     public function delete_grocery(){
         $grocery_id = trim($this->input->get('grocery_id',TRUE));
-        if($this->user_groceries_m->deleteGrocery($grocery_id)){
+        if($this->groceries_m->deleteGrocery($grocery_id)){
             $this->session->set_flashdata('grocery_messages',"Grocery successfully deleted");
-            redirect('groceries_c/show_groceries','refresh');
         } else {
             $this->session->set_flashdata('grocery_messages',"Error deleting grocery");
-            redirect('groceries_c/show_groceries','refresh');
         }
+        redirect('groceries_c/show_groceries','refresh');
     }//delete_grocery
     
     

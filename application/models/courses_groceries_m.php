@@ -11,7 +11,7 @@ class Courses_groceries_m extends MY_Model
     }
     
     function addGroceryToCourse($course_id, $groceryname, $quantity){
-        $this->load->model('user_groceries_m');
+        $this->load->model('groceries_m');
         
         $where = ['groceryname'=>$groceryname,
                   'user_id'=> $this->user_id];
@@ -20,7 +20,7 @@ class Courses_groceries_m extends MY_Model
         $like = null;
         $limit = 1;
          
-        $grocery_id = $this->user_groceries_m->getLikeWhere($data_content,$like,$where,$limit)[0]['grocery_id'];
+        $grocery_id = $this->groceries_m->getLikeWhere($data_content,$like,$where,$limit)[0]['grocery_id'];
         $grocery_course_data = ['course_id'=>$course_id,
                                 'grocery_id'=>$grocery_id,
                                 'quantity' => $quantity ];

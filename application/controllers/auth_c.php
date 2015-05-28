@@ -8,8 +8,8 @@ class Auth_c extends CI_Controller
         parent::__construct();
         $this->load->helper('registration');
         $this->load->model('users_m');
-        $this->load->model('user_reasons_m');
-        $this->load->model('user_groceries_m');
+        $this->load->model('reasons_m');
+        $this->load->model('groceries_m');
         $this->load->view('templates/public_header_v');
     }   
 
@@ -31,7 +31,7 @@ class Auth_c extends CI_Controller
                 {
                     $this->session->set_flashdata('verify_warning',"Please verify email address ");
                 }
-                redirect('Diaries_c/add_food','refresh');
+                redirect('diaries_c/show_diaries','refresh');
             }
         }
         else
@@ -89,9 +89,9 @@ class Auth_c extends CI_Controller
                 $email_message = array('subject' => 'Verification email', 'message' => 'Go to '.base_url().'index.php/user_c/verify_email/'.$verify_code.'');
                 $this->users_m->sendVerificationEmail($new_user_data['email'],$email_message);
                 
-                $this->user_reasons_m->copyDefaultReasonsToNewUser();
-                $this->user_groceries_m->copyDefaultGroceriesToNewUser();
-                redirect('Diaries_c/add_food','refresh');
+                $this->reasons_m->copyDefaultReasonsToNewUser();
+                $this->groceries_m->copyDefaultGroceriesToNewUser();
+                redirect('diaries_c/add_food','refresh');
             }
         }
         else

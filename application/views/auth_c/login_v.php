@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-sm-9">
         <h2 class ="text-center"> Login page </h2>
-        <h3 class="text-warning text-center"><?php echo $this->session->flashdata('home_warning');?></h3>
+        <h3 class="text-warning text-center"><?php echo $this->session->flashdata('verify_warning');?></h3>
         
         
         

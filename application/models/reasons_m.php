@@ -1,9 +1,9 @@
 <?php
 //require_once APPPATH.'models/MY_Model.php';
 
-class User_reasons_m extends MY_Model
+class reasons_m extends MY_Model
 {
-    CONST table_name = 'user_reasons';
+    CONST table_name = 'reasons';
     protected $TablePkName = "reason_id";
     function __construct() {
         parent::__construct();
@@ -18,25 +18,15 @@ class User_reasons_m extends MY_Model
         return $this->getLikeWhere($data_content,$like,$where);
     }
     
-    
-    function getSinglePageReasons($items_per_page=2,$page_number = 1,$like_value = null){
+    function getSinglePageReasons($page_number = 1,$items_per_page=5,$like = null){
         
-        $offset = $items_per_page * ($page_number-1);
-        $data_content = 'reasonname,reason_id';    
-        $this->db->select($data_content);
-        $this->db->from($this->getTableName());
-        $this->db->where('user_id',  $this->user_id);
-        if($like_value){
-            $this->db->like('reasonname',$like_value);
-        }//if
-        $this->db->limit($items_per_page,$offset);
-        $query = $this->db->get();
-        
-        return $query->result_array();
-        
-        
-    }//getallUserReasons
-    
+        $data_content = 'reasonname,reason_id';         
+        $data['reasons'] =  $this->getSinglePageData($items_per_page,$page_number,$data_content,$like);
+        $data['number_of_pages'] = $this->getPageCount($items_per_page,$like);
+        $data['current_page'] = $page_number;   
+        return $data;
+    }//getallUserReasons 
+
     function copyDefaultReasonsToNewUser(){
         $user_id = $this->user_id = $this->session->userdata('logged_in')['user_id'];
         $this->load->model('default_reasons_m'); 
@@ -61,6 +51,8 @@ class User_reasons_m extends MY_Model
     
     function deleteReason($reason_id){
         $this->db->limit(1);
+        //mydo must find tables where this reason is used and delete them all, maybe warning before, or deletede table
+        
         $this->db->delete($this->getTableName(), ['reason_id'=>$reason_id,'user_id'=>  $this->user_id]);
         return $this->db->affected_rows();
     }
@@ -69,5 +61,13 @@ class User_reasons_m extends MY_Model
         return $this->chechValueExistsInDb(['reasonname'=>$reasonname,'user_id'=>$this->user_id]);    
     }//checkGroceryExist
     
+    function getReasonId($reasonname){
+        $where =  ['reasonname'=>$reasonname,
+                   'user_id'=> $this->user_id];
+        $data_content = 'reason_id';
+        $like = null;
+        $limit = 1;
+        return $this->getLikeWhere($data_content,$like,$where,$limit)[0]['reason_id'];
+    }//getReasonId
 }//class
  

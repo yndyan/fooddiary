@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "Diaries_c";
+$route['default_controller'] = "diaries_c";
 $route['404_override'] = '';
 
 

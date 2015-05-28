@@ -113,7 +113,7 @@ class User_c extends MY_Controller {
             if($result === users_m::VERIFY_CODE_NOT_EXIST){
                 $this->session->set_flashdata('verify_warning','Verify code not exist');
                 if($session_data){
-                    redirect('Diaries_c','refresh');
+                    redirect('diaries_c','refresh');
                 } else {
                     redirect('Auth_c/login','refresh');
                 }//else
@@ -122,7 +122,7 @@ class User_c extends MY_Controller {
             {
                 $this->session->set_flashdata('verify_warning','Verify code expired');
                 if($session_data){
-                    redirect('Diaries_c','refresh');
+                    redirect('diaries_c','refresh');
                 } else {
                     redirect('Auth_c/login','refresh');
                 }//else
@@ -134,7 +134,7 @@ class User_c extends MY_Controller {
                 if($session_data === false){
                     $this->session->set_userdata('logged_in',$result);
                 }
-                redirect('Diaries_c','refresh');
+                redirect('diaries_c','refresh');
             }
         }
         else

@@ -12,16 +12,13 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo $base_url_index?>/Diaries_c/add_food"> Food diary</a>
+        <a class="navbar-brand" href="<?php echo $base_url_index?>/Diaries_c/show_diaries"> Food diary</a>
     </div>
       
     <div>
         <ul class="nav navbar-nav">
-            <li <?php if($this->uri->segment(1)=='Diaries_c') {echo 'class="active"';}?>>
-                <a href = "<?php echo $base_url_index?>/Diaries_c/add_food">Add meal</a>
-            </li>
-            <li <?php if($this->uri->segment(1)=='Diaries_c') {echo 'class="active"';}?>>
-                <a href = "<?php echo $base_url_index?>"><span class="glyphicon glyphicon-calendar"></span> Diary</a>
+            <li <?php if($this->uri->segment(1)=='diaries_c') {echo 'class="active"';}?>>
+                <a href = "<?php echo $base_url_index?>/diaries_c/show_diaries"><span class="glyphicon glyphicon-calendar"></span> Diary</a>
             </li>
             <li <?php if($this->uri->segment(1)=='courses_c') {echo 'class="active"';}?>>
                 <a href = "<?php echo $base_url_index?>/courses_c/show_courses"><span class="glyphicon glyphicon-list"></span> Courses</a>

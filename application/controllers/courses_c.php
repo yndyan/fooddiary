@@ -11,10 +11,7 @@ class Courses_c extends MY_Controller
     function show_courses(){
             
             $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
-            $items_per_page = 5;
-            $data['courses'] =  $this->courses_m->getSinglePageCourses($items_per_page,$page_number);
-            $data['number_of_pages'] = $this->courses_m->getPageCount($items_per_page);
-            $data['current_page'] = $page_number;
+            $data=  $this->courses_m->getSinglePageCourses($page_number);
             $this->load->view('courses_c/show_courses_v',$data);
        
     }//show_courses
@@ -30,11 +27,10 @@ class Courses_c extends MY_Controller
         $course_id = trim($this->input->get('course_id',TRUE));
         if($this->courses_m->deleteCourse($course_id)){
             $this->session->set_flashdata('course_messages',"Course successfully deleted");
-            redirect('courses_c/show_courses','refresh');
         } else {
             $this->session->set_flashdata('course_messages',"Error deleting course");
-            redirect('courses_c/show_courses','refresh');
         }
+        redirect('courses_c/show_courses','refresh');
     }//delete_grocery
 //----------------------------------------------------------------------------    
     function update_course(){
