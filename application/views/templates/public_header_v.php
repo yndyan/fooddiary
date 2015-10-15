@@ -10,18 +10,18 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/Auth_c/login">Food Diary</a>
+        <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/auth_c/login">Food Diary</a>
     </div>
     <div>
         <ul class="nav navbar-nav">
             <li <?php if($this->uri->segment(2)=='login') {echo 'class="active"';}?>>
-                <a href = "<?php echo base_url();?>index.php/Auth_c/login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                <a href = "<?php echo base_url();?>index.php/auth_c/login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
             </li>
-            <li <?php if($this->uri->segment(2)=='register_new_user') {echo 'class="active"';}?>><a href = "<?php echo base_url();?>index.php/Auth_c/register_new_user"><span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>
+            <li <?php if($this->uri->segment(2)=='register_new_user') {echo 'class="active"';}?>><a href = "<?php echo base_url();?>index.php/auth_c/register_new_user"><span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>
         </ul>
         
         <ul class="nav navbar-nav navbar-right"> 
-            <li <?php if($this->uri->segment(2)=='about') {echo 'class="active"';}?>><a href = "<?php echo base_url();?>index.php/Auth_c/about"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+            <li <?php if($this->uri->segment(2)=='about') {echo 'class="active"';}?>><a href = "<?php echo base_url();?>index.php/auth_c/about"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
         </ul>
     </div>
   </div>

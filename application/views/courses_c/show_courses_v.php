@@ -1,7 +1,4 @@
 <head>
-    <script src="<?php echo base_url("public/js/jquery-2.1.1.min.js");?>"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.min.css">
-    <script src="<?php echo base_url();?>public/js/jquery-ui.min.js"></script>
     <script src="<?php echo base_url("public/js/courses.js");?>"></script>
 </head>
 <body>
@@ -26,7 +23,7 @@
                 }//if
             ?>
             <?php 
-                $data['action_url']= ("index.php/courses_c/show_courses");
+                $data['action_url']= ("index.php/Courses_c/show_courses");
                 $data['number_of_pages']= $number_of_pages;
                 $data['current_page']= $current_page;
                 echo $this->load->view('templates/pagination_v',$data);

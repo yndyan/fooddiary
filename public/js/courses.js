@@ -176,7 +176,7 @@ var expanded_template =
 +'			    <h3 class="panel-title">Description</h3>'
 +'		    </div>'
 
-+'		    <div class="panel-body">'+data.coursedescription +'</div>'
++'		    <div class="panel-body ">'+data.coursedescription +'</div>'
 +'	    </div>'
 +'  </div>'
 

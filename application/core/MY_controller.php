@@ -16,7 +16,7 @@ class MY_Controller extends CI_Controller{
         } else {
             if($this->uri->segment(1)!=='api_c'){
                 $this->session->set_flashdata('verify_warning','Please login to proceed!');
-                redirect('Auth_c/login','refresh');
+                redirect('auth_c/login','refresh');
             } else {
                 $this->output->set_output(json_encode(['error' => 'not logged'] ));
                 

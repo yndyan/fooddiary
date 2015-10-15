@@ -28,11 +28,10 @@ Class Users_m extends MY_Model
     protected $TablePkName = "user_id";
     
 //----------------------------------------------------------------------------    
-    function __construct()
-    {
+    function __construct(){
         parent::__construct();
         $this->load->library('email');
-    }
+    }//construct
 
 //----------------------------------------------------------------------------    
  

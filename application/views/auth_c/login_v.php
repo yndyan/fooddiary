@@ -8,7 +8,7 @@
         
         
         
-        <form class="form-horizontal" role="form" action = "<?php echo base_url();?>index.php/Auth_c/login" method = "post">
+        <form class="form-horizontal" role="form" action = "<?php echo base_url();?>index.php/auth_c/login" method = "post">
             
             <div class="form-group">
                 <label class="control-label col-sm-3" for="email">Username or email:</label>
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">    
                 <div class="col-sm-6 col-md-offset-3" >
-                    <label><a href = "<?php echo base_url();?>index.php/Auth_c/send_password_verify_code">Forgot password?</a></label>
+                    <label><a href = "<?php echo base_url();?>index.php/auth_c/send_password_verify_code">Forgot password?</a></label>
                 </div>
             </div>   
             <div class="form-group">

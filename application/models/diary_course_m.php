@@ -8,8 +8,8 @@ class diary_course_m extends MY_Model
     
     function __construct() {
         parent::__construct();
-    }
-    
+    }//construct
+//-----------------------------------------------------------------------------    
     function addCourseToDiary($diary_id, $coursename,$quantity){
         $this->load->model('courses_m');
         $where = ['coursename'=>$coursename,
@@ -27,4 +27,6 @@ class diary_course_m extends MY_Model
 
         return $this->addDataToDb($diary_course_data );
     }//addGroceryToCourse
-}
+//-----------------------------------------------------------------------------    
+
+}//class

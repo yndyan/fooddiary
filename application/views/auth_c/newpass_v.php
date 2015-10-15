@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-9">
         <h2 class ="text-center">Please insert new password</h2>    
-        <form class="form-horizontal" role="form" action="<?php echo base_url(); ?>index.php/Auth_c/reset_password/<?php  echo $pass_code; ?>" method = "post">
+        <form class="form-horizontal" role="form" action="<?php echo base_url(); ?>index.php/auth_c/reset_password/<?php  echo $pass_code; ?>" method = "post">
                       
            <div class="form-group">
                 <label class="control-label col-sm-3" for="new_password">Password:*</label>

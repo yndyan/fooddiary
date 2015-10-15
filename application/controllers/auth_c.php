@@ -118,21 +118,21 @@ class Auth_c extends CI_Controller
                     }while ($this->users_m->chechValueExistsInDb(['passResetCode'=>$password_reset_code]));
 
                     $this->users_m->updateData(['email' => $email],['passResetCode' => $password_reset_code,'passResetExpTime'=> (time() + users_m::TIMESTAMP_MINUTE )]);
-                    $email_message = array('subject' => 'Password reset email', 'message' => 'Go to '.base_url().'index.php/Auth_c/reset_password/'.$password_reset_code.'');
+                    $email_message = array('subject' => 'Password reset email', 'message' => 'Go to '.base_url().'index.php/auth_c/reset_password/'.$password_reset_code.'');
                     $this->users_m->sendVerificationEmail($email,$email_message);
                     $this->session->set_flashdata('verify_warning','Email with link sent');
-                    redirect('Auth_c/login','refresh');
+                    redirect('auth_c/login','refresh');
                 }
                 else
                 {
                     $this->session->set_flashdata('verify_warning','There is no such user');
-                    redirect('Auth_c/send_password_verify_code','refresh');
+                    redirect('auth_c/send_password_verify_code','refresh');
                 }
             }
             else
             {
                 $this->session->set_flashdata('verify_warning','Username/Email field is required');
-                redirect('Auth_c/send_password_verify_code','refresh');
+                redirect('auth_c/send_password_verify_code','refresh');
 
             }
         }
@@ -167,7 +167,7 @@ class Auth_c extends CI_Controller
                                                                                                     'passResetExpTime'=> NULL));
                            
                             $this->session->set_flashdata('verify_warning','Password successfully changed, please login');
-                            redirect('Auth_c/login','refresh');
+                            redirect('auth_c/login','refresh');
                         }//else $this->form_validation->run() == FALSE
                     } else {
                         $data = array('pass_code' =>  $reset_pass_verify_code);
@@ -179,14 +179,14 @@ class Auth_c extends CI_Controller
                 case users_m::PASS_RESET_CODE_EXPIRED:
                 {
                     $this->session->set_flashdata('verify_warning','Password reset code expired!');
-                    redirect('Auth_c/send_password_verify_code','refresh');
+                    redirect('auth_c/send_password_verify_code','refresh');
                 }
                 break;
 
                 case users_m::PASS_RESET_CODE_NOT_EXIST:
                 {
                     $this->session->set_flashdata('verify_warning','Password reset code not exist!');
-                    redirect('Auth_c/send_password_verify_code','refresh');
+                    redirect('auth_c/send_password_verify_code','refresh');
                 }
                 break;
             }
@@ -195,7 +195,7 @@ class Auth_c extends CI_Controller
         {
             
             $this->session->set_flashdata('verify_warning','Password reset code is not correct length');
-            redirect('Auth_c/send_password_verify_code','refresh');
+            redirect('auth_c/send_password_verify_code','refresh');
         }
     }
     

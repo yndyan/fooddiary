@@ -1,7 +1,4 @@
 <head>
-    <script src="<?php echo base_url("public/js/jquery-2.1.1.min.js");?>"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.min.css">
-    <script src="<?php echo base_url();?>public/js/jquery-ui.min.js"></script>
     <script src="<?php echo base_url("public/js/add_course.js");?>"></script>
 </head>
 <body>

@@ -7,8 +7,10 @@ class Courses_m extends MY_Model
     
     function __construct() {
         parent::__construct();
-    }
-    
+    }//construct
+
+//-----------------------------------------------------------------------------    
+
     function api_searchCourses($coursename){
         
         $data_content = 'coursename as value';
@@ -16,7 +18,9 @@ class Courses_m extends MY_Model
         $where = ['user_id'  => $this->user_id];
         
         return $this->getLikeWhere($data_content,$like,$where);
-    }
+    }//api_searchCourses
+   
+//-----------------------------------------------------------------------------  
     
     function add_course($course_data,$grocerynames_array,$quantity_array){
         
@@ -31,15 +35,13 @@ class Courses_m extends MY_Model
         //mydo  some kind of protection when some inerts dont work
         return $course_id;
     }//add course
-    
+
+//-----------------------------------------------------------------------------    
 //SELECT * FROM 
 //(SELECT * FROM courses WHERE courses.user_id = '1' LIMIT 1 OFFSET 0) AS subcourses 
 //INNER JOIN courses_groceries ON subcourses.course_id = courses_groceries.course_id
 //INNER JOIN user_groceries ON user_groceries.grocery_id =  courses_groceries.grocery_id
 //;         $query = $this->db->query('YOUR QUERY HERE');
-
-    
-    
     
     function getSinglePageCourses($page_number = 1,$items_per_page=5,$like = null) {
        
@@ -50,6 +52,7 @@ class Courses_m extends MY_Model
         return $data;
     }//getSinglePageCourses
     
+//-----------------------------------------------------------------------------    
     
    /* SELECT * FROM 
     (courses LEFT JOIN courses_groceries ON courses.course_id = courses_groceries.course_id) 
@@ -82,20 +85,18 @@ class Courses_m extends MY_Model
         
         return $single_course_data;
     }//getSingleCourse
+
+//-----------------------------------------------------------------------------    
     
-    function deleteCourse($course_id){
+    function deleteCourse($course_id){//mydo add soft delete
         $this->load->model('courses_groceries_m');
         $this->db->delete($this->courses_groceries_m->getTableName(), ['course_id'=>$course_id]);
-             
         $this->db->limit(1);
         $this->db->delete($this->getTableName(), ['course_id'=>$course_id,'user_id'=>$this->user_id]);
-        
-        //mydo when finish diary must add deleting in-between table
         return $this->db->affected_rows();
-        
-        //$this->db->affected_rows();
-        
-    }//
+    }//deleteCourse
+
+//-----------------------------------------------------------------------------    
     
     function deleteSingleGroceryFromCourse($course_grocery_id){
         $this->load->model('courses_groceries_m');
@@ -109,10 +110,13 @@ class Courses_m extends MY_Model
         //var_dump($updated_course_data); die();//mydo delete; 
         return $this->updateData($where,$updated_course_data);
     }//updateCourseData
+
+//-----------------------------------------------------------------------------
     
     function checkCourseExist($coursename){
         return $this->chechValueExistsInDb(['coursename'=>$coursename,'user_id'=>$this->user_id]);    
     }//checkGroceryExist
-    
+
+//-----------------------------------------------------------------------------    
     
 }//class

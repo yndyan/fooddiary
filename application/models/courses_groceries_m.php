@@ -8,7 +8,8 @@ class Courses_groceries_m extends MY_Model
     
     function __construct() {
         parent::__construct();
-    }
+    }//construct
+//-----------------------------------------------------------------------------    
     
     function addGroceryToCourse($course_id, $groceryname, $quantity){
         $this->load->model('groceries_m');
@@ -27,5 +28,8 @@ class Courses_groceries_m extends MY_Model
 
         return $this->courses_groceries_m->addDataToDb($grocery_course_data);
     }//addGroceryToCourse
-}
+    
+//-----------------------------------------------------------------------------    
+
+}//class
 

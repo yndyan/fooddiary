@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-9">
         <h2 class ="text-center"> Registration page </h2>    
-        <form class="form-horizontal" role="form" action = "<?php echo base_url(); ?>index.php/Auth_c/register_new_user" method = "post">
+        <form class="form-horizontal" role="form" action = "<?php echo base_url(); ?>index.php/auth_c/register_new_user" method = "post">
 
            <div class="form-group">
                 <label class="control-label col-sm-3" for="username">Username:*</label>

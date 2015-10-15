@@ -5,14 +5,19 @@
     
 <head>
     <link rel = "stylesheet" href = "<?php echo base_url();?>public/css/bootstrap.min.css"></link>
+    <script src="<?php echo base_url("public/js/jquery-2.1.1.min.js");?>"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.css">
+    <script src="<?php echo base_url();?>public/js/jquery-ui.js"></script>
+    <script src="<?php echo base_url("public/js/common.js");?>"></script>
     <link rel = "stylesheet" href = "<?php echo base_url();?>public/css/custom.css"></link>
+
 </head>
 <body>
 <?php $base_url_index = base_url("index.php"); ?>    
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo $base_url_index?>/Diaries_c/show_diaries"> Food diary</a>
+        <a class="navbar-brand" href="<?php echo $base_url_index?>/diaries_c/show_diaries"> Food diary</a>
     </div>
       
     <div>
@@ -36,7 +41,7 @@
             echo " <li><a href = ".$base_url_index."/user_c/Send_new_verify_code> Send new verify code </a></li>";
            }?>
             <li <?php if($this->uri->segment(1)=='user_c') {echo 'class="active"';}?>><a href = "<?php echo $base_url_index?>/user_c/display_user_data"><span class="glyphicon glyphicon-user"></span> <?php echo $username; ?></a></li>
-            <li><a href = "<?php echo $base_url_index?>/Auth_c/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <li><a href = "<?php echo $base_url_index?>/auth_c/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
     </div>
   </div>

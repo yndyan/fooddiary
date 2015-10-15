@@ -9,6 +9,9 @@ class reasons_m extends MY_Model
         parent::__construct();
     }
     
+//--------------------------------------------------------------------------------
+
+    
     function api_searchReasons($like_value){
         
         $data_content = 'reasonname as value';
@@ -16,7 +19,10 @@ class reasons_m extends MY_Model
         $where = ['user_id'  => $this->user_id];
         
         return $this->getLikeWhere($data_content,$like,$where);
-    }
+    }//api_searchReasons
+    
+//--------------------------------------------------------------------------------
+
     
     function getSinglePageReasons($page_number = 1,$items_per_page=5,$like = null){
         
@@ -26,6 +32,9 @@ class reasons_m extends MY_Model
         $data['current_page'] = $page_number;   
         return $data;
     }//getallUserReasons 
+    
+//--------------------------------------------------------------------------------
+
 
     function copyDefaultReasonsToNewUser(){
         $user_id = $this->user_id = $this->session->userdata('logged_in')['user_id'];
@@ -38,28 +47,35 @@ class reasons_m extends MY_Model
         $this->db->insert_batch($this->getTableName(),$default_reasons);
     }//copyDefaultreasonsToNewUser
     
+//--------------------------------------------------------------------------------
+
     
     function addReason($new_reason){
          return $this->addDataToDb(['user_id'=>$this->user_id ,'reasonname'=>$new_reason]);
     }//addNewUserReason
-    
+//--------------------------------------------------------------------------------
+
     
     function updateReason($updated_reason,$reason_id){
         $this->updateData(['reason_id'=>$reason_id],['reasonname'=>$updated_reason]);
     }//update reaosn
     
+//--------------------------------------------------------------------------------
+
     
-    function deleteReason($reason_id){
+    function deleteReason($reason_id){//mydo add soft delete
         $this->db->limit(1);
-        //mydo must find tables where this reason is used and delete them all, maybe warning before, or deletede table
-        
         $this->db->delete($this->getTableName(), ['reason_id'=>$reason_id,'user_id'=>  $this->user_id]);
         return $this->db->affected_rows();
-    }
+    }//deleteReason
+    
+//--------------------------------------------------------------------------------
 
     function checkReasonExist($reasonname){
         return $this->chechValueExistsInDb(['reasonname'=>$reasonname,'user_id'=>$this->user_id]);    
     }//checkGroceryExist
+    
+//--------------------------------------------------------------------------------
     
     function getReasonId($reasonname){
         $where =  ['reasonname'=>$reasonname,
@@ -69,5 +85,8 @@ class reasons_m extends MY_Model
         $limit = 1;
         return $this->getLikeWhere($data_content,$like,$where,$limit)[0]['reason_id'];
     }//getReasonId
+    
+//--------------------------------------------------------------------------------
+
 }//class
  

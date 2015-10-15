@@ -34,9 +34,10 @@ class Courses_c extends MY_Controller
     }//delete_grocery
 //----------------------------------------------------------------------------    
     function update_course(){
-        if($this->input->post('new_coursename')){//mydo bug, when coursename is empty, dont go tyo required!
-            $course_id = trim($this->input->get('course_id',TRUE));
-            $this->form_validation->set_rules('new_coursename', 'course name','xss_clean|trim|required|min_length[2]|FV_CheckCourseNotExist');//mydo add unique, |is_unique[courses.coursename] not working
+        if($this->input->post('course_id')){
+            //mydo when old and new are same, no chang
+            $course_id = trim($this->input->post('course_id',TRUE));
+            $this->form_validation->set_rules('new_coursename', 'course name','xss_clean|trim|required|min_length[2]');//mydo add unique, |is_unique[courses.coursename] not working
             $this->form_validation->set_rules('coursedescription', 'description','xss_clean|trim');
             $this->form_validation->set_rules('calories', 'calories','xss_clean|trim');
 

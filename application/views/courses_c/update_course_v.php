@@ -3,13 +3,14 @@
     <div class="row">
         <div class="col-sm-10 ">
             <h3 class ="text-center "> Edit course </h3>
-            <form class="form-horizontal" role="form" id = "edit_course_form"action="<?php echo base_url();?>index.php/courses_c/update_course?course_id=<?php echo $course_id?>" method = "post" >
+            <form class="form-horizontal" role="form" id = "edit_course_form"action="<?php echo base_url();?>index.php/courses_c/update_course" method = "post" >
 
             <div class="form-group">
                 <label class="control-label col-sm-3" for="coursename">Name:*</label>
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="new_coursename" name="new_coursename" required = "true" value="<?php echo $coursename?>">
                     <?php echo form_error('new_coursename'); ?>
+                    <input type="hidden" name ="course_id" value ="<?php echo $course_id;?>">
                 </div>
             </div>
                 

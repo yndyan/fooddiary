@@ -1,9 +1,8 @@
 <head>
-    <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.css">
-    <script src="<?php echo base_url("public/js/jquery-2.1.1.min.js");?>"></script>
-    <script src="<?php echo base_url();?>public/js/jquery-ui.min.js"></script>
-    <script src="<?php echo base_url();?>public/js/jquery-ui-timepicker-addon.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui-timepicker-addon.min.css">
+    
+    <script src="<?php echo base_url();?>public/js/jquery-ui-timepicker-addon.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui-timepicker-addon.css">
+    
     <script src="<?php echo base_url(); ?>public/js/add_diary.js"></script>
 
 </head>

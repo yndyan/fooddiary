@@ -24,7 +24,7 @@ class Migration_c extends CI_Controller
 
 	    } else {
 	    	$this->session->set_flashdata('verify_warning','Wrong code!');
-	    	redirect('Auth_c/login','refresh');
+	    	redirect('auth_c/login','refresh');
 	    
 	    }//else if code
 	}//migration
@@ -40,7 +40,7 @@ class Migration_c extends CI_Controller
                 echo 'copy finished';
     	} else {
     		$this->session->set_flashdata('verify_warning','Wrong code!');
-	    	redirect('Auth_c/login','refresh');
+	    	redirect('auth_c/login','refresh');
     	}
     }//reasons
 }

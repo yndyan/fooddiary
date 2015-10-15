@@ -12,11 +12,11 @@ class Migration_Create_diary extends CI_Migration
                 				'auto_increment' => TRUE,
                                 'null'  => false
                                 ),
-                'date' => array(
+                'diary_date' => array(
                                 'type' => 'date',
                                 'null' => false
                                 ),
-                'time' => array(
+                'diary_time' => array(
                             'type' => 'time',
                             'null' => true
                             ),

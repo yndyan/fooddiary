@@ -37,21 +37,27 @@ class Groceries_c extends MY_Controller {
 //----------------------------------------------------------------------------    
     function update_grocery(){
         
-        if($this->input->post('update_groceryname')){//bug, on submit empty input doesn't respond requred
-            $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-            $this->form_validation->set_rules('update_groceryname', 'updated grocery', 'trim|required|min_length[2]|FV_CheckGroceryNotExist');
-            
-            if($this->form_validation->run()==FALSE){
-                $data['groceryname'] = $this->input->post('update_groceryname');
-                $data['grocery_id'] = $this->input->post('grocery_id');
-                $this->load->view('groceries_c/update_grocery_v',$data);
-            } else {
-                $this->groceries_m->updateGrocery($this->input->post('update_groceryname'),$this->input->post('grocery_id'));
-                $this->session->set_flashdata('grocery_messages',"Grocery sucessfully updated");
+        if($this->input->post('grocery_id')){
+            //mydo when old and new are same, no change
+            $noting_changed = $this->groceries_m->chechValueExistsInDb(['grocery_id'=>$this->input->post('grocery_id'),'groceryname'=>  $this->input->post('update_groceryname')]);
+            if($noting_changed){
+                $this->session->set_flashdata('grocery_messages',"Grocery remain unchanged");
                 redirect('groceries_c/show_groceries','refresh');
-                return;
-            }//else
-                
+            } else { 
+                $this->form_validation->set_error_delimiters('<font color="red">','</font>');
+                $this->form_validation->set_rules('update_groceryname', 'updated grocery', 'trim|required|min_length[2]');
+
+                if($this->form_validation->run()==FALSE){
+                    $data['groceryname'] = $this->input->post('update_groceryname');
+                    $data['grocery_id'] = $this->input->post('grocery_id');
+                    $this->load->view('groceries_c/update_grocery_v',$data);
+                } else {
+                    $this->groceries_m->updateGrocery($this->input->post('update_groceryname'),$this->input->post('grocery_id'));
+                    $this->session->set_flashdata('grocery_messages',"Grocery sucessfully updated");
+                    redirect('groceries_c/show_groceries','refresh');
+                    return;
+                }//else if form_validation->run()==FALSE
+            }//else if($noting_changed)    
         } else {
             $grocery_id = trim($this->input->get('grocery_id',TRUE));
             $data_content = 'groceryname';

@@ -18,8 +18,14 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
-/*
+
+if($_SERVER['SERVER_NAME']==='localhost'){	////anthony dot parsons at http://php.net/manual/en/function.filter-input.php#77307
+    define('ENVIRONMENT', 'development');
+    } else {
+    define('ENVIRONMENT', 'production');//mydo change to production    
+    } 
+   
+    /*
  *---------------------------------------------------------------
  * ERROR REPORTING
  *---------------------------------------------------------------
@@ -33,12 +39,12 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
-			error_reporting(-1);//mydo return E_ALL
+			error_reporting(E_ALL);
 		break;
 	
 		case 'testing':
 		case 'production':
-			error_reporting(0);
+			error_reporting(E_ALL);//return 0
 		break;
 
 		default:

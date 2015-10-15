@@ -12,7 +12,7 @@
                 <input type="hidden" name ="grocery_id" value ="<?php echo $grocery_id;?>">
             </div>
             <h4 class="text-center col-sm-8 col-md-offset-3">
-            <?php echo form_error('update_grocery'); ?>
+            <?php echo form_error('update_groceryname'); ?>
             </h4>
         </div>
             

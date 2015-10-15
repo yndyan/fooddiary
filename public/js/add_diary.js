@@ -24,7 +24,6 @@ $("#coursenameinput" ).autocomplete({//mydo js base_url
 //-----------------------------------------------------------------------------------
 $("#add_course_to_diary").click(function(e){
     e.preventDefault();
-    console.log('ola');
     var data = {};
     data.coursename = $("#coursenameinput").val();
     data.quantity    = $("#quantity").val();
@@ -103,7 +102,7 @@ $("#add_diary").click(function(e){
                 }
             });//each
         } else if(e.success === true){
-            window.location.replace(baseUrl +'/index.php/diaries_c/show_add_diary');//mydo change to show_diary
+            window.location.replace(baseUrl +'/index.php/diaries_c/show_diaries');//mydo change to show_diary
         }//
     },'json');
 });//#add_course.click

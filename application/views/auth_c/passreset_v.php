@@ -3,7 +3,7 @@
         <div class="col-sm-9">
         <h2 class ="text-center"> Password reset page </h2>
         
-        <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/Auth_c/send_password_verify_code" method = "post" >
+        <form class="form-horizontal" role="form" action="<?php echo base_url();?>index.php/auth_c/send_password_verify_code" method = "post" >
         
         <div class="form-group">
             <label class="control-label col-sm-3" for="email">Username or email:</label>

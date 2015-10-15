@@ -131,7 +131,7 @@ class Api_c extends MY_Controller
     
     function addDiary(){
         for($i = 0; $i< sizeof($this->input->post('courses'));$i++){
-            $this->form_validation->set_rules("courses[".$i."]", 'course','xss_clean|FV_CheckCourseExist|required');//mydo add at least one course is reqired
+            $this->form_validation->set_rules("courses[".$i."]", 'course','xss_clean|required');//mydo add at least one course is reqired
         }//for 
         $this->form_validation->set_rules('quantity[]', 'quantity','xss_clean|trim');//mydo add chech grocery tabe
         
@@ -151,7 +151,6 @@ class Api_c extends MY_Controller
             $diary_id = $this->diary_m->addDiary($diary_data,$courses_array,$quantity_array);
             $this->session->set_flashdata('diary_messages',"Diary sucessfully added");
             $this->output->set_output(json_encode(['success' => true,'diary_id'=>$diary_id]));
-            
         }
 
     }//addCourse
