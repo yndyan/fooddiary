@@ -59,6 +59,7 @@ class MY_Model extends CI_Model
         $this->db-> select($data_content);
         $this->db-> from($this->getTableName());
         $this->db-> where($key,$value);
+        $this->db-> where('user_id',  $this->user_id);
         $this->db-> limit(1);
         $query = $this->db->get();
         if($query->num_rows() == 1){
@@ -70,8 +71,7 @@ class MY_Model extends CI_Model
     }//getSingleData
 
     
-    function chechValueExistsInDb($what)
-    {
+    function chechValueExistsInDb($what){
         $this->db->where($what);// probaj i probaj obrnuto!!
         $this->db->from($this->getTableName());
         return ($this->db->count_all_results() > 0);
@@ -86,22 +86,19 @@ class MY_Model extends CI_Model
         }
     }
     
-    function check_Login_Status()
-    {
+    function check_Login_Status(){
         return ($this->session->userdata('logged_in'))? TRUE : FALSE;
     }
     
     
     
-    function addDataToDb($new_data)
-    {
+    function addDataToDb($new_data){
         $this->db->insert($this->getTableName(),$new_data);
         return $this->db->insert_id();
     }
 
 
-    function updateData($where,$update_data)
-    {
+    function updateData($where,$update_data){
         $this->db->where($where);
         $this->db->update($this->getTableName(),$update_data);
         return $this->db->affected_rows();
@@ -122,5 +119,5 @@ class MY_Model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }//getLikeWhere
-    
+   
 }

@@ -23,7 +23,7 @@
     <div>
         <ul class="nav navbar-nav">
             <li <?php if($this->uri->segment(1)=='diaries_c') {echo 'class="active"';}?>>
-                <a href = "<?php echo $base_url_index?>/diaries_c/show_diaries"><span class="glyphicon glyphicon-calendar"></span> Diary</a>
+                <a href = "<?php echo $base_url_index?>/diaries_c/show_diaries/"><span class="glyphicon glyphicon-calendar"></span> Diary</a>
             </li>
             <li <?php if($this->uri->segment(1)=='courses_c') {echo 'class="active"';}?>>
                 <a href = "<?php echo $base_url_index?>/courses_c/show_courses"><span class="glyphicon glyphicon-list"></span> Courses</a>
@@ -53,7 +53,7 @@
     <h4><?php echo $this->session->flashdata('verify_warning');?></h4>
 
 
-
+<body>
 
 
 

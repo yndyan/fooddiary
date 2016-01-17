@@ -7,6 +7,7 @@ class Diaries_c extends MY_Controller
     function __construct(){
         parent::__construct();
         $this->load->model('diary_m');
+        $this->load->helper('date');
     }
     function index(){//mydo delete this 
     	$this->load->view('diaries_c/add_diary_entry_v');
@@ -20,8 +21,11 @@ class Diaries_c extends MY_Controller
     
     function show_diaries(){
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
+        
+        
         $date = ($this->input->get('date ')!=null)? $this->input->get('date ') : date('Y-m-d') ;
-        $data=  $this->diary_m->getSinglePageDiaries($page_number);//,5,['diary_date'=> $date]);
+        $data=  $this->diary_m->getSinglePageDiaries($page_number,5,['diary_date'=> $date]);
+        $data['day_dates'] = get_current_week_dates($date);
         $this->load->view('diaries_c/show_diaries_v',$data);
     }//show_diaries
     

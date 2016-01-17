@@ -50,7 +50,10 @@ class groceries_m extends MY_Model
 //-----------------------------------------------------------------------------
     
     function updateGrocery($updated_grocery,$grocery_id){
-        $this->updateData(['grocery_id'=>$grocery_id],['groceryname'=>$updated_grocery]);
+        $where['grocery_id'] = $grocery_id;
+        $where['user_id'] = $this->user_id;
+        $data['groceryname']=$updated_grocery;
+        $this->updateData($where,$data);
     }//updateGrocery
     
 //-----------------------------------------------------------------------------

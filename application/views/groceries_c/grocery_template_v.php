@@ -1,3 +1,8 @@
+<?php 
+//$update_grocery_url;
+?>
+
+
 <li class="list-group-item cm_fake_label" >
     <span class="cm_row_title"> <?php echo $groceryname; ?>  </span>
     <div class=" pull-right">
