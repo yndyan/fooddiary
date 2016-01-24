@@ -1,11 +1,4 @@
-<head>
-    
-    <script src="<?php echo base_url();?>public/js/jquery-ui-timepicker-addon.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui-timepicker-addon.css">
-    
-    <script src="<?php echo base_url(); ?>public/js/add_diary.js"></script>
 
-</head>
 
 <body>
 

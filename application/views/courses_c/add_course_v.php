@@ -1,6 +1,3 @@
-<head>
-    <script src="<?php echo base_url("public/js/add_course.js");?>"></script>
-</head>
 <body>
 <div class="container" >
     <div class="row col-sm-12">

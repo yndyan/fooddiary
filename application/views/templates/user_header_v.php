@@ -1,15 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-
-    
-<head>
-    <link rel = "stylesheet" href = "<?php echo base_url();?>public/css/bootstrap.min.css"></link>
-    <script src="<?php echo base_url("public/js/jquery-2.1.1.min.js");?>"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>public/css/jquery-ui.css">
-    <script src="<?php echo base_url();?>public/js/jquery-ui.js"></script>
-    <script src="<?php echo base_url("public/js/common.js");?>"></script>
-    <link rel = "stylesheet" href = "<?php echo base_url();?>public/css/custom.css"></link>
+<head> 
+<?php 
+    $method = $this->router->fetch_method();
+    $this->load->helper('files_loader');
+    $locations_array =  get_needed_locations($method);     
+    foreach ($locations_array as $location) { 
+        $extension = get_file_extension($location); 
+        if($extension === 'css') {
+            echo create_css_url($location);
+        } else if($extension === 'js') {
+            echo create_script_url($location); 
+        }     
+    } 
+?>
 
 </head>
 <body>
@@ -23,7 +28,7 @@
     <div>
         <ul class="nav navbar-nav">
             <li <?php if($this->uri->segment(1)=='diaries_c') {echo 'class="active"';}?>>
-                <a href = "<?php echo $base_url_index?>/diaries_c/show_diaries"><span class="glyphicon glyphicon-calendar"></span> Diary</a>
+                <a href = "<?php echo $base_url_index?>/diaries_c/show_diaries/"><span class="glyphicon glyphicon-calendar"></span> Diary</a>
             </li>
             <li <?php if($this->uri->segment(1)=='courses_c') {echo 'class="active"';}?>>
                 <a href = "<?php echo $base_url_index?>/courses_c/show_courses"><span class="glyphicon glyphicon-list"></span> Courses</a>
