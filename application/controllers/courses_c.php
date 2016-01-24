@@ -34,10 +34,11 @@ class Courses_c extends MY_Controller
     }//delete_grocery
 //----------------------------------------------------------------------------    
     function update_course(){
-        if($this->input->post('course_id')){
-            //mydo when old and new are same, no chang
-            $course_id = trim($this->input->post('course_id',TRUE));
-            $this->form_validation->set_rules('new_coursename', 'course name','xss_clean|trim|required|min_length[2]');//mydo add unique, |is_unique[courses.coursename] not working
+        $course_id = trim($this->input->get('course_id',TRUE));
+
+        if($this->input->post('new_coursename')){
+            $this->form_validation->set_error_delimiters('<font color="red">','</font>');
+            $this->form_validation->set_rules('new_coursename', 'course name','xss_clean|trim|required|min_length[2]|FV_CheckCourseNotExist');
             $this->form_validation->set_rules('coursedescription', 'description','xss_clean|trim');
             $this->form_validation->set_rules('calories', 'calories','xss_clean|trim');
 
@@ -59,7 +60,6 @@ class Courses_c extends MY_Controller
                 redirect('courses_c/show_courses','refresh');
             }//else if($this->form_validation->run() == FALSE     
         } else {
-            $course_id = trim($this->input->get('course_id',TRUE));
             if($course_id){
             $data = $this->courses_m->getSingleCourse($course_id);
             //var_dump($data); die();//mydo delete this

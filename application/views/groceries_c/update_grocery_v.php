@@ -10,8 +10,8 @@
             <div class="col-sm-8">
                 <input type="text" class="form-control" id="update_groceryname" name="update_groceryname" required = "true" value = "<?php  echo $groceryname; ?>">
             </div>
-            <h4 class="text-center col-sm-8 col-md-offset-3">
-            <?php echo form_error('update_groceryname'); ?>
+            <h4 class="text-center col-sm-8">
+                <?php echo form_error('update_groceryname'); ?>
             </h4>
         </div>
             
