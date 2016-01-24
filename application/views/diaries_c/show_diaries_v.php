@@ -1,4 +1,3 @@
-<body>
 <div class="container" >
         <div class="row">
             <h3 class="text-warning text-center"><?php echo $this->session->flashdata('diary_messages');?></h3>
