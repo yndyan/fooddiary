@@ -24,7 +24,6 @@ class Reasons_c extends MY_Controller
         if($this->input->post('new_reason')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
             $this->form_validation->set_rules('new_reason', 'new reason', 'trim|required|min_length[2]|FV_CheckReasonNotExist');
-            //mydo add unique chack for user reason
             if($this->form_validation->run()==FALSE){
                 $this->load->view('reasons_c/add_reason_v');
             } else {
@@ -43,31 +42,23 @@ class Reasons_c extends MY_Controller
 //----------------------------------------------------------------------------
 
     function update_reason(){
-        if($this->input->post('reason_id')){ 
-            //mydo when old and new are same, no chang
-            
-            $noting_changed = $this->reasons_m->chechValueExistsInDb(['reason_id'=>$this->input->post('reason_id'),'reasonname'=>  $this->input->post('update_reason')]);
-            if($noting_changed){
-                $this->session->set_flashdata('reason_messages',"Reason remain unchanged");
-                redirect('reasons_c/show_reasons','refresh');
-            } else {
-                $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-                $this->form_validation->set_rules('update_reason', 'updated reason', 'trim|required|min_length[2]');
+        $reason_id = trim($this->input->get('reason_id',TRUE));
+
+        if($this->input->post('update_reason')){ 
+            $this->form_validation->set_error_delimiters('<font color="red">','</font>');
+            $this->form_validation->set_rules('update_reason', 'updated reason', 'trim|required|min_length[2]|FV_CheckReasonNotExist');
 
                 if($this->form_validation->run()==FALSE){
                     $data['reasonname'] = $this->input->post('update_reason');
-                    $data['reason_id'] = $this->input->post('reason_id');
+                    $data['reason_id'] = $reason_id;
                     $this->load->view('reasons_c/update_reason_v',$data);
                 } else {
-                    $this->reasons_m->updateReason($this->input->post('update_reason'),$this->input->post('reason_id'));
-                    $this->session->set_flashdata('reason_messages',"Reason sucessfully updated");
+                    $this->reasons_m->updateReason($this->input->post('update_reason'),$reason_id);
+                    $this->session->set_flashdata('reason_messages',"Reason successfully updated");
                     redirect('reasons_c/show_reasons','refresh');
                     return;
                 }//else form_validation->run()==FALSE
-            }//else if($noting_changed){   
         } else {
-            $reason_id = trim($this->input->get('reason_id',TRUE));
-            
             $data_content = 'reasonname';
             $reasonname = $this->reasons_m->getOneBySingleValue('reason_id',$reason_id,$data_content)[$data_content];
             if($reasonname) {

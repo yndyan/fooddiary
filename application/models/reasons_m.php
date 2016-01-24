@@ -57,7 +57,10 @@ class reasons_m extends MY_Model
 
     
     function updateReason($updated_reason,$reason_id){
-        $this->updateData(['reason_id'=>$reason_id],['reasonname'=>$updated_reason]);
+        $where['user_id'] = $this->user_id;
+        $where['reason_id'] = $reason_id;
+        $update_data['reasonname'] = $updated_reason;
+        $this->updateData($where,$update_data);
     }//update reaosn
     
 //--------------------------------------------------------------------------------
