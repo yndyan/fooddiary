@@ -3,13 +3,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Reasons_c extends MY_Controller
 {
-    //private $controler_name = '';
-    private $controler_url  = '';
+    
     function __construct(){
         parent::__construct();
         $this->load->model('reasons_m');
-        $controler_name = $this->router->fetch_class();
-        $this->controler_url = site_url($controler_name);
+        
       
     }//construct
 //----------------------------------------------------------------------------

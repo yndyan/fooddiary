@@ -12,12 +12,13 @@ class Groceries_c extends MY_Controller {
     
     function show_groceries(){
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
-        $data = $this->groceries_m->getSinglePageGroceries($page_number); 
-        $this->load->view('groceries_c/show_groceries_v',$data);
+        $sg_data = $this->groceries_m->getSinglePageGroceries($page_number); 
+        $sg_data['controler_url'] = $this->controler_url;;
+        $this->load->view('groceries_c/show_groceries_v',$sg_data);
     }//show_groceries
-    //
+    
 //----------------------------------------------------------------------------    
-     public function add_grocery(){
+    function add_grocery(){
         if($this->input->post('new_grocery')){
             $this->form_validation->set_error_delimiters('<font color="red">','</font>');
             $this->form_validation->set_rules('new_grocery', 'new grocery', 'trim|required|min_length[2]|FV_CheckGroceryNotExist');
@@ -36,24 +37,22 @@ class Groceries_c extends MY_Controller {
     }//add_grocery
 //----------------------------------------------------------------------------    
     function update_grocery(){
-        
         $grocery_id = trim($this->input->get('grocery_id',TRUE));
         if($this->input->post('update_groceryname')){ 
-                $this->form_validation->set_error_delimiters('<font color="red">','</font>');
-                $this->form_validation->set_rules('update_groceryname', 'updated grocery', 'trim|required|min_length[2]');
+            $this->form_validation->set_error_delimiters('<font color="red">','</font>');
+            $this->form_validation->set_rules('update_groceryname', 'updated grocery', 'trim|required|min_length[2]');
 
-                if($this->form_validation->run()==FALSE){
-                    $data['groceryname'] = $this->input->post('update_groceryname');
-                $data['grocery_id'] = $grocery_id;
-                    $this->load->view('groceries_c/update_grocery_v',$data);
-                } else {
-                
-                $this->groceries_m->updateGrocery($this->input->post('update_groceryname'),$grocery_id);
-                    $this->session->set_flashdata('grocery_messages',"Grocery sucessfully updated");
-                    redirect('groceries_c/show_groceries','refresh');
-                    return;
-                }//else if form_validation->run()==FALSE
-  
+            if($this->form_validation->run()==FALSE){
+                $data['groceryname'] = $this->input->post('update_groceryname');
+            $data['grocery_id'] = $grocery_id;
+                $this->load->view('groceries_c/update_grocery_v',$data);
+            } else {
+            
+            $this->groceries_m->updateGrocery($this->input->post('update_groceryname'),$grocery_id);
+                $this->session->set_flashdata('grocery_messages',"Grocery sucessfully updated");
+                redirect('groceries_c/show_groceries','refresh');
+                return;
+            }//else if form_validation->run()==FALSE
         } else {
             $data_content = 'groceryname';
             $groceryname = $this->groceries_m->getOneBySingleValue('grocery_id',$grocery_id,$data_content)[$data_content];
@@ -65,12 +64,11 @@ class Groceries_c extends MY_Controller {
                 $this->session->set_flashdata('grocery_messages',"Error finding grocery");
                 redirect('groceries_c/show_groceries','refresh');
             } 
-                
             return;
         }//else
     }//update grocery
 //----------------------------------------------------------------------------    
-    public function delete_grocery(){
+    function delete_grocery(){
         $grocery_id = trim($this->input->get('grocery_id',TRUE));
         if($this->groceries_m->deleteGrocery($grocery_id)){
             $this->session->set_flashdata('grocery_messages',"Grocery successfully deleted");
@@ -81,4 +79,4 @@ class Groceries_c extends MY_Controller {
     }//delete_grocery
     
     
-}
+}//class
