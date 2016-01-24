@@ -3,9 +3,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Reasons_c extends MY_Controller
 {
+    //private $controler_name = '';
+    private $controler_url  = '';
     function __construct(){
         parent::__construct();
         $this->load->model('reasons_m');
+        $controler_name = $this->router->fetch_class();
+        $this->controler_url = site_url($controler_name);
+      
     }//construct
 //----------------------------------------------------------------------------
     
@@ -14,8 +19,9 @@ class Reasons_c extends MY_Controller
     function show_reasons(){//mydo add sort by name,  usage
         $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
         $items_per_page = ($this->input->get('items_per_page')!=null) ? $this->input->get('items_per_page') : 5;
-        $data = $this->reasons_m->getSinglePageReasons($page_number,$items_per_page); 
-        $this->load->view('reasons_c/show_reasons_v',$data);
+        $sr_data = $this->reasons_m->getSinglePageReasons($page_number,$items_per_page); 
+        $sr_data['controler_url'] = $this->controler_url;;
+        $this->load->view('reasons_c/show_reasons_v',$sr_data);
         
     }//show_reasons_old
 //----------------------------------------------------------------------------
