@@ -2,23 +2,23 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head> 
-<?php 
-    $method = $this->router->fetch_method();
-    $this->load->helper('files_loader');
-    $locations_array =  get_needed_locations($method);     
-    foreach ($locations_array as $location) { 
-        $extension = get_file_extension($location); 
-        if($extension === 'css') {
-            echo create_css_url($location);
-        } else if($extension === 'js') {
-            echo create_script_url($location); 
-        }     
-    } 
-?>
-
+    <?php 
+        $method = $this->router->fetch_method();
+        $this->load->helper('files_loader');
+        $locations_array =  get_needed_locations($method);     
+        foreach ($locations_array as $location) { 
+            $extension = get_file_extension($location); 
+            if($extension === 'css') {
+                echo create_css_url($location);
+            } else if($extension === 'js') {
+                echo create_script_url($location); 
+            }     
+        } 
+        $base_url_index = base_url("index.php"); 
+    ?>
 </head>
+
 <body>
-<?php $base_url_index = base_url("index.php"); ?>    
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -28,16 +28,16 @@
     <div>
         <ul class="nav navbar-nav">
             <li <?php if($this->uri->segment(1)=='diaries_c') {echo 'class="active"';}?>>
-                <a href = "<?php echo $base_url_index?>/diaries_c/show_diaries/"><span class="glyphicon glyphicon-calendar"></span> Diary</a>
+                <a href = "<?= $base_url_index?>/diaries_c/show_diaries/"><span class="glyphicon glyphicon-calendar"></span> Diary</a>
             </li>
             <li <?php if($this->uri->segment(1)=='courses_c') {echo 'class="active"';}?>>
-                <a href = "<?php echo $base_url_index?>/courses_c/show_courses"><span class="glyphicon glyphicon-list"></span> Courses</a>
+                <a href = "<?= $base_url_index?>/courses_c/show_courses"><span class="glyphicon glyphicon-list"></span> Courses</a>
             </li>    
             <li <?php if($this->uri->segment(1)=='groceries_c') {echo 'class="active"';}?>>
-                <a href = "<?php echo $base_url_index?>/groceries_c/show_groceries"><span class="glyphicon glyphicon-apple"></span> Groceries</a>
+                <a href = "<?= $base_url_index?>/groceries_c/show_groceries"><span class="glyphicon glyphicon-apple"></span> Groceries</a>
             </li>
             <li <?php if($this->uri->segment(1)=='reasons_c') {echo 'class="active"';}?>>
-                <a href = "<?php echo $base_url_index?>/reasons_c/show_reasons"><span class="glyphicon glyphicon-question-sign"></span> Reasons</a>
+                <a href = "<?= $base_url_index?>/reasons_c/show_reasons"><span class="glyphicon glyphicon-question-sign"></span> Reasons</a>
             </li>
          
         </ul>
@@ -51,11 +51,8 @@
     </div>
   </div>
 </nav>
-    
-    
 
-
-    <h4><?php echo $this->session->flashdata('verify_warning');?></h4>
+<h4><?php echo $this->session->flashdata('verify_warning');?></h4>
 
 
 
