@@ -9,11 +9,10 @@ class Courses_c extends MY_Controller
     }//__construct()
 //----------------------------------------------------------------------------    
     function show_courses(){
-            
-            $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
-            $data=  $this->courses_m->getSinglePageCourses($page_number);
-            $this->load->view('courses_c/show_courses_v',$data);
-       
+        $page_number = ($this->input->get('page')!=null) ? $this->input->get('page') : 1;
+        $sc_data=  $this->courses_m->getSinglePageCourses($page_number);
+        $sc_data['controler_url'] = $this->controler_url;
+        $this->load->view('courses_c/show_courses_v',$sc_data);
     }//show_courses
 //----------------------------------------------------------------------------    
     function show_add_course(){
