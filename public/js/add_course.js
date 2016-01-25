@@ -17,7 +17,7 @@ $("#add_grocery_to_course").click(function(e){
     var data = {};
     data.groceryname = $("#groceryname").val();
     data.quantity    = $("#quantity").val();
-    checkGroceryExistUrl = baseUrl + '/index.php/api_c/checkGroceryExist';
+    checkGroceryExistUrl = baseUrl + '/index.php/groceries_c/ajaxCheckGroceryExist';
 
     $.post(checkGroceryExistUrl,data,function(e){
         if(e.exist === true){
@@ -30,9 +30,8 @@ $("#add_grocery_to_course").click(function(e){
             });//delete_button.click
         } else {
             if(confirm('No such grocery! \n Add grocery?')){
-                addGroceryUrl = baseUrl + '/index.php/api_c/addGrocery';
-
-                $.post(addGroceryUrl,data,function(e){
+                addGroceryUrl = baseUrl + '/index.php/groceries_c/add_grocery';
+                $.post(addGroceryUrl,{'new_grocery':data.groceryname},function(e){
                     if(e.success === true){
                         $('#grocery_list').append(add_grocery_template(data));
                         $("#groceryname").val('');
@@ -57,7 +56,7 @@ $("#add_grocery_to_course").click(function(e){
 //----------------------------------------------------------------------------------    
     
 $("#groceryname").autocomplete({
-    source: baseUrl + "/index.php/api_c/getAutocompleteGroceries",
+    source: baseUrl + "/index.php/groceries_c/ajaxGetAutocompleteGroceries",
     minLength: 2
 });
     

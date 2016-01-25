@@ -52,7 +52,7 @@ $(".expand_course").click(function(e){
                 });//$(".delete_grocery").click
                 
                 $("#groceryname").autocomplete({//mydo problem whem more when one is expanded
-                    source: baseUrl + "/index.php/api_c/getAutocompleteGroceries",
+                    source: baseUrl + "/index.php/groceries_c/ajaxGetAutocompleteGroceries",
                     minLength: 2
                 });
                 
@@ -76,15 +76,15 @@ var add_grocery_to_course = function(e){
                  'course_id'   : $(this).parents(".course").attr('id').match(/\d+/)[0]};
     
     
-    checkGroceryExistUrl = baseUrl + '/index.php/api_c/checkGroceryExist';
+    checkGroceryExistUrl = baseUrl + '/index.php/groceries_c/ajaxCheckGroceryExist';
 
     $.post(checkGroceryExistUrl,data,function(e){
         if(e.exist === true){
             addGroceryToCourseDatabase(data);
         } else {
             if(confirm('No such grocery! \n Add grocery?')){
-                addGroceryUrl = baseUrl + '/index.php/api_c/addGrocery'; 
-                $.post(addGroceryUrl,data,function(e){
+                addGroceryUrl = baseUrl + '/index.php/groceries_c/add_grocery';
+                $.post(addGroceryUrl,{'new_grocery':data.groceryname},function(e){
                     if(e.success === true){
                     addGroceryToCourseDatabase(data);
                     } else {

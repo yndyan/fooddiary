@@ -14,19 +14,15 @@ class Api_c extends MY_Controller
     }//__construct
             
     function getAutocompleteReasons(){
+        echo (is_ajax_request())? 'true' : 'false';
+
         $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
         $result = $this->reasons_m->api_searchReasons($like_value);
         echo json_encode($result);//TODO vrati
         
     }//getAutocompleteReasons
     
-    function getAutocompleteGroceries(){
-        $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
-        $result = $this->groceries_m->api_searchGroceries($like_value);
-        echo json_encode($result);//TODO vrati
-        
-    }//    function getAutocompleteGroceries(){
-    
+     
     function getAutocompleteCourses(){
         $like_value = strtolower($this->input->get('term'));//mydo xss clean and trim!
         $result = $this->courses_m->api_searchCourses($like_value);
@@ -63,20 +59,6 @@ class Api_c extends MY_Controller
     }//addCourse
     
     
-
-    
-    function addGrocery(){
-            $this->form_validation->set_rules('groceryname', 'new grocery', 'trim|required|min_length[2]|FV_CheckGroceryNotExist');
-            if($this->form_validation->run()==FALSE){
-                $this->output->set_output(json_encode(['success' => false, 'errors'=>$this->form_validation->form_validation_errors()]));
-            } else {
-                $grocery_id = $this->groceries_m->addGrocery($this->input->post('groceryname')); //mydo return 
-                $this->output->set_output(json_encode(['success' => true,'grocery_id'=>$grocery_id]));
-                return;
-            }//else
-    }//addGrocery
-    
-    
     function getCourseData(){
         $course_id = trim($this->input->post('course_id',TRUE));
         if($course_id){
@@ -99,14 +81,7 @@ class Api_c extends MY_Controller
             }//if
         }//if $course_grocery_id
     }//deleteGroceryFromCourse
-    
-    function checkGroceryExist(){//mydo finish this function
-        $groceryname = trim($this->input->post('groceryname',TRUE));
-        //var_dump($groceryname); die();//mydo delete this
-        $result = $this->groceries_m->checkGroceryExist($groceryname);
-        $this->output->set_output(json_encode(['exist' => $result]));
-    }//checkGroceryExist
-    
+     
     function checkCourseExist(){//mydo finish this function
         $coursename = trim($this->input->post('coursename',TRUE));
         //var_dump($coursename); die();//mydo delete this
@@ -155,20 +130,7 @@ class Api_c extends MY_Controller
 
     }//addCourse
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
     
 }//class
 
