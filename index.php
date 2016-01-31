@@ -18,13 +18,12 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-
-if($_SERVER['SERVER_NAME']==='localhost'){	////anthony dot parsons at http://php.net/manual/en/function.filter-input.php#77307
+if($_SERVER['SERVER_NAME']==='localhost' || $_SERVER['SERVER_NAME']==='127.0.0.1'){	////anthony dot parsons at http://php.net/manual/en/function.filter-input.php#77307
     define('ENVIRONMENT', 'development');
     } else {
     define('ENVIRONMENT', 'production');//mydo change to production    
     } 
-   
+
     /*
  *---------------------------------------------------------------
  * ERROR REPORTING
